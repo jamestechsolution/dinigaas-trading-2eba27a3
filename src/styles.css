@@ -172,6 +172,37 @@
   code, kbd, samp { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.875em; }
 }
 
+/* ---------- Contrast hardening for cards / borders / buttons ---------- */
+@layer base {
+  .bg-background, .bg-card, .bg-popover {
+    box-shadow: 0 1px 0 0 color-mix(in oklab, var(--color-foreground) 6%, transparent),
+                0 8px 24px -16px color-mix(in oklab, var(--color-primary) 22%, transparent);
+  }
+  button, [role="button"], .btn {
+    transition: background-color .2s ease, color .2s ease, box-shadow .2s ease, transform .2s ease, border-color .2s ease;
+  }
+  button:focus-visible, [role="button"]:focus-visible, a:focus-visible,
+  input:focus-visible, textarea:focus-visible, select:focus-visible {
+    outline: 2px solid var(--color-ring);
+    outline-offset: 2px;
+  }
+  .bg-primary { color: var(--color-primary-foreground); }
+  .bg-primary:hover { background-color: var(--color-primary-light); }
+  .border.bg-background:hover, .border.bg-card:hover {
+    background-color: color-mix(in oklab, var(--color-primary) 8%, var(--color-background));
+    border-color: color-mix(in oklab, var(--color-primary) 35%, var(--color-border));
+  }
+  input, textarea, select {
+    background-color: var(--color-background);
+    border-color: var(--color-input);
+  }
+}
+
+.dark .bg-background, .dark .bg-card, .dark .bg-popover {
+  box-shadow: 0 1px 0 0 color-mix(in oklab, var(--color-foreground) 8%, transparent),
+              0 12px 28px -16px oklch(0 0 0 / 0.55);
+}
+
 /* ---------- Motion utilities ---------- */
 @keyframes dg-rise {
   0%   { opacity: 0; transform: translateY(24px); }
