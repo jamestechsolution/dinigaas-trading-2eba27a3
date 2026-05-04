@@ -8,9 +8,16 @@ import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
 // When TARGET=netlify (set by netlify.toml), disable the Cloudflare plugin
 // and tell TanStack Start to emit a Netlify-compatible build.
-const isNetlify = process.env.TARGET === "netlify";
+const target = process.env.TARGET; // "netlify" | "vercel" | undefined
+const isNetlify = target === "netlify";
+const isVercel = target === "vercel";
+const customTarget = isNetlify || isVercel;
 
 export default defineConfig({
-  cloudflare: isNetlify ? false : undefined,
-  tanstackStart: isNetlify ? { target: "netlify" } : undefined,
+  cloudflare: customTarget ? false : undefined,
+  tanstackStart: isNetlify
+    ? { target: "netlify" }
+    : isVercel
+      ? { target: "vercel" }
+      : undefined,
 });
