@@ -4,3 +4,24 @@
 [build.environment]
   TARGET = "netlify"
   NODE_VERSION = "20"
+  # ---------------------------------------------------------------------------
+  # Public (client-bundled) env vars — safe to commit. These are publishable
+  # keys and project identifiers exposed in the browser.
+  # ---------------------------------------------------------------------------
+  VITE_SUPABASE_URL = "https://qpmwlluptqdgwirskwun.supabase.co"
+  VITE_SUPABASE_PROJECT_ID = "qpmwlluptqdgwirskwun"
+  VITE_SUPABASE_PUBLISHABLE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFwbXdsbHVwdHFkZ3dpcnNrd3VuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzcwMDQwMDcsImV4cCI6MjA5MjU4MDAwN30.pb9GtinO17FUDUy-r7nOGzT7Y3WRhhzBUHMIyLkZ0L0"
+
+  # Server-side aliases (same publishable values, used by SSR fallback).
+  SUPABASE_URL = "https://qpmwlluptqdgwirskwun.supabase.co"
+  SUPABASE_PUBLISHABLE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFwbXdsbHVwdHFkZ3dpcnNrd3VuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzcwMDQwMDcsImV4cCI6MjA5MjU4MDAwN30.pb9GtinO17FUDUy-r7nOGzT7Y3WRhhzBUHMIyLkZ0L0"
+
+# ---------------------------------------------------------------------------
+# SECRETS (DO NOT COMMIT) — must be added in Netlify UI:
+#   Site settings → Environment variables
+#
+#   SUPABASE_SERVICE_ROLE_KEY   (required — admin DB access in server fns)
+#   LOVABLE_API_KEY             (required if using Lovable AI Gateway)
+#
+# See ENV_CHECKLIST.md for the full list and where to find each value.
+# ---------------------------------------------------------------------------
