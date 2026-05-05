@@ -203,6 +203,21 @@
               0 12px 28px -16px oklch(0 0 0 / 0.55);
 }
 
+/* ---------- Corporate hero gradient ---------- */
+.hero-gradient {
+  background:
+    radial-gradient(40rem 40rem at 90% 10%, color-mix(in oklab, var(--color-primary-light) 45%, transparent), transparent 60%),
+    radial-gradient(36rem 36rem at 10% 90%, color-mix(in oklab, var(--color-primary) 55%, transparent), transparent 60%),
+    linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+  color: var(--color-primary-foreground);
+}
+.hero-gradient .text-muted-foreground { color: color-mix(in oklab, var(--color-primary-foreground) 80%, transparent); }
+.glass-card {
+  background: color-mix(in oklab, var(--color-primary-foreground) 10%, transparent);
+  backdrop-filter: blur(12px);
+  border: 1px solid color-mix(in oklab, var(--color-primary-foreground) 22%, transparent);
+}
+
 /* ---------- Motion utilities ---------- */
 @keyframes dg-rise {
   0%   { opacity: 0; transform: translateY(24px); }
