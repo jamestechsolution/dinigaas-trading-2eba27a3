@@ -133,8 +133,7 @@ function SectorsPage() {
             <Reveal
               key={title}
               as="article"
-              id={title.toLowerCase()}
-              className="grid gap-10 rounded-3xl border border-border bg-background p-8 shadow-card md:grid-cols-[auto_1fr] md:p-12"
+              className="grid gap-10 scroll-mt-24 rounded-3xl border border-border bg-background p-8 shadow-card md:grid-cols-[auto_1fr] md:p-12"
             >
               <div className="flex md:block">
                 <span className="grid size-16 place-items-center rounded-2xl bg-primary/10 text-primary">
