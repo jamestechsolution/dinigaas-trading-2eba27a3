@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as ServicesRouteImport } from './routes/services'
+import { Route as SectorsRouteImport } from './routes/sectors'
 import { Route as RegisterRouteImport } from './routes/register'
 import { Route as ProductsRouteImport } from './routes/products'
 import { Route as NewsRouteImport } from './routes/news'
@@ -23,6 +24,11 @@ import { Route as IndexRouteImport } from './routes/index'
 const ServicesRoute = ServicesRouteImport.update({
   id: '/services',
   path: '/services',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SectorsRoute = SectorsRouteImport.update({
+  id: '/sectors',
+  path: '/sectors',
   getParentRoute: () => rootRouteImport,
 } as any)
 const RegisterRoute = RegisterRouteImport.update({
@@ -81,6 +87,7 @@ export interface FileRoutesByFullPath {
   '/news': typeof NewsRoute
   '/products': typeof ProductsRoute
   '/register': typeof RegisterRoute
+  '/sectors': typeof SectorsRoute
   '/services': typeof ServicesRoute
 }
 export interface FileRoutesByTo {
@@ -93,6 +100,7 @@ export interface FileRoutesByTo {
   '/news': typeof NewsRoute
   '/products': typeof ProductsRoute
   '/register': typeof RegisterRoute
+  '/sectors': typeof SectorsRoute
   '/services': typeof ServicesRoute
 }
 export interface FileRoutesById {
@@ -106,6 +114,7 @@ export interface FileRoutesById {
   '/news': typeof NewsRoute
   '/products': typeof ProductsRoute
   '/register': typeof RegisterRoute
+  '/sectors': typeof SectorsRoute
   '/services': typeof ServicesRoute
 }
 export interface FileRouteTypes {
@@ -120,6 +129,7 @@ export interface FileRouteTypes {
     | '/news'
     | '/products'
     | '/register'
+    | '/sectors'
     | '/services'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -132,6 +142,7 @@ export interface FileRouteTypes {
     | '/news'
     | '/products'
     | '/register'
+    | '/sectors'
     | '/services'
   id:
     | '__root__'
@@ -144,6 +155,7 @@ export interface FileRouteTypes {
     | '/news'
     | '/products'
     | '/register'
+    | '/sectors'
     | '/services'
   fileRoutesById: FileRoutesById
 }
@@ -157,6 +169,7 @@ export interface RootRouteChildren {
   NewsRoute: typeof NewsRoute
   ProductsRoute: typeof ProductsRoute
   RegisterRoute: typeof RegisterRoute
+  SectorsRoute: typeof SectorsRoute
   ServicesRoute: typeof ServicesRoute
 }
 
@@ -167,6 +180,13 @@ declare module '@tanstack/react-router' {
       path: '/services'
       fullPath: '/services'
       preLoaderRoute: typeof ServicesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sectors': {
+      id: '/sectors'
+      path: '/sectors'
+      fullPath: '/sectors'
+      preLoaderRoute: typeof SectorsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/register': {
@@ -245,6 +265,7 @@ const rootRouteChildren: RootRouteChildren = {
   NewsRoute: NewsRoute,
   ProductsRoute: ProductsRoute,
   RegisterRoute: RegisterRoute,
+  SectorsRoute: SectorsRoute,
   ServicesRoute: ServicesRoute,
 }
 export const routeTree = rootRouteImport

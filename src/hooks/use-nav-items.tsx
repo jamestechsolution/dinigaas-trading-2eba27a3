@@ -13,9 +13,10 @@ const FALLBACK: NavItem[] = [
   { id: "f1", label: "Home", path: "/", sort_order: 1, active: true },
   { id: "f2", label: "About", path: "/about", sort_order: 2, active: true },
   { id: "f3", label: "Services", path: "/services", sort_order: 3, active: true },
-  { id: "f4", label: "Products", path: "/products", sort_order: 4, active: true },
-  { id: "f5", label: "News", path: "/news", sort_order: 5, active: true },
-  { id: "f6", label: "Careers", path: "/careers", sort_order: 6, active: true },
+  { id: "f3b", label: "Sectors", path: "/sectors", sort_order: 4, active: true },
+  { id: "f4", label: "Products", path: "/products", sort_order: 5, active: true },
+  { id: "f5", label: "News", path: "/news", sort_order: 6, active: true },
+  { id: "f6", label: "Careers", path: "/careers", sort_order: 7, active: true },
 ];
 
 export function useNavItems() {
