@@ -32,90 +32,81 @@ function HomePage() {
   const healthSrc = getImg("home_health", healthImg);
   return (
     <SiteLayout>
-      {/* Hero */}
-      <section className="relative overflow-hidden">
-        <div className="mx-auto max-w-7xl px-6 pt-12 pb-24 lg:px-12 lg:pt-20">
-          <div className="grid items-center gap-14 lg:grid-cols-12">
-            <div className="lg:col-span-6 xl:col-span-5">
-              <div className="mb-7 inline-flex animate-rise items-center gap-2 rounded-full border border-primary/15 bg-primary/5 px-3 py-1">
-                <span className="size-1.5 animate-pulse rounded-full bg-primary" />
-                <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-primary">
-                  {get("home_hero_eyebrow", "Community Foundation")}
-                </span>
-              </div>
-              <h1 className="animate-rise delay-100 text-balance font-serif text-5xl leading-[1.05] tracking-tight text-primary md:text-6xl lg:text-7xl">
-                {get("home_hero_title", "Nurturing the future of Sheger City.")}
-              </h1>
-              <p className="animate-rise delay-200 mt-7 max-w-[48ch] text-pretty text-lg leading-relaxed text-muted-foreground whitespace-pre-line">
-                {get(
-                  "home_hero_subtitle",
-                  "From the first steps of KG1 through Grade 8, and from routine checkups to specialized care — Dinigaas Trading S.C. delivers education and healthcare that transforms families and strengthens our community."
-                )}
-              </p>
-              <div className="animate-rise delay-300 mt-10 flex flex-col gap-3 sm:flex-row">
-                <Link
-                  to="/services"
-                  className="group inline-flex items-center justify-center gap-2 rounded-full bg-primary px-7 py-3.5 text-sm font-semibold text-primary-foreground shadow-soft transition-all hover:-translate-y-0.5 hover:bg-primary-light hover:shadow-lg"
-                >
-                  {get("home_cta_primary", "Our Services")}{" "}
-                  <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
-                </Link>
-                <Link
-                  to="/contact"
-                  className="inline-flex items-center justify-center rounded-full border border-border bg-background px-7 py-3.5 text-sm font-semibold text-foreground transition-all hover:-translate-y-0.5 hover:bg-accent"
-                >
-                  {get("home_cta_secondary", "Contact us")}
-                </Link>
-              </div>
-
-              <dl className="animate-rise delay-400 mt-14 grid grid-cols-3 gap-6 border-t border-border pt-8">
-                {[
-                  ["1,200+", "Students"],
-                  ["KG1–G8", "Grade levels"],
-                  ["24/7", "Care support"],
-                ].map(([value, label]) => (
-                  <div key={label} className="transition-transform hover:-translate-y-1">
-                    <dt className="font-serif text-2xl font-medium text-primary md:text-3xl">{value}</dt>
-                    <dd className="mt-1 text-[11px] font-bold uppercase tracking-widest text-muted-foreground">
-                      {label}
-                    </dd>
-                  </div>
-                ))}
-              </dl>
+      {/* Hero — Modern Corporate Clarity */}
+      <section className="hero-gradient relative overflow-hidden">
+        <div className="pointer-events-none absolute -top-24 -left-24 size-96 rounded-full bg-white/10 blur-3xl" aria-hidden />
+        <div className="pointer-events-none absolute -bottom-24 -right-24 size-96 rounded-full bg-white/10 blur-3xl" aria-hidden />
+        <div className="mx-auto grid max-w-7xl items-center gap-14 px-6 py-24 lg:grid-cols-2 lg:px-12 lg:py-32">
+          <div>
+            <div className="mb-7 inline-flex animate-rise items-center gap-2 rounded-full border border-white/25 bg-white/10 px-3 py-1 backdrop-blur-sm">
+              <span className="size-1.5 animate-pulse rounded-full bg-white" />
+              <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-white">
+                {get("home_hero_eyebrow", "Corporate Excellence")}
+              </span>
+            </div>
+            <h1 className="animate-rise delay-100 text-balance font-serif text-5xl leading-[1.05] tracking-tight text-white md:text-6xl lg:text-7xl">
+              {get("home_hero_title", "Bridging Sectors, Building Futures.")}
+            </h1>
+            <p className="animate-rise delay-200 mt-7 max-w-[52ch] text-pretty text-lg leading-relaxed text-white/85 whitespace-pre-line">
+              {get(
+                "home_hero_subtitle",
+                "Empowering growth across education, health, mining, agriculture, and commerce with innovative trading solutions for a sustainable future."
+              )}
+            </p>
+            <div className="animate-rise delay-300 mt-10 flex flex-col gap-3 sm:flex-row">
+              <Link
+                to="/services"
+                className="group inline-flex items-center justify-center gap-2 rounded-lg bg-white px-7 py-3.5 text-sm font-semibold text-primary shadow-lg transition-all hover:-translate-y-0.5 hover:shadow-xl"
+              >
+                {get("home_cta_primary", "Explore Our Services")}{" "}
+                <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
+              </Link>
+              <Link
+                to="/contact"
+                className="inline-flex items-center justify-center rounded-lg border-2 border-white/70 bg-transparent px-7 py-3.5 text-sm font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-white hover:text-primary"
+              >
+                {get("home_cta_secondary", "Contact Us")}
+              </Link>
             </div>
 
-            <div className="relative lg:col-span-6 xl:col-span-7">
-              <div className="absolute -inset-6 -rotate-3 animate-float rounded-[3rem] bg-cotton" aria-hidden />
-              <div className="zoom-img relative aspect-[4/5] animate-zoom-in overflow-hidden rounded-3xl ring-1 ring-black/5 sm:aspect-[16/11] lg:aspect-[4/5]">
-                <img
-                  src={heroSrc}
-                  alt="Students of Dinigaas Trading S.C. school in Sheger City"
-                  width={1280}
-                  height={1600}
-                  className="h-full w-full object-cover"
-                />
-              </div>
-
-              <div className="lift animate-rise delay-500 absolute -bottom-6 -left-6 hidden max-w-[240px] rounded-2xl border border-border bg-background p-5 shadow-card sm:block">
-                <div className="mb-2 flex items-center gap-2">
-                  <span className="grid size-7 place-items-center rounded-full bg-clay/10">
-                    <BookOpen className="size-3.5 text-clay" />
-                  </span>
-                  <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
-                    Academics
-                  </span>
+            <dl className="animate-rise delay-400 mt-14 grid grid-cols-3 gap-6 border-t border-white/20 pt-8">
+              {[
+                ["1,200+", "Students"],
+                ["KG1–G8", "Grade levels"],
+                ["24/7", "Care support"],
+              ].map(([value, label]) => (
+                <div key={label} className="transition-transform hover:-translate-y-1">
+                  <dt className="font-serif text-2xl font-medium text-white md:text-3xl">{value}</dt>
+                  <dd className="mt-1 text-[11px] font-bold uppercase tracking-widest text-white/70">
+                    {label}
+                  </dd>
                 </div>
-                <p className="text-sm leading-snug text-foreground">
-                  KG1 to Grade 8 holistic curriculum focused on every learner.
-                </p>
-              </div>
+              ))}
+            </dl>
+          </div>
 
-              <div className="animate-float absolute -top-4 right-0 hidden max-w-[210px] rounded-2xl bg-primary p-5 text-primary-foreground shadow-card md:block lg:right-6">
-                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-primary-foreground/70">
-                  Healthcare
-                </p>
-                <p className="mt-1 font-serif text-lg italic">Care for our neighbors.</p>
-              </div>
+          <div className="relative">
+            <div className="glass-card relative rounded-2xl p-8 shadow-2xl">
+              <h3 className="font-serif text-2xl font-bold text-white">Our Impact Areas</h3>
+              <ul className="mt-6 space-y-4">
+                {["Education", "Healthcare", "Mining", "Agriculture", "Commerce"].map((item) => (
+                  <li key={item} className="flex items-center gap-3 text-white">
+                    <span className="grid size-8 place-items-center rounded-full bg-white/20 text-white">
+                      <ShieldCheck className="size-4" />
+                    </span>
+                    <span className="text-base font-semibold">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="zoom-img mt-6 overflow-hidden rounded-2xl ring-1 ring-white/20 shadow-2xl">
+              <img
+                src={heroSrc}
+                alt="Dinigaas Trading S.C."
+                width={1280}
+                height={720}
+                className="aspect-[16/10] h-full w-full object-cover"
+              />
             </div>
           </div>
         </div>
