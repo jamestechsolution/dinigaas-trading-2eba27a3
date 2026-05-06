@@ -260,6 +260,48 @@ function SectorsPage() {
         </div>
       </section>
 
+      <section className="bg-cotton py-20">
+        <div className="mx-auto max-w-5xl px-6 lg:px-12">
+          <Reveal className="text-center">
+            <span className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.22em] text-primary">
+              <HelpCircle className="size-3.5" />
+              FAQ
+            </span>
+            <h2 className="mt-4 font-serif text-4xl text-primary md:text-5xl">
+              Frequently asked questions
+            </h2>
+            <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
+              Quick answers about each of our five sectors. Can't find what you're looking for?
+              Reach out — we're happy to help.
+            </p>
+          </Reveal>
+
+          <div className="mt-12 space-y-10">
+            {SECTOR_FAQS.map((group, gi) => (
+              <Reveal
+                key={group.sector}
+                delay={gi * 80}
+                className="rounded-3xl border border-border bg-background p-6 shadow-card md:p-8 lift"
+              >
+                <h3 className="font-serif text-2xl text-primary">{group.sector}</h3>
+                <Accordion type="single" collapsible className="mt-3">
+                  {group.faqs.map((f, i) => (
+                    <AccordionItem key={f.q} value={`${gi}-${i}`}>
+                      <AccordionTrigger className="text-left text-base font-semibold text-foreground hover:text-primary">
+                        {f.q}
+                      </AccordionTrigger>
+                      <AccordionContent className="text-sm leading-relaxed text-muted-foreground">
+                        {f.a}
+                      </AccordionContent>
+                    </AccordionItem>
+                  ))}
+                </Accordion>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="py-16">
         <div className="mx-auto max-w-5xl rounded-3xl bg-primary p-10 text-center text-primary-foreground md:p-16">
           <h2 className="font-serif text-4xl md:text-5xl">Want to work with us?</h2>
