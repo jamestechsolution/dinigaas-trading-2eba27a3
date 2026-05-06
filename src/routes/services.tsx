@@ -8,6 +8,7 @@ import {
   ShoppingBag,
   ArrowRight,
 } from "lucide-react";
+import { useI18n } from "@/i18n/I18nProvider";
 
 export const Route = createFileRoute("/services")({
   head: () => ({
@@ -27,8 +28,6 @@ export const Route = createFileRoute("/services")({
   }),
   component: ServicesPage,
 });
-
-import { useI18n } from "@/i18n/I18nProvider";
 
 type Sector = { Icon: typeof GraduationCap; title: string; items: string[] };
 
