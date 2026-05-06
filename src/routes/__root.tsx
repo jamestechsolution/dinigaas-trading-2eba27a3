@@ -60,10 +60,10 @@ function RootShell({ children }: { children: React.ReactNode }) {
 
 function RootComponent() {
   return (
-    <>
+    <I18nProvider>
       <Outlet />
       <Toaster richColors position="top-right" />
-    </>
+    </I18nProvider>
   );
 }
 
