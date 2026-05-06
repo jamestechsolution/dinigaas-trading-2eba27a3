@@ -116,6 +116,96 @@ const SECTORS: Sector[] = [
   },
 ];
 
+type FaqGroup = { sector: string; faqs: { q: string; a: string }[] };
+
+const SECTOR_FAQS: FaqGroup[] = [
+  {
+    sector: "Education",
+    faqs: [
+      {
+        q: "What grade levels do your schools offer?",
+        a: "We offer a complete early-years to middle-school path: KG1–KG3, primary (Grade 1–4) and middle school (Grade 5–8).",
+      },
+      {
+        q: "How do I register my child?",
+        a: "You can start the process online from our Register page, or visit our campus in Gefarsa Gujje Kella. Our admissions team will guide you through documents, placement and fees.",
+      },
+      {
+        q: "Do you offer after-school programs?",
+        a: "Yes — we run after-school enrichment and tutoring sessions in core subjects, reading clubs and creative activities.",
+      },
+    ],
+  },
+  {
+    sector: "Health",
+    faqs: [
+      {
+        q: "What services does the clinic provide?",
+        a: "General outpatient consultations, maternal and child health, immunizations and laboratory diagnostics — all delivered by qualified staff.",
+      },
+      {
+        q: "Do I need an appointment?",
+        a: "Walk-ins are welcome for general consultations. For specialist visits and lab work, we recommend booking ahead by phone.",
+      },
+      {
+        q: "Do you run community outreach programs?",
+        a: "Yes — we organize regular health education and preventive care visits in schools, neighborhoods and workplaces.",
+      },
+    ],
+  },
+  {
+    sector: "Mining",
+    faqs: [
+      {
+        q: "What minerals do you work with?",
+        a: "We focus on responsibly sourced industrial minerals from licensed sites, with safety and traceability built into every step.",
+      },
+      {
+        q: "How do you ensure safety and sustainability?",
+        a: "We follow modern extraction practices, regular safety training and environmental monitoring, alongside transparent community engagement.",
+      },
+      {
+        q: "Can suppliers and partners work with you?",
+        a: "Absolutely. We welcome logistics, equipment and community partners — reach out through our contact page to start a conversation.",
+      },
+    ],
+  },
+  {
+    sector: "Agriculture",
+    faqs: [
+      {
+        q: "Which crops do you focus on?",
+        a: "We support a mix of staple and cash crops adapted to local conditions, prioritizing food security for the surrounding community.",
+      },
+      {
+        q: "Do you work directly with smallholder farmers?",
+        a: "Yes. We provide modern inputs, training and reliable market access so smallholders can grow stable, sustainable livelihoods.",
+      },
+      {
+        q: "How do you handle post-harvest?",
+        a: "Through proper storage, handling and distribution partners we minimize losses and keep produce moving from farm to market.",
+      },
+    ],
+  },
+  {
+    sector: "Commerce",
+    faqs: [
+      {
+        q: "What products do you trade and distribute?",
+        a: "Educational materials, medical supplies and a range of consumer goods supporting schools, clinics and businesses across the region.",
+      },
+      {
+        q: "Can institutions order in bulk?",
+        a: "Yes — we serve schools, clinics, NGOs and private businesses with wholesale pricing and dependable delivery.",
+      },
+      {
+        q: "How do I become a supplier?",
+        a: "Contact our commerce team via the contact page with your company profile and product catalog; we'll be in touch.",
+      },
+    ],
+  },
+];
+
 function SectorsPage() {
   return (
     <SiteLayout>
