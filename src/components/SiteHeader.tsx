@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { useState } from "react";
-import { Menu, X, MapPin } from "lucide-react";
+import { Menu, X, MapPin, Lock } from "lucide-react";
 import { useNavItems } from "@/hooks/use-nav-items";
 import logo from "@/assets/dinigaas-logo.jpg";
 
@@ -67,6 +67,15 @@ export function SiteHeader() {
             >
               Contact us
             </Link>
+            <Link
+              to="/auth"
+              title="Admin login"
+              aria-label="Admin login"
+              className="hidden items-center gap-1.5 rounded-full border border-primary/20 bg-background px-3.5 py-2.5 text-xs font-semibold uppercase tracking-widest text-primary transition-all hover:bg-primary hover:text-primary-foreground hover:shadow-soft lg:inline-flex"
+            >
+              <Lock className="size-3.5" />
+              Admin
+            </Link>
             <button
               type="button"
               onClick={() => setOpen((v) => !v)}
@@ -106,6 +115,13 @@ export function SiteHeader() {
                 className="rounded-full bg-primary px-5 py-3 text-center text-sm font-semibold text-primary-foreground"
               >
                 Contact us
+              </Link>
+              <Link
+                to="/auth"
+                onClick={() => setOpen(false)}
+                className="inline-flex items-center justify-center gap-1.5 rounded-full border border-primary/30 px-5 py-3 text-center text-sm font-semibold text-primary"
+              >
+                <Lock className="size-4" /> Admin login
               </Link>
             </nav>
           </div>
