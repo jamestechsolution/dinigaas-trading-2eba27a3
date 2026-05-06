@@ -1,9 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, GraduationCap, Stethoscope, Sparkles, Users, ShieldCheck, BookOpen } from "lucide-react";
+import { ArrowRight, GraduationCap, Stethoscope, Sparkles, Users, ShieldCheck } from "lucide-react";
 import { SiteLayout } from "@/components/SiteLayout";
 import { Reveal } from "@/components/Reveal";
-import { useSiteContent } from "@/hooks/use-site-content";
 import { useSiteImages } from "@/hooks/use-site-images";
+import { useI18n } from "@/i18n/I18nProvider";
 import heroImg from "@/assets/hero-students.jpg";
 import healthImg from "@/assets/healthcare.jpg";
 import schoolImg from "@/assets/school-building.jpg";
@@ -15,7 +15,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Quality KG1–Grade 8 education and community healthcare in Sheger City, Gefarsa Gujje Kella. Learn about our programs, services, and join our community.",
+          "Quality KG1–Grade 8 education and community healthcare in Sheger City, Gefarsa Gujje Kella.",
       },
       { property: "og:title", content: "Dinigaas Trading S.C." },
       { property: "og:description", content: "Education and healthcare for Sheger City." },
@@ -25,14 +25,13 @@ export const Route = createFileRoute("/")({
 });
 
 function HomePage() {
-  const { get } = useSiteContent("home");
+  const { t } = useI18n();
   const { get: getImg } = useSiteImages();
   const heroSrc = getImg("home_hero", heroImg);
   const storySrc = getImg("home_story", schoolImg);
   const healthSrc = getImg("home_health", healthImg);
   return (
     <SiteLayout>
-      {/* Hero — Modern Corporate Clarity */}
       <section className="hero-gradient relative overflow-hidden">
         <div className="pointer-events-none absolute -top-24 -left-24 size-96 rounded-full bg-white/10 blur-3xl" aria-hidden />
         <div className="pointer-events-none absolute -bottom-24 -right-24 size-96 rounded-full bg-white/10 blur-3xl" aria-hidden />
@@ -41,39 +40,36 @@ function HomePage() {
             <div className="mb-7 inline-flex animate-rise items-center gap-2 rounded-full border border-white/25 bg-white/10 px-3 py-1 backdrop-blur-sm">
               <span className="size-1.5 animate-pulse rounded-full bg-white" />
               <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-white">
-                {get("home_hero_eyebrow", "Corporate Excellence")}
+                {t("home.hero.eyebrow")}
               </span>
             </div>
             <h1 className="animate-rise delay-100 text-balance font-serif text-5xl leading-[1.05] tracking-tight text-white md:text-6xl lg:text-7xl">
-              {get("home_hero_title", "Bridging Sectors, Building Futures.")}
+              {t("home.hero.title")}
             </h1>
             <p className="animate-rise delay-200 mt-7 max-w-[52ch] text-pretty text-lg leading-relaxed text-white/85 whitespace-pre-line">
-              {get(
-                "home_hero_subtitle",
-                "Empowering growth across education, health, mining, agriculture, and commerce with innovative trading solutions for a sustainable future."
-              )}
+              {t("home.hero.subtitle")}
             </p>
             <div className="animate-rise delay-300 mt-10 flex flex-col gap-3 sm:flex-row">
               <Link
                 to="/services"
                 className="group inline-flex items-center justify-center gap-2 rounded-lg bg-white px-7 py-3.5 text-sm font-semibold text-primary shadow-lg transition-all hover:-translate-y-0.5 hover:shadow-xl"
               >
-                {get("home_cta_primary", "Explore Our Services")}{" "}
+                {t("home.cta.primary")}{" "}
                 <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
               </Link>
               <Link
                 to="/contact"
                 className="inline-flex items-center justify-center rounded-lg border-2 border-white/70 bg-transparent px-7 py-3.5 text-sm font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-white hover:text-primary"
               >
-                {get("home_cta_secondary", "Contact Us")}
+                {t("home.cta.secondary")}
               </Link>
             </div>
 
             <dl className="animate-rise delay-400 mt-14 grid grid-cols-3 gap-6 border-t border-white/20 pt-8">
               {[
-                ["1,200+", "Students"],
-                ["KG1–G8", "Grade levels"],
-                ["24/7", "Care support"],
+                ["1,200+", t("home.stats.students")],
+                ["KG1–G8", t("home.stats.grades")],
+                ["24/7", t("home.stats.care")],
               ].map(([value, label]) => (
                 <div key={label} className="transition-transform hover:-translate-y-1">
                   <dt className="font-serif text-2xl font-medium text-white md:text-3xl">{value}</dt>
@@ -87,9 +83,15 @@ function HomePage() {
 
           <div className="relative">
             <div className="glass-card relative rounded-2xl p-8 shadow-2xl">
-              <h3 className="font-serif text-2xl font-bold text-white">Our Impact Areas</h3>
+              <h3 className="font-serif text-2xl font-bold text-white">{t("home.impact.title")}</h3>
               <ul className="mt-6 space-y-4">
-                {["Education", "Healthcare", "Mining", "Agriculture", "Commerce"].map((item) => (
+                {[
+                  t("home.impact.education"),
+                  t("home.impact.health"),
+                  t("home.impact.mining"),
+                  t("home.impact.agriculture"),
+                  t("home.impact.commerce"),
+                ].map((item) => (
                   <li key={item} className="flex items-center gap-3 text-white">
                     <span className="grid size-8 place-items-center rounded-full bg-white/20 text-white">
                       <ShieldCheck className="size-4" />
@@ -112,32 +114,19 @@ function HomePage() {
         </div>
       </section>
 
-      {/* Pillars */}
       <section className="bg-cotton py-20">
         <div className="mx-auto max-w-7xl px-6 lg:px-12">
           <Reveal className="mb-12 max-w-2xl">
-            <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-primary-light">What we do</p>
+            <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-primary-light">{t("home.pillars.eyebrow")}</p>
             <h2 className="mt-3 font-serif text-4xl text-primary md:text-5xl">
-              Two pillars, one community.
+              {t("home.pillars.title")}
             </h2>
           </Reveal>
           <div className="grid gap-6 md:grid-cols-3">
             {[
-              {
-                Icon: GraduationCap,
-                title: "Primary Education",
-                desc: "A modern KG1 to Grade 8 curriculum delivered by certified educators in a nurturing environment.",
-              },
-              {
-                Icon: Stethoscope,
-                title: "Healthcare Services",
-                desc: "Outpatient care, maternal health, immunizations and diagnostics for the Gefarsa community.",
-              },
-              {
-                Icon: Sparkles,
-                title: "Trading & Supply",
-                desc: "Reliable sourcing of essential goods that support our schools, clinics and the wider city.",
-              },
+              { Icon: GraduationCap, title: t("home.pillars.edu.title"), desc: t("home.pillars.edu.desc") },
+              { Icon: Stethoscope, title: t("home.pillars.health.title"), desc: t("home.pillars.health.desc") },
+              { Icon: Sparkles, title: t("home.pillars.trade.title"), desc: t("home.pillars.trade.desc") },
             ].map(({ Icon, title, desc }, i) => (
               <Reveal
                 key={title}
@@ -156,7 +145,6 @@ function HomePage() {
         </div>
       </section>
 
-      {/* Split feature */}
       <section className="py-24">
         <div className="mx-auto grid max-w-7xl items-center gap-14 px-6 lg:grid-cols-2 lg:px-12">
           <Reveal className="relative">
@@ -171,33 +159,31 @@ function HomePage() {
               />
             </div>
             <div className="absolute -bottom-6 -right-6 hidden animate-float rounded-2xl bg-primary p-5 text-primary-foreground shadow-card md:block">
-              <p className="font-serif text-2xl">Est. in Sheger</p>
-              <p className="text-xs text-primary-foreground/70">Gefarsa Gujje Kella</p>
+              <p className="font-serif text-2xl">{t("home.est.title")}</p>
+              <p className="text-xs text-primary-foreground/70">{t("home.est.sub")}</p>
             </div>
           </Reveal>
           <Reveal delay={150}>
-            <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-primary-light">Our purpose</p>
+            <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-primary-light">{t("home.story.eyebrow")}</p>
             <h2 className="mt-3 font-serif text-4xl text-primary md:text-5xl">
-              Building a thriving city, one family at a time.
+              {t("home.story.title")}
             </h2>
             <p className="mt-6 text-base leading-relaxed text-muted-foreground">
-              Dinigaas Trading S.C. invests in what matters most: well-educated children and a
-              healthy community. Our integrated approach ensures every family in Gefarsa Gujje
-              Kella has access to opportunity.
+              {t("home.story.body")}
             </p>
             <ul className="mt-8 space-y-4">
               {[
-                ["Holistic learning", "Academic, social and emotional growth from KG1 to Grade 8."],
-                ["Accessible care", "Affordable, professional outpatient and maternal services."],
-                ["Local impact", "We hire, source and reinvest in our neighborhood."],
-              ].map(([t, d]) => (
-                <li key={t} className="flex gap-4 transition-transform hover:translate-x-1">
+                [t("home.story.li1.t"), t("home.story.li1.d")],
+                [t("home.story.li2.t"), t("home.story.li2.d")],
+                [t("home.story.li3.t"), t("home.story.li3.d")],
+              ].map(([head, body]) => (
+                <li key={head} className="flex gap-4 transition-transform hover:translate-x-1">
                   <span className="mt-1 grid size-7 shrink-0 place-items-center rounded-full bg-primary/10 text-primary transition-transform hover:scale-110">
                     <ShieldCheck className="size-4" />
                   </span>
                   <div>
-                    <p className="font-semibold text-foreground">{t}</p>
-                    <p className="text-sm text-muted-foreground">{d}</p>
+                    <p className="font-semibold text-foreground">{head}</p>
+                    <p className="text-sm text-muted-foreground">{body}</p>
                   </div>
                 </li>
               ))}
@@ -206,31 +192,29 @@ function HomePage() {
         </div>
       </section>
 
-      {/* Healthcare strip */}
       <section className="bg-primary py-20 text-primary-foreground">
         <div className="mx-auto grid max-w-7xl items-center gap-14 px-6 lg:grid-cols-2 lg:px-12">
           <Reveal>
-            <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-primary-foreground/70">Healthcare</p>
+            <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-primary-foreground/70">{t("home.health.eyebrow")}</p>
             <h2 className="mt-3 font-serif text-4xl md:text-5xl">
-              Compassionate care, close to home.
+              {t("home.health.title")}
             </h2>
             <p className="mt-6 max-w-xl text-base leading-relaxed text-primary-foreground/80">
-              Our clinic offers outpatient consultations, maternal and child health, immunizations
-              and a fully equipped laboratory — all delivered by a warm, qualified team.
+              {t("home.health.body")}
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
               <Link
                 to="/services"
                 className="group inline-flex items-center gap-2 rounded-full bg-primary-foreground px-6 py-3 text-sm font-semibold text-primary transition-all hover:-translate-y-0.5 hover:bg-primary-foreground/90 hover:shadow-lg"
               >
-                Browse services
+                {t("home.health.browse")}
                 <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
               </Link>
               <Link
                 to="/contact"
                 className="inline-flex items-center rounded-full border border-primary-foreground/25 px-6 py-3 text-sm font-semibold text-primary-foreground transition-all hover:-translate-y-0.5 hover:bg-primary-foreground/10"
               >
-                Book a visit
+                {t("home.health.book")}
               </Link>
             </div>
           </Reveal>
@@ -247,29 +231,27 @@ function HomePage() {
         </div>
       </section>
 
-      {/* CTA */}
       <section className="py-24">
         <Reveal className="lift mx-auto max-w-5xl rounded-3xl border border-border bg-cotton p-10 text-center md:p-16">
           <span className="mx-auto inline-grid size-14 animate-pulse-ring place-items-center rounded-full bg-primary/10 text-primary">
             <Users className="size-7" />
           </span>
-          <h2 className="mt-4 font-serif text-4xl text-primary md:text-5xl">Join our community.</h2>
+          <h2 className="mt-4 font-serif text-4xl text-primary md:text-5xl">{t("home.cta.title")}</h2>
           <p className="mx-auto mt-4 max-w-xl text-muted-foreground">
-            Enroll your child, book a healthcare visit, or partner with us to make Sheger City a
-            better place to grow up.
+            {t("home.cta.body")}
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             <Link
               to="/contact"
               className="rounded-full bg-primary px-7 py-3 text-sm font-semibold text-primary-foreground transition-all hover:-translate-y-0.5 hover:bg-primary-light hover:shadow-lg"
             >
-              Get in touch
+              {t("home.cta.getInTouch")}
             </Link>
             <Link
               to="/about"
               className="rounded-full border border-border bg-background px-7 py-3 text-sm font-semibold text-foreground transition-all hover:-translate-y-0.5 hover:bg-accent"
             >
-              About us
+              {t("home.cta.about")}
             </Link>
           </div>
         </Reveal>
