@@ -118,11 +118,22 @@ export function SiteFooter() {
           </div>
         </div>
 
-        <div className="mt-14 flex flex-col items-start justify-between gap-4 border-t border-primary-foreground/15 pt-6 text-xs text-primary-foreground/60 sm:flex-row sm:items-center">
-          <p>© {new Date().getFullYear()} Dinigaas Trading S.C. All rights reserved.</p>
-          <Link to="/admin" className="hover:text-primary-foreground">
-            Admin
-          </Link>
+        <div className="mt-14 border-t border-primary-foreground/15 pt-6">
+          <div className="flex flex-col items-start justify-between gap-4 text-xs text-primary-foreground/60 sm:flex-row sm:items-center">
+            <p>© {new Date().getFullYear()} Dinigaas Trading S.C. All rights reserved.</p>
+            <Link to="/admin" className="hover:text-primary-foreground">
+              Admin
+            </Link>
+          </div>
+          <p className="mt-4 text-center text-[11px] font-medium tracking-wide text-primary-foreground/55">
+            <span className="inline-block animate-rise">
+              System designed by{" "}
+              <span className="font-semibold text-primary-foreground/90 story-link">
+                Yaikob Diriba Tadessa
+              </span>
+              , BSc in Computer Science.
+            </span>
+          </p>
         </div>
       </div>
     </footer>
