@@ -7,9 +7,16 @@ import {
   ShoppingBag,
   ArrowRight,
   CheckCircle2,
+  HelpCircle,
 } from "lucide-react";
 import { SiteLayout } from "@/components/SiteLayout";
 import { Reveal } from "@/components/Reveal";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 export const Route = createFileRoute("/sectors")({
   head: () => ({
