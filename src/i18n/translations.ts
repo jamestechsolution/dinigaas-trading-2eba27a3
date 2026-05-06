@@ -1,0 +1,793 @@
+// Centralized UI translations for English / Amharic / Afaan Oromoo
+// Keys are dot-namespaced. Missing keys fall back to English, then key.
+
+export type Lang = "en" | "am" | "om";
+
+export const LANGS: { code: Lang; label: string; native: string }[] = [
+  { code: "en", label: "EN", native: "English" },
+  { code: "am", label: "አማ", native: "አማርኛ" },
+  { code: "om", label: "AO", native: "Afaan Oromoo" },
+];
+
+type Dict = Record<string, string>;
+
+const en: Dict = {
+  // Top utility bar
+  "topbar.location": "Sheger City, Gefarsa Gujje Kella",
+  "topbar.tagline": "Education • Health • Mining • Agriculture • Commerce",
+
+  // Nav (fallbacks for nav_items table values)
+  "nav.Home": "Home",
+  "nav.About": "About",
+  "nav.Services": "Services",
+  "nav.Sectors": "Sectors",
+  "nav.Products": "Products",
+  "nav.News": "News",
+  "nav.Careers": "Careers",
+  "nav.Contact": "Contact",
+
+  // Header buttons
+  "header.register": "Register student",
+  "header.contact": "Contact us",
+  "header.admin": "Admin",
+  "header.adminLogin": "Admin login",
+  "header.toggleMenu": "Toggle menu",
+  "header.language": "Language",
+
+  // Footer
+  "footer.brand.tag": "Education • Health • Mining • Agriculture • Commerce",
+  "footer.about":
+    "Nurturing the future of Sheger City through quality education from KG1 to Grade 8 and accessible healthcare for our community.",
+  "footer.visit": "Visit us",
+  "footer.address": "Sheger City, Gefarsa Gujje Kella, Ethiopia",
+  "footer.explore": "Explore",
+  "footer.newsletter": "Newsletter",
+  "footer.newsletter.desc": "Get news about admissions, events and clinic updates.",
+  "footer.email.placeholder": "you@example.com",
+  "footer.subscribe": "Subscribe",
+  "footer.subscribing": "Subscribing…",
+  "footer.copyright": "© {year} Dinigaas Trading S.C. All rights reserved.",
+  "footer.adminLink": "Admin",
+  "footer.designedBy": "System designed by",
+  "footer.designedSuffix": ", BSc in Computer Science.",
+  "footer.toast.invalidEmail": "Please enter a valid email address.",
+  "footer.toast.alreadySubscribed": "You're already subscribed — thank you!",
+  "footer.toast.subError": "Could not subscribe. Please try again.",
+  "footer.toast.subSuccess": "Subscribed! Thank you for joining our newsletter.",
+
+  // Home
+  "home.hero.eyebrow": "Corporate Excellence",
+  "home.hero.title": "Bridging Sectors, Building Futures.",
+  "home.hero.subtitle":
+    "Empowering growth across education, health, mining, agriculture, and commerce with innovative trading solutions for a sustainable future.",
+  "home.cta.primary": "Explore Our Services",
+  "home.cta.secondary": "Contact Us",
+  "home.stats.students": "Students",
+  "home.stats.grades": "Grade levels",
+  "home.stats.care": "Care support",
+  "home.impact.title": "Our Impact Areas",
+  "home.impact.education": "Education",
+  "home.impact.health": "Healthcare",
+  "home.impact.mining": "Mining",
+  "home.impact.agriculture": "Agriculture",
+  "home.impact.commerce": "Commerce",
+  "home.pillars.eyebrow": "What we do",
+  "home.pillars.title": "Two pillars, one community.",
+  "home.pillars.edu.title": "Primary Education",
+  "home.pillars.edu.desc":
+    "A modern KG1 to Grade 8 curriculum delivered by certified educators in a nurturing environment.",
+  "home.pillars.health.title": "Healthcare Services",
+  "home.pillars.health.desc":
+    "Outpatient care, maternal health, immunizations and diagnostics for the Gefarsa community.",
+  "home.pillars.trade.title": "Trading & Supply",
+  "home.pillars.trade.desc":
+    "Reliable sourcing of essential goods that support our schools, clinics and the wider city.",
+  "home.story.eyebrow": "Our purpose",
+  "home.story.title": "Building a thriving city, one family at a time.",
+  "home.story.body":
+    "Dinigaas Trading S.C. invests in what matters most: well-educated children and a healthy community. Our integrated approach ensures every family in Gefarsa Gujje Kella has access to opportunity.",
+  "home.story.li1.t": "Holistic learning",
+  "home.story.li1.d": "Academic, social and emotional growth from KG1 to Grade 8.",
+  "home.story.li2.t": "Accessible care",
+  "home.story.li2.d": "Affordable, professional outpatient and maternal services.",
+  "home.story.li3.t": "Local impact",
+  "home.story.li3.d": "We hire, source and reinvest in our neighborhood.",
+  "home.health.eyebrow": "Healthcare",
+  "home.health.title": "Compassionate care, close to home.",
+  "home.health.body":
+    "Our clinic offers outpatient consultations, maternal and child health, immunizations and a fully equipped laboratory — all delivered by a warm, qualified team.",
+  "home.health.browse": "Browse services",
+  "home.health.book": "Book a visit",
+  "home.cta.title": "Join our community.",
+  "home.cta.body":
+    "Enroll your child, book a healthcare visit, or partner with us to make Sheger City a better place to grow up.",
+  "home.cta.getInTouch": "Get in touch",
+  "home.cta.about": "About us",
+  "home.est.title": "Est. in Sheger",
+  "home.est.sub": "Gefarsa Gujje Kella",
+
+  // About
+  "about.eyebrow": "About us",
+  "about.title": "A locally rooted company serving Sheger City.",
+  "about.story.title": "Our story",
+  "about.mission.title": "Mission",
+  "about.mission.text":
+    "Provide accessible quality education and healthcare to the families of Sheger City.",
+  "about.vision.title": "Vision",
+  "about.vision.text":
+    "A thriving community where every child learns and every family is healthy.",
+  "about.values.title": "Values",
+  "about.values.text":
+    "Care, integrity, excellence and community-first thinking in everything we do.",
+  "about.team.title": "Leadership team",
+  "about.team.subtitle":
+    "A dedicated group of educators, healthcare professionals and business leaders.",
+  "about.team.gm.r": "General Manager",
+  "about.team.gm.d": "Oversees operations and strategy",
+  "about.team.ad.r": "Academic Director",
+  "about.team.ad.d": "Leads our educational programs",
+  "about.team.md.r": "Medical Director",
+  "about.team.md.d": "Heads our healthcare division",
+  "about.team.ops.r": "Operations Lead",
+  "about.team.ops.d": "Manages trading and logistics",
+
+  // Services
+  "services.eyebrow": "Services",
+  "services.title": "What we offer the community.",
+  "services.intro":
+    "From classrooms to clinics, our services are designed to meet the everyday needs of families in Sheger City.",
+  "services.education": "Education",
+  "services.health": "Health",
+  "services.mining": "Mining",
+  "services.agriculture": "Agriculture",
+  "services.commerce": "Commerce",
+  "services.cta.title": "Ready to enroll your child?",
+  "services.cta.body":
+    "Parents can register a student online in minutes. Our admissions team will handle the rest.",
+  "services.cta.register": "Register a student",
+  "services.cta.contact": "Contact us",
+
+  // Sectors
+  "sectors.eyebrow": "Our Sectors",
+  "sectors.title": "Five sectors. One integrated mission.",
+  "sectors.intro":
+    "Dinigaas Trading S.C. invests across Education, Health, Mining, Agriculture and Commerce — building a stronger, more self-reliant community for Sheger City and beyond.",
+  "sectors.sectorN": "Sector 0{n}",
+  "sectors.faq.eyebrow": "FAQ",
+  "sectors.faq.title": "Frequently asked questions",
+  "sectors.faq.subtitle":
+    "Quick answers about each of our five sectors. Can't find what you're looking for? Reach out — we're happy to help.",
+  "sectors.faq.copy": "Copy link",
+  "sectors.faq.copied": "Link copied",
+  "sectors.work.title": "Want to work with us?",
+  "sectors.work.body":
+    "Whether you're a parent, partner, supplier or community member — we'd love to hear from you.",
+  "sectors.work.contact": "Contact us",
+  "sectors.work.services": "View services",
+
+  // Contact
+  "contact.eyebrow": "Contact",
+  "contact.title": "We'd love to hear from you.",
+  "contact.intro":
+    "Questions about admissions, healthcare or partnerships? Send us a message and our team will respond shortly.",
+  "contact.getInTouch": "Get in touch",
+  "contact.address": "Address",
+  "contact.address.value": "Sheger City, Gefarsa Gujje Kella, Ethiopia",
+  "contact.phone": "Phone",
+  "contact.email": "Email",
+  "contact.hours": "Hours",
+  "contact.hours.value": "Mon – Sat · 8:00 AM – 6:00 PM",
+  "contact.form.name": "Name",
+  "contact.form.emailLabel": "Email",
+  "contact.form.phone": "Phone (optional)",
+  "contact.form.subject": "Subject",
+  "contact.form.message": "Message",
+  "contact.form.send": "Send message",
+  "contact.form.sending": "Sending…",
+  "contact.toast.invalid": "Invalid form",
+  "contact.toast.error": "Could not send message. Please try again.",
+  "contact.toast.success": "Message sent! We'll get back to you soon.",
+
+  // Auth
+  "auth.signin": "Admin sign in",
+  "auth.signup": "Create account",
+  "auth.signin.desc": "Access the admin dashboard.",
+  "auth.signup.desc":
+    "Create your account; admin role is granted by an existing admin.",
+  "auth.email": "Email",
+  "auth.password": "Password",
+  "auth.signinBtn": "Sign in",
+  "auth.signupBtn": "Sign up",
+  "auth.wait": "Please wait…",
+  "auth.toggleToSignup": "No account? Sign up",
+  "auth.toggleToSignin": "Have an account? Sign in",
+  "auth.back": "← Back to website",
+  "auth.signupOk":
+    "Account created. You may need an admin role assigned to access the dashboard.",
+
+  // Register
+  "register.eyebrow": "Admissions",
+  "register.title": "Register your child today.",
+  "register.intro":
+    "Parents can enroll their child directly at Dinigaas. Fill out the form below and our admissions team will reach out to confirm next steps.",
+  "register.next.title": "What happens next?",
+  "register.next.s1": "We review your registration within 1–2 business days.",
+  "register.next.s2": "Our admissions team contacts you to schedule a visit.",
+  "register.next.s3": "Bring required documents on the visit day for placement.",
+  "register.next.s4": "Receive your child's offer letter and start date.",
+  "register.help":
+    "Have questions? Visit our contact page or call +251 923 014 132.",
+  "register.parent": "Parent / Guardian",
+  "register.student": "Student",
+  "register.f.parentName": "Parent / Guardian name",
+  "register.f.parentEmail": "Email",
+  "register.f.parentPhone": "Phone",
+  "register.f.relationship": "Relationship",
+  "register.f.firstName": "Student first name",
+  "register.f.lastName": "Student last name",
+  "register.f.dob": "Date of birth",
+  "register.f.gender": "Gender",
+  "register.f.grade": "Grade applying for",
+  "register.f.prevSchool": "Previous school (optional)",
+  "register.f.address": "Home address (optional)",
+  "register.f.notes": "Notes for admissions (optional)",
+  "register.f.selectGender": "Select gender",
+  "register.f.selectGrade": "Select grade",
+  "register.submit": "Submit registration",
+  "register.submitting": "Submitting…",
+  "register.success":
+    "✓ Your registration has been received. We will be in touch soon.",
+  "register.toast.error": "Could not submit registration. Please try again.",
+  "register.toast.success":
+    "Registration submitted! Our admissions team will contact you shortly.",
+
+  // News
+  "news.eyebrow": "News",
+  "news.title": "Updates from our community.",
+  "news.empty": "No news yet.",
+  "news.readMore": "Read more →",
+  "news.close": "Close",
+
+  // Products
+  "products.eyebrow": "Programs & Products",
+  "products.title": "Explore what we offer.",
+  "products.intro":
+    "From early years education to specialized healthcare programs, find the right fit for your family.",
+  "products.all": "All",
+  "products.empty": "No items in this category yet.",
+
+  // Careers
+  "careers.eyebrow": "Careers",
+  "careers.title": "Build a career with purpose.",
+  "careers.intro":
+    "Join a team that is shaping the future of Sheger City through education and healthcare. Send applications directly to",
+  "careers.empty": "No open positions right now. Check back soon!",
+  "careers.view": "View role",
+  "careers.about": "About the role",
+  "careers.requirements": "Requirements",
+  "careers.apply": "Apply via email",
+  "careers.close": "Close",
+};
+
+const am: Dict = {
+  "topbar.location": "ሸገር ከተማ፣ ገፈርሳ ጉጄ ኬላ",
+  "topbar.tagline": "ትምህርት • ጤና • ማዕድን • ግብርና • ንግድ",
+
+  "nav.Home": "መነሻ",
+  "nav.About": "ስለ እኛ",
+  "nav.Services": "አገልግሎቶች",
+  "nav.Sectors": "ዘርፎች",
+  "nav.Products": "ምርቶች",
+  "nav.News": "ዜናዎች",
+  "nav.Careers": "ሥራዎች",
+  "nav.Contact": "አግኙን",
+
+  "header.register": "ተማሪ ያስመዝግቡ",
+  "header.contact": "ያግኙን",
+  "header.admin": "አስተዳዳሪ",
+  "header.adminLogin": "የአስተዳዳሪ መግቢያ",
+  "header.toggleMenu": "ምናሌ ቀይር",
+  "header.language": "ቋንቋ",
+
+  "footer.brand.tag": "ትምህርት • ጤና • ማዕድን • ግብርና • ንግድ",
+  "footer.about":
+    "ከኬጂ1 እስከ 8ኛ ክፍል ጥራት ያለው ትምህርትና ለማህበረሰባችን ተደራሽ የጤና አገልግሎት በማቅረብ የሸገር ከተማን የወደፊት እንቀርባለን።",
+  "footer.visit": "ይጎብኙን",
+  "footer.address": "ሸገር ከተማ፣ ገፈርሳ ጉጄ ኬላ፣ ኢትዮጵያ",
+  "footer.explore": "ያስሱ",
+  "footer.newsletter": "ዜና መልዕክት",
+  "footer.newsletter.desc": "ስለ ምዝገባ፣ ዝግጅቶችና የክሊኒክ ዝመናዎች ይከታተሉ።",
+  "footer.email.placeholder": "you@example.com",
+  "footer.subscribe": "ይመዝገቡ",
+  "footer.subscribing": "በመመዝገብ ላይ…",
+  "footer.copyright": "© {year} ዲኒጋስ ትሬዲንግ ሥ.ማ. ሁሉም መብቶች የተጠበቁ ናቸው።",
+  "footer.adminLink": "አስተዳዳሪ",
+  "footer.designedBy": "ሥርዓቱ የተነደፈው በ",
+  "footer.designedSuffix": "፣ የኮምፒዩተር ሳይንስ ባችለር።",
+  "footer.toast.invalidEmail": "ትክክለኛ ኢሜል ያስገቡ።",
+  "footer.toast.alreadySubscribed": "ቀደም ሲል ተመዝግበዋል — እናመሰግናለን!",
+  "footer.toast.subError": "መመዝገብ አልተቻለም። እባክዎ እንደገና ይሞክሩ።",
+  "footer.toast.subSuccess": "ተመዝግበዋል! ለመቀላቀልዎ እናመሰግናለን።",
+
+  "home.hero.eyebrow": "የድርጅት ብቃት",
+  "home.hero.title": "ዘርፎችን አገናኝ፣ ወደፊትን እንገነባለን።",
+  "home.hero.subtitle":
+    "በትምህርት፣ በጤና፣ በማዕድን፣ በግብርናና በንግድ ዘርፎች ለዘላቂ የወደፊት ጊዜ እድገትን ያበረታቱ።",
+  "home.cta.primary": "አገልግሎቶቻችንን ያስሱ",
+  "home.cta.secondary": "ያግኙን",
+  "home.stats.students": "ተማሪዎች",
+  "home.stats.grades": "ክፍሎች",
+  "home.stats.care": "የጤና ድጋፍ",
+  "home.impact.title": "የተፅዕኖ ዘርፎቻችን",
+  "home.impact.education": "ትምህርት",
+  "home.impact.health": "ጤና",
+  "home.impact.mining": "ማዕድን",
+  "home.impact.agriculture": "ግብርና",
+  "home.impact.commerce": "ንግድ",
+  "home.pillars.eyebrow": "የምንሰራው",
+  "home.pillars.title": "ሁለት ምሰሶዎች፣ አንድ ማህበረሰብ።",
+  "home.pillars.edu.title": "የመጀመሪያ ደረጃ ትምህርት",
+  "home.pillars.edu.desc":
+    "ከኬጂ1 እስከ 8ኛ ክፍል ዘመናዊ ሥርዓተ ትምህርት በተመረጡ መምህራን ይሰጣል።",
+  "home.pillars.health.title": "የጤና አገልግሎቶች",
+  "home.pillars.health.desc":
+    "የውጪ ህሙማን አገልግሎት፣ የእናቶች ጤና፣ ክትባቶችና ምርመራዎች ለገፈርሳ ማህበረሰብ።",
+  "home.pillars.trade.title": "ንግድና አቅርቦት",
+  "home.pillars.trade.desc":
+    "ለትምህርት ቤቶቻችን፣ ክሊኒኮቻችንና ለከተማው የሚያስፈልጉ መሠረታዊ እቃዎችን አስተማማኝ ምንጭ።",
+  "home.story.eyebrow": "ዓላማችን",
+  "home.story.title": "ቤተሰብ ቤተሰብ የተለመለመች ከተማ መገንባት።",
+  "home.story.body":
+    "ዲኒጋስ ትሬዲንግ የተማሩ ልጆችንና ጤናማ ማህበረሰብን በማስቀደም ለገፈርሳ ጉጄ ኬላ ቤተሰቦች እኩል እድል ያረጋግጣል።",
+  "home.story.li1.t": "ሁለንተናዊ ትምህርት",
+  "home.story.li1.d": "ከኬጂ1 እስከ 8ኛ የአካዳሚክ፣ ማህበራዊና ስሜታዊ ዕድገት።",
+  "home.story.li2.t": "ተደራሽ እንክብካቤ",
+  "home.story.li2.d": "በተመጣጣኝ ዋጋ ሙያዊ የውጪ ህሙማንና የእናቶች አገልግሎት።",
+  "home.story.li3.t": "የአካባቢ ተፅዕኖ",
+  "home.story.li3.d": "ከአካባቢው እንቀጥራለን፣ እንሸምታለን እንዲሁም እንመልሳለን።",
+  "home.health.eyebrow": "ጤና",
+  "home.health.title": "ርኅራኄ ያለው እንክብካቤ፣ በቅርብዎት።",
+  "home.health.body":
+    "ክሊኒካችን የውጪ ህሙማን ምርመራ፣ የእናቶችና ህፃናት ጤና፣ ክትባቶችና ሙሉ ላቦራቶሪ ያቀርባል።",
+  "home.health.browse": "አገልግሎቶችን ይመልከቱ",
+  "home.health.book": "ጉብኝት ያስይዙ",
+  "home.cta.title": "ማህበረሰባችንን ይቀላቀሉ።",
+  "home.cta.body":
+    "ልጅዎን ያስመዝግቡ፣ የጤና ጉብኝት ያስይዙ ወይም ሸገር ከተማን አብረን የተሻለ ያድርጉ።",
+  "home.cta.getInTouch": "ያግኙን",
+  "home.cta.about": "ስለ እኛ",
+  "home.est.title": "በሸገር የተመሠረተ",
+  "home.est.sub": "ገፈርሳ ጉጄ ኬላ",
+
+  "about.eyebrow": "ስለ እኛ",
+  "about.title": "ለሸገር ከተማ የሚያገለግል የአካባቢ ድርጅት።",
+  "about.story.title": "ታሪካችን",
+  "about.mission.title": "ተልዕኮ",
+  "about.mission.text":
+    "ለሸገር ከተማ ቤተሰቦች ተደራሽ እና ጥራት ያለው ትምህርትና ጤና ማቅረብ።",
+  "about.vision.title": "ራዕይ",
+  "about.vision.text":
+    "እያንዳንዱ ልጅ የሚማርበትና እያንዳንዱ ቤተሰብ ጤናማ የሆነበት ማህበረሰብ።",
+  "about.values.title": "እሴቶች",
+  "about.values.text":
+    "እንክብካቤ፣ ታማኝነት፣ ብቃት እና በሁሉም ስራዎቻችን የማህበረሰብ ቅድሚያ።",
+  "about.team.title": "የአመራር ቡድን",
+  "about.team.subtitle": "የተወሰኑ የትምህርት፣ የጤናና የንግድ መሪዎች ቡድን።",
+  "about.team.gm.r": "ዋና ሥራ አስኪያጅ",
+  "about.team.gm.d": "ሥራዎችንና ስልቶችን ይቆጣጠራል",
+  "about.team.ad.r": "የትምህርት ዳይሬክተር",
+  "about.team.ad.d": "የትምህርት ፕሮግራሞቻችንን ይመራል",
+  "about.team.md.r": "የሕክምና ዳይሬክተር",
+  "about.team.md.d": "የጤና ክፍላችንን ይመራል",
+  "about.team.ops.r": "የስራዎች ኃላፊ",
+  "about.team.ops.d": "ንግድንና አቅርቦትን ያስተዳድራል",
+
+  "services.eyebrow": "አገልግሎቶች",
+  "services.title": "ለማህበረሰቡ የምናቀርበው።",
+  "services.intro":
+    "ከክፍሎች እስከ ክሊኒኮች ድረስ፣ አገልግሎቶቻችን የሸገር ከተማ ቤተሰቦች የዕለት ተዕለት ፍላጎቶችን ለማሟላት ተዘጋጅተዋል።",
+  "services.education": "ትምህርት",
+  "services.health": "ጤና",
+  "services.mining": "ማዕድን",
+  "services.agriculture": "ግብርና",
+  "services.commerce": "ንግድ",
+  "services.cta.title": "ልጅዎን ለማስመዝገብ ዝግጁ ነዎት?",
+  "services.cta.body":
+    "ወላጆች ተማሪን በደቂቃዎች ውስጥ በመስመር ላይ ማስመዝገብ ይችላሉ።",
+  "services.cta.register": "ተማሪ ያስመዝግቡ",
+  "services.cta.contact": "ያግኙን",
+
+  "sectors.eyebrow": "የእኛ ዘርፎች",
+  "sectors.title": "አምስት ዘርፎች። አንድ የተዋሐደ ተልዕኮ።",
+  "sectors.intro":
+    "ዲኒጋስ ትሬዲንግ በትምህርት፣ በጤና፣ በማዕድን፣ በግብርናና በንግድ ዘርፎች ውስጥ በመስራት ለሸገር ከተማ ጠንካራ ማህበረሰብ ይገነባል።",
+  "sectors.sectorN": "ዘርፍ 0{n}",
+  "sectors.faq.eyebrow": "ጥያቄዎች",
+  "sectors.faq.title": "በተደጋጋሚ የሚጠየቁ ጥያቄዎች",
+  "sectors.faq.subtitle":
+    "ስለ አምስቱ ዘርፎቻችን ፈጣን መልሶች። ያልተገኘ ጥያቄ አለ? ያግኙን — ለመርዳት ደስተኞች ነን።",
+  "sectors.faq.copy": "አገናኝ ቅዳ",
+  "sectors.faq.copied": "አገናኝ ተቀዳ",
+  "sectors.work.title": "ከእኛ ጋር መስራት ይፈልጋሉ?",
+  "sectors.work.body":
+    "ወላጅ፣ አጋር፣ አቅራቢ ወይም የማህበረሰብ አባል ቢሆኑም — ከእርስዎ መስማት እንፈልጋለን።",
+  "sectors.work.contact": "ያግኙን",
+  "sectors.work.services": "አገልግሎቶችን ይመልከቱ",
+
+  "contact.eyebrow": "አግኙን",
+  "contact.title": "ከእርስዎ መስማት እንወዳለን።",
+  "contact.intro":
+    "ስለ ምዝገባ፣ ጤና ወይም አጋርነት ጥያቄዎች? መልዕክት ይላኩልንና ቡድናችን በቅርቡ ይመልስልዎታል።",
+  "contact.getInTouch": "ያግኙን",
+  "contact.address": "አድራሻ",
+  "contact.address.value": "ሸገር ከተማ፣ ገፈርሳ ጉጄ ኬላ፣ ኢትዮጵያ",
+  "contact.phone": "ስልክ",
+  "contact.email": "ኢሜል",
+  "contact.hours": "ሰዓታት",
+  "contact.hours.value": "ሰኞ – ቅዳሜ · 8:00 ጥዋት – 6:00 ምሽት",
+  "contact.form.name": "ስም",
+  "contact.form.emailLabel": "ኢሜል",
+  "contact.form.phone": "ስልክ (አማራጭ)",
+  "contact.form.subject": "ርዕሰ ጉዳይ",
+  "contact.form.message": "መልዕክት",
+  "contact.form.send": "መልዕክት ላክ",
+  "contact.form.sending": "በመላክ ላይ…",
+  "contact.toast.invalid": "ቅጹ ትክክል አይደለም",
+  "contact.toast.error": "መልዕክቱ መላክ አልተቻለም። እባክዎ እንደገና ይሞክሩ።",
+  "contact.toast.success": "መልዕክት ተልኳል! በቅርቡ እንመለስልዎታለን።",
+
+  "auth.signin": "የአስተዳዳሪ መግቢያ",
+  "auth.signup": "መለያ ይፍጠሩ",
+  "auth.signin.desc": "የአስተዳዳሪ ዳሽቦርድ ይድረሱ።",
+  "auth.signup.desc":
+    "መለያዎን ይፍጠሩ፤ የአስተዳዳሪነት ሚና በነባር አስተዳዳሪ ይሰጣል።",
+  "auth.email": "ኢሜል",
+  "auth.password": "የይለፍ ቃል",
+  "auth.signinBtn": "ግባ",
+  "auth.signupBtn": "ይመዝገቡ",
+  "auth.wait": "እባክዎ ይጠብቁ…",
+  "auth.toggleToSignup": "መለያ የለዎትም? ይመዝገቡ",
+  "auth.toggleToSignin": "መለያ አለዎት? ይግቡ",
+  "auth.back": "← ወደ ድረ-ገጹ ተመለስ",
+  "auth.signupOk":
+    "መለያ ተፈጥሯል። ዳሽቦርዱን ለማግኘት የአስተዳዳሪ ሚና ሊያስፈልግ ይችላል።",
+
+  "register.eyebrow": "ምዝገባ",
+  "register.title": "ልጅዎን ዛሬ ያስመዝግቡ።",
+  "register.intro":
+    "ወላጆች ልጃቸውን በቀጥታ በዲኒጋስ ማስመዝገብ ይችላሉ። ቅጹን ይሙሉ፣ ቡድናችን ይከታተልዎታል።",
+  "register.next.title": "ቀጣይ ምን ይሆናል?",
+  "register.next.s1": "ምዝገባዎን በ1–2 የስራ ቀናት ውስጥ እንገመግማለን።",
+  "register.next.s2": "የምዝገባ ቡድናችን ለጉብኝት ቀጠሮ ያደርጋል።",
+  "register.next.s3": "በጉብኝት ቀን አስፈላጊ ሰነዶችን ያምጡ።",
+  "register.next.s4": "የልጅዎን የመቀበያ ደብዳቤና የመጀመሪያ ቀን ያገኛሉ።",
+  "register.help":
+    "ጥያቄ አለዎት? የእውቂያ ገጻችንን ይጎብኙ ወይም በ +251 923 014 132 ይደውሉ።",
+  "register.parent": "ወላጅ / አሳዳጊ",
+  "register.student": "ተማሪ",
+  "register.f.parentName": "የወላጅ / አሳዳጊ ስም",
+  "register.f.parentEmail": "ኢሜል",
+  "register.f.parentPhone": "ስልክ",
+  "register.f.relationship": "ግንኙነት",
+  "register.f.firstName": "የተማሪ መጀመሪያ ስም",
+  "register.f.lastName": "የተማሪ የአባት ስም",
+  "register.f.dob": "የተወለደበት ቀን",
+  "register.f.gender": "ጾታ",
+  "register.f.grade": "የሚያመለክተው ክፍል",
+  "register.f.prevSchool": "ቀደም ሲል የተማረበት ት/ቤት (አማራጭ)",
+  "register.f.address": "የቤት አድራሻ (አማራጭ)",
+  "register.f.notes": "ለምዝገባ ማስታወሻ (አማራጭ)",
+  "register.f.selectGender": "ጾታ ይምረጡ",
+  "register.f.selectGrade": "ክፍል ይምረጡ",
+  "register.submit": "ምዝገባ አስገባ",
+  "register.submitting": "በማስገባት ላይ…",
+  "register.success":
+    "✓ ምዝገባዎ ደርሷል። በቅርቡ እንገናኛለን።",
+  "register.toast.error": "ምዝገባ ማስገባት አልተቻለም። እባክዎ እንደገና ይሞክሩ።",
+  "register.toast.success":
+    "ምዝገባ ተልኳል! የምዝገባ ቡድናችን በቅርቡ ይገናኝዎታል።",
+
+  "news.eyebrow": "ዜናዎች",
+  "news.title": "ከማህበረሰባችን ዝመናዎች።",
+  "news.empty": "እስካሁን ዜና የለም።",
+  "news.readMore": "ተጨማሪ ያንብቡ →",
+  "news.close": "ዝጋ",
+
+  "products.eyebrow": "ፕሮግራሞችና ምርቶች",
+  "products.title": "የምናቀርበውን ይመልከቱ።",
+  "products.intro":
+    "ከመጀመሪያዎቹ የትምህርት ዓመታት እስከ ልዩ የጤና ፕሮግራሞች ድረስ፣ ለቤተሰብዎ ተስማሚ ያግኙ።",
+  "products.all": "ሁሉም",
+  "products.empty": "በዚህ ምድብ ውስጥ ምርት የለም።",
+
+  "careers.eyebrow": "ሥራዎች",
+  "careers.title": "ዓላማ ያለው ሙያ ይገንቡ።",
+  "careers.intro":
+    "የሸገር ከተማን የወደፊት እያቀረበ ካለ ቡድን ጋር ይቀላቀሉ። ማመልከቻዎትን በቀጥታ ወደ",
+  "careers.empty": "በአሁኑ ጊዜ ክፍት ቦታ የለም። በቅርቡ ይመለሱ!",
+  "careers.view": "ሙያ ይመልከቱ",
+  "careers.about": "ስለ ሙያው",
+  "careers.requirements": "መስፈርቶች",
+  "careers.apply": "በኢሜል ያመልክቱ",
+  "careers.close": "ዝጋ",
+};
+
+const om: Dict = {
+  "topbar.location": "Magaalaa Sheger, Gafarsaa Gujjee Keellaa",
+  "topbar.tagline": "Barnoota • Fayyaa • Albuuda • Qonna • Daldala",
+
+  "nav.Home": "Mana",
+  "nav.About": "Waa'ee",
+  "nav.Services": "Tajaajila",
+  "nav.Sectors": "Damee",
+  "nav.Products": "Oomisha",
+  "nav.News": "Oduu",
+  "nav.Careers": "Hojii",
+  "nav.Contact": "Nu Quunnami",
+
+  "header.register": "Barataa galmeessi",
+  "header.contact": "Nu Quunnami",
+  "header.admin": "Bulchaa",
+  "header.adminLogin": "Seensa Bulchaa",
+  "header.toggleMenu": "Menu jijjiiri",
+  "header.language": "Afaan",
+
+  "footer.brand.tag": "Barnoota • Fayyaa • Albuuda • Qonna • Daldala",
+  "footer.about":
+    "Barnoota qulqullina qabu KG1 hanga kutaa 8ffaatti fi tajaajila fayyaa argamuu danda'u dhaqqabuun gara fuulduraa Magaalaa Sheger keenya jajjabeessina.",
+  "footer.visit": "Nu daawwadhu",
+  "footer.address": "Magaalaa Sheger, Gafarsaa Gujjee Keellaa, Itoophiyaa",
+  "footer.explore": "Sakatta'i",
+  "footer.newsletter": "Ergaa Oduu",
+  "footer.newsletter.desc":
+    "Galmee, sagantaalee fi haaromsa kiliinikaa irratti odeeffannoo argadhu.",
+  "footer.email.placeholder": "you@example.com",
+  "footer.subscribe": "Galmaa'i",
+  "footer.subscribing": "Galmaa'aa jira…",
+  "footer.copyright":
+    "© {year} Dinigaas Trading S.C. Mirgi hundi eegamaa dha.",
+  "footer.adminLink": "Bulchaa",
+  "footer.designedBy": "Sirni kun kan qophaa'e",
+  "footer.designedSuffix": ", Saayinsii Komputeraan BSc.",
+  "footer.toast.invalidEmail": "Iimeelii sirrii galchi.",
+  "footer.toast.alreadySubscribed":
+    "Duraan galmoofteetta — galatoomi!",
+  "footer.toast.subError":
+    "Galmaa'uun hin milkoofne. Maaloo ammas yaali.",
+  "footer.toast.subSuccess":
+    "Galmoofte! Ergaa keenya nuti baga waliin jirru.",
+
+  "home.hero.eyebrow": "Cimina Dhaabbataa",
+  "home.hero.title": "Damee Wal-quunnamsiisa, Egeree Ijaaruu.",
+  "home.hero.subtitle":
+    "Barnoota, fayyaa, albuuda, qonna fi daldala keessatti guddina ammayyaa daldalaan deeggaruu.",
+  "home.cta.primary": "Tajaajilawwan Ilaali",
+  "home.cta.secondary": "Nu Quunnami",
+  "home.stats.students": "Barattoota",
+  "home.stats.grades": "Sadarkaa Kutaa",
+  "home.stats.care": "Deeggarsa Kunuunsaa",
+  "home.impact.title": "Naannoo Dhiibbaa Keenyaa",
+  "home.impact.education": "Barnoota",
+  "home.impact.health": "Fayyaa",
+  "home.impact.mining": "Albuuda",
+  "home.impact.agriculture": "Qonna",
+  "home.impact.commerce": "Daldala",
+  "home.pillars.eyebrow": "Wantoota Hojjennu",
+  "home.pillars.title": "Utubaa lama, hawaasa tokko.",
+  "home.pillars.edu.title": "Barnoota Sadarkaa Tokkoffaa",
+  "home.pillars.edu.desc":
+    "Sirna barnootaa ammayyaa KG1 hanga kutaa 8ffaatti barsiisotaa qulqullaa'oodhaan kennama.",
+  "home.pillars.health.title": "Tajaajila Fayyaa",
+  "home.pillars.health.desc":
+    "Tajaajila yaalii alaa, fayyaa haadhaa fi mucaa, talaallii fi qorannoo Gafarsaaf.",
+  "home.pillars.trade.title": "Daldala fi Dhiyeessii",
+  "home.pillars.trade.desc":
+    "Manneen barnootaa, kiliinikoonni fi magaalaa balaa keenyaaf meeshaalee bu'uuraa amanamoo dhiyeessina.",
+  "home.story.eyebrow": "Kaayyoo Keenya",
+  "home.story.title":
+    "Magaalaa guddattu, maatii tokkoo tokkoodhaan ijaaruu.",
+  "home.story.body":
+    "Dinigaas Trading wantoota gurguddoo irratti invest godha: ijoollee bilchaa fi hawaasa fayya qabeessa. Tarkaanfiin keenya tokkichi maatii Gafarsaa Gujjee hundaaf carraa mirkaneessa.",
+  "home.story.li1.t": "Barnoota Guutuu",
+  "home.story.li1.d":
+    "Guddinni barnootaa, hawaasummaa fi miiraa KG1 hanga kutaa 8.",
+  "home.story.li2.t": "Kunuunsa Argamu Danda'u",
+  "home.story.li2.d":
+    "Tajaajila yaalii alaa fi haadhaa qaaliidhaan dhiyeessuu.",
+  "home.story.li3.t": "Dhiibbaa Naannoo",
+  "home.story.li3.d":
+    "Naannoo keenya irraa qacarra, bita biteenna, deebisnees invest goona.",
+  "home.health.eyebrow": "Fayyaa",
+  "home.health.title": "Kunuunsa garaa-laafinaa, mana keessanitti dhihoo.",
+  "home.health.body":
+    "Kiliinikni keenya yaalii alaa, fayyaa haadhaa fi mucaa, talaallii fi laaboraatoorii guutuu hojjattoota qulqullaa'oodhaan dhiyeessa.",
+  "home.health.browse": "Tajaajila ilaali",
+  "home.health.book": "Daawwannaa qabsiisi",
+  "home.cta.title": "Hawaasa keenya makamaa.",
+  "home.cta.body":
+    "Mucaa kee galmeessi, daawwannaa fayyaa qabsiisi yookin Magaalaa Sheger fooyya'aa godhuuf nu wajjin hojjedhu.",
+  "home.cta.getInTouch": "Nu Quunnami",
+  "home.cta.about": "Waa'ee Keenya",
+  "home.est.title": "Sheger keessatti hundaa'e",
+  "home.est.sub": "Gafarsaa Gujjee Keellaa",
+
+  "about.eyebrow": "Waa'ee Keenya",
+  "about.title": "Dhaabbata naannoo, Magaalaa Shegerii tajaajilu.",
+  "about.story.title": "Seenaa Keenya",
+  "about.mission.title": "Ergama",
+  "about.mission.text":
+    "Maatii Magaalaa Shegerii barnoota fi fayyaa qulqullina qabu dhiheessuu.",
+  "about.vision.title": "Mul'ata",
+  "about.vision.text":
+    "Hawaasa mucaan hundi itti barattu fi maatiin hundi itti fayya qabeessa ta'an.",
+  "about.values.title": "Gatii",
+  "about.values.text":
+    "Kunuunsa, amanamummaa, ol'aantummaa fi yaada hawaasaaf dursaa kennu.",
+  "about.team.title": "Garee Hoogganaa",
+  "about.team.subtitle":
+    "Garee barsiisota, ogeeyyii fayyaa fi hooggantoota daldalaa.",
+  "about.team.gm.r": "Hojii Gaggeessaa",
+  "about.team.gm.d": "Hojii fi tarsiimoo to'ata",
+  "about.team.ad.r": "Daayrektara Akkaadaamii",
+  "about.team.ad.d": "Sagantaalee barnootaa hoogganaa",
+  "about.team.md.r": "Daayrektara Yaalaa",
+  "about.team.md.d": "Damee fayyaa hoogganaa",
+  "about.team.ops.r": "Hoogganaa Hojii",
+  "about.team.ops.d": "Daldala fi loojistikii bulcha",
+
+  "services.eyebrow": "Tajaajila",
+  "services.title": "Wantoota hawaasaaf dhiyeessinu.",
+  "services.intro":
+    "Daree barnootaa irraa hanga kiliiniikaatti, tajaajilli keenya fedhii guyyaa guyyaa maatii Magaalaa Shegerii guutuuf qophaa'e.",
+  "services.education": "Barnoota",
+  "services.health": "Fayyaa",
+  "services.mining": "Albuuda",
+  "services.agriculture": "Qonna",
+  "services.commerce": "Daldala",
+  "services.cta.title": "Mucaa kee galmeessuuf qophii?",
+  "services.cta.body":
+    "Maatiin daqiiqaa muraasa keessatti barataa intarneetiin galmeessuu danda'u.",
+  "services.cta.register": "Barataa galmeessi",
+  "services.cta.contact": "Nu Quunnami",
+
+  "sectors.eyebrow": "Damee Keenya",
+  "sectors.title": "Damee shan. Ergama tokko walitti makame.",
+  "sectors.intro":
+    "Dinigaas Trading Barnoota, Fayyaa, Albuuda, Qonna fi Daldala keessatti invest godha — Magaalaa Shegeriif hawaasa cimaa ijaaruu.",
+  "sectors.sectorN": "Damee 0{n}",
+  "sectors.faq.eyebrow": "Gaaffii",
+  "sectors.faq.title": "Gaaffilee yeroo baay'ee gaafataman",
+  "sectors.faq.subtitle":
+    "Damee shan keenya irratti deebii saffisaa. Hin argitan? Nu quunnamaa.",
+  "sectors.faq.copy": "Liinkii waraabi",
+  "sectors.faq.copied": "Liinkiin waraabame",
+  "sectors.work.title": "Nu wajjin hojjechuu barbaaddaa?",
+  "sectors.work.body":
+    "Maatii, michuu, dhiyeessaa yookin miseensa hawaasaa taatu — sirraa dhaga'uu barbaadna.",
+  "sectors.work.contact": "Nu Quunnami",
+  "sectors.work.services": "Tajaajila ilaali",
+
+  "contact.eyebrow": "Nu Quunnami",
+  "contact.title": "Sirraa dhaga'uu jaalanna.",
+  "contact.intro":
+    "Galmee, fayyaa yookin michoomaaf gaaffii qabdaa? Ergaa nuuf ergaa, gareen keenya dhihoo deebisuu.",
+  "contact.getInTouch": "Nu Quunnami",
+  "contact.address": "Teessoo",
+  "contact.address.value":
+    "Magaalaa Sheger, Gafarsaa Gujjee Keellaa, Itoophiyaa",
+  "contact.phone": "Bilbila",
+  "contact.email": "Iimeelii",
+  "contact.hours": "Sa'aatii",
+  "contact.hours.value":
+    "Wiixata – Sanbata · 8:00 ganama – 6:00 galgala",
+  "contact.form.name": "Maqaa",
+  "contact.form.emailLabel": "Iimeelii",
+  "contact.form.phone": "Bilbila (filannoo)",
+  "contact.form.subject": "Mata duree",
+  "contact.form.message": "Ergaa",
+  "contact.form.send": "Ergaa ergi",
+  "contact.form.sending": "Ergamaa jira…",
+  "contact.toast.invalid": "Foormiin sirrii miti",
+  "contact.toast.error":
+    "Ergaa erguun hin milkoofne. Maaloo ammas yaali.",
+  "contact.toast.success":
+    "Ergaan ergame! Dhihoo sitti deebina.",
+
+  "auth.signin": "Seensa Bulchaa",
+  "auth.signup": "Akkaawuntii uumi",
+  "auth.signin.desc": "Daashboordii bulchaa seeni.",
+  "auth.signup.desc":
+    "Akkaawuntii kee uumi; ga'een bulchummaa bulchaa duraan jiruun kennama.",
+  "auth.email": "Iimeelii",
+  "auth.password": "Jecha icciitii",
+  "auth.signinBtn": "Seeni",
+  "auth.signupBtn": "Galmaa'i",
+  "auth.wait": "Maaloo eegi…",
+  "auth.toggleToSignup": "Akkaawuntii hin qabdu? Galmaa'i",
+  "auth.toggleToSignin": "Akkaawuntii qabda? Seeni",
+  "auth.back": "← Gara weebsaayitiitti deebi'i",
+  "auth.signupOk":
+    "Akkaawuntiin uumame. Daashboordii argachuuf ga'ee bulchummaa si barbaachisuu danda'a.",
+
+  "register.eyebrow": "Galmee",
+  "register.title": "Mucaa kee har'a galmeessi.",
+  "register.intro":
+    "Maatiin mucaa isaanii kallattiidhaan Dinigaas keessatti galmeessuu danda'u. Foormii guuti, gareen keenya si quunnamaa.",
+  "register.next.title": "Itti aansee maaltu uumama?",
+  "register.next.s1":
+    "Galmee kee guyyoota hojii 1–2 keessatti ilaalla.",
+  "register.next.s2":
+    "Gareen galmee daawwannaaf beellama qabsiisa.",
+  "register.next.s3":
+    "Guyyaa daawwannaa sanadoota barbaachisaa fidaa.",
+  "register.next.s4":
+    "Xalayaa fudhatama mucaa keessanii fi guyyaa jalqabaa argattu.",
+  "register.help":
+    "Gaaffii qabdaa? Fuula nu quunnamuu daawwadhu yookin +251 923 014 132 bilbili.",
+  "register.parent": "Maatii / Bulchaa",
+  "register.student": "Barataa",
+  "register.f.parentName": "Maqaa Maatii / Bulchaa",
+  "register.f.parentEmail": "Iimeelii",
+  "register.f.parentPhone": "Bilbila",
+  "register.f.relationship": "Walitti dhufeenya",
+  "register.f.firstName": "Maqaa duraa barataa",
+  "register.f.lastName": "Maqaa abbaa barataa",
+  "register.f.dob": "Guyyaa dhalootaa",
+  "register.f.gender": "Saala",
+  "register.f.grade": "Kutaa galmaa'u",
+  "register.f.prevSchool":
+    "Mana barumsaa duraanii (filannoo)",
+  "register.f.address": "Teessoo manaa (filannoo)",
+  "register.f.notes":
+    "Yaadannoo galmaaf (filannoo)",
+  "register.f.selectGender": "Saala filadhu",
+  "register.f.selectGrade": "Kutaa filadhu",
+  "register.submit": "Galmee galchi",
+  "register.submitting": "Galchaa jira…",
+  "register.success":
+    "✓ Galmeen kee dhaqqabe. Dhihoo si quunnamna.",
+  "register.toast.error":
+    "Galmee galchuun hin milkoofne. Maaloo ammas yaali.",
+  "register.toast.success":
+    "Galmee galchame! Gareen galmee dhihoo si quunnama.",
+
+  "news.eyebrow": "Oduu",
+  "news.title": "Hawaasa keenya irraa haaromsa.",
+  "news.empty": "Hanga ammaatti oduu hin jiru.",
+  "news.readMore": "Caalaa dubbisi →",
+  "news.close": "Cufi",
+
+  "products.eyebrow": "Sagantaa fi Oomishaalee",
+  "products.title": "Wantoota dhiyeessinu ilaali.",
+  "products.intro":
+    "Barnoota umurii xiqqaa irraa hanga sagantaa fayyaa addaatti, maatii keessaniif kan ta'u argadhaa.",
+  "products.all": "Hunda",
+  "products.empty": "Ramaddii kana keessa hin jiru.",
+
+  "careers.eyebrow": "Hojii",
+  "careers.title": "Hojii kaayyoo qabu ijaari.",
+  "careers.intro":
+    "Garee Magaalaa Shegerii barnoota fi fayyaadhaan jijjiiraa jirutti makamaa. Iyyannoo kee kallattiidhaan",
+  "careers.empty":
+    "Yeroo ammaa bakka banaa hin jiru. Gara dhihootti deebi'aa!",
+  "careers.view": "Hojii ilaali",
+  "careers.about": "Waa'ee hojii",
+  "careers.requirements": "Ulaagaalee",
+  "careers.apply": "Iimeeliidhaan iyyadhu",
+  "careers.close": "Cufi",
+};
+
+const DICTS: Record<Lang, Dict> = { en, am, om };
+
+export function tFor(lang: Lang) {
+  return (key: string, vars?: Record<string, string | number>) => {
+    const raw = DICTS[lang][key] ?? DICTS.en[key] ?? key;
+    if (!vars) return raw;
+    return Object.keys(vars).reduce(
+      (s, k) => s.replace(new RegExp(`\\{${k}\\}`, "g"), String(vars[k])),
+      raw,
+    );
+  };
+}
+
+export { DICTS };

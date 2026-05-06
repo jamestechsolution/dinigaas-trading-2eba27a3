@@ -2,6 +2,7 @@ import { Outlet, createRootRoute, HeadContent, Scripts } from "@tanstack/react-r
 import { Toaster } from "sonner";
 import appCss from "../styles.css?url";
 import faviconUrl from "@/assets/dinigaas-logo.jpg?url";
+import { I18nProvider } from "@/i18n/I18nProvider";
 
 export const Route = createRootRoute({
   head: () => ({
@@ -59,10 +60,10 @@ function RootShell({ children }: { children: React.ReactNode }) {
 
 function RootComponent() {
   return (
-    <>
+    <I18nProvider>
       <Outlet />
       <Toaster richColors position="top-right" />
-    </>
+    </I18nProvider>
   );
 }
 

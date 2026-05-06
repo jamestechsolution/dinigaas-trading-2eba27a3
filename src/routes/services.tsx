@@ -8,6 +8,7 @@ import {
   ShoppingBag,
   ArrowRight,
 } from "lucide-react";
+import { useI18n } from "@/i18n/I18nProvider";
 
 export const Route = createFileRoute("/services")({
   head: () => ({
@@ -30,73 +31,26 @@ export const Route = createFileRoute("/services")({
 
 type Sector = { Icon: typeof GraduationCap; title: string; items: string[] };
 
-const SECTORS: Sector[] = [
-  {
-    Icon: GraduationCap,
-    title: "Education",
-    items: [
-      "KG1 – KG3 early years program",
-      "Primary education (Grade 1–4)",
-      "Middle school (Grade 5–8)",
-      "After-school enrichment & tutoring",
-      "Parent engagement programs",
-    ],
-  },
-  {
-    Icon: Stethoscope,
-    title: "Health",
-    items: [
-      "General outpatient consultations",
-      "Maternal & child health",
-      "Vaccination & immunization",
-      "Laboratory & diagnostic services",
-      "Community health outreach",
-    ],
-  },
-  {
-    Icon: Mountain,
-    title: "Mining",
-    items: [
-      "Responsible mineral sourcing",
-      "Local community partnerships",
-      "Safe extraction practices",
-      "Logistics & supply support",
-    ],
-  },
-  {
-    Icon: Wheat,
-    title: "Agriculture",
-    items: [
-      "Crop production & supply",
-      "Smallholder farmer support",
-      "Modern farming inputs",
-      "Post-harvest handling",
-    ],
-  },
-  {
-    Icon: ShoppingBag,
-    title: "Commerce",
-    items: [
-      "General trading & distribution",
-      "Educational & medical supplies",
-      "Wholesale & retail operations",
-      "Local market development",
-    ],
-  },
-];
-
 function ServicesPage() {
+  const { t } = useI18n();
+  const SECTORS: Sector[] = [
+    { Icon: GraduationCap, title: t("services.education"), items: ["KG1 – KG3", "Grade 1–4", "Grade 5–8", "After-school tutoring", "Parent engagement"] },
+    { Icon: Stethoscope, title: t("services.health"), items: ["Outpatient consultations", "Maternal & child health", "Vaccination", "Lab & diagnostics", "Community outreach"] },
+    { Icon: Mountain, title: t("services.mining"), items: ["Responsible sourcing", "Local partnerships", "Safe extraction", "Logistics & supply"] },
+    { Icon: Wheat, title: t("services.agriculture"), items: ["Crop production", "Smallholder support", "Modern inputs", "Post-harvest handling"] },
+    { Icon: ShoppingBag, title: t("services.commerce"), items: ["General trading", "Educational & medical supplies", "Wholesale & retail", "Local market development"] },
+  ];
+
   return (
     <SiteLayout>
       <section className="bg-cotton py-20">
         <div className="mx-auto max-w-7xl px-6 lg:px-12">
-          <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-primary-light">Services</p>
+          <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-primary-light">{t("services.eyebrow")}</p>
           <h1 className="mt-3 max-w-3xl font-serif text-5xl text-primary md:text-6xl">
-            What we offer the community.
+            {t("services.title")}
           </h1>
           <p className="mt-6 max-w-2xl text-lg text-muted-foreground">
-            From classrooms to clinics, our services are designed to meet the everyday needs of
-            families in Sheger City.
+            {t("services.intro")}
           </p>
         </div>
       </section>
@@ -124,22 +78,22 @@ function ServicesPage() {
 
       <section className="py-16">
         <div className="mx-auto max-w-5xl rounded-3xl bg-primary p-10 text-center text-primary-foreground md:p-16">
-          <h2 className="font-serif text-4xl md:text-5xl">Ready to enroll your child?</h2>
+          <h2 className="font-serif text-4xl md:text-5xl">{t("services.cta.title")}</h2>
           <p className="mx-auto mt-4 max-w-xl text-primary-foreground/80">
-            Parents can register a student online in minutes. Our admissions team will handle the rest.
+            {t("services.cta.body")}
           </p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
             <Link
               to="/register"
               className="inline-flex items-center gap-2 rounded-full bg-primary-foreground px-7 py-3 text-sm font-semibold text-primary hover:bg-primary-foreground/90"
             >
-              Register a student <ArrowRight className="size-4" />
+              {t("services.cta.register")} <ArrowRight className="size-4" />
             </Link>
             <Link
               to="/contact"
               className="inline-flex items-center gap-2 rounded-full border border-primary-foreground/40 px-7 py-3 text-sm font-semibold text-primary-foreground hover:bg-primary-foreground/10"
             >
-              Contact us
+              {t("services.cta.contact")}
             </Link>
           </div>
         </div>

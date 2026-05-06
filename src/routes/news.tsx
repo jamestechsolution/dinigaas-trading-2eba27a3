@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { SiteLayout } from "@/components/SiteLayout";
 import { supabase } from "@/integrations/supabase/client";
 import { Loader2, Calendar } from "lucide-react";
+import { useI18n } from "@/i18n/I18nProvider";
 
 export const Route = createFileRoute("/news")({
   head: () => ({
@@ -27,6 +28,7 @@ type News = {
 };
 
 function NewsPage() {
+  const { t } = useI18n();
   const [items, setItems] = useState<News[] | null>(null);
   const [open, setOpen] = useState<News | null>(null);
 
@@ -43,9 +45,9 @@ function NewsPage() {
     <SiteLayout>
       <section className="bg-cotton py-20">
         <div className="mx-auto max-w-7xl px-6 lg:px-12">
-          <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-primary-light">News</p>
+          <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-primary-light">{t("news.eyebrow")}</p>
           <h1 className="mt-3 max-w-3xl font-serif text-5xl text-primary md:text-6xl">
-            Updates from our community.
+            {t("news.title")}
           </h1>
         </div>
       </section>
@@ -57,7 +59,7 @@ function NewsPage() {
               <Loader2 className="size-6 animate-spin" />
             </div>
           ) : items.length === 0 ? (
-            <p className="py-24 text-center text-muted-foreground">No news yet.</p>
+            <p className="py-24 text-center text-muted-foreground">{t("news.empty")}</p>
           ) : (
             <div className="grid gap-8 lg:grid-cols-2">
               {items.map((n) => (
@@ -79,7 +81,7 @@ function NewsPage() {
                     onClick={() => setOpen(n)}
                     className="mt-5 text-sm font-semibold text-primary hover:underline"
                   >
-                    Read more →
+                    {t("news.readMore")}
                   </button>
                 </article>
               ))}
@@ -106,7 +108,7 @@ function NewsPage() {
               onClick={() => setOpen(null)}
               className="mt-8 rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground"
             >
-              Close
+              {t("news.close")}
             </button>
           </article>
         </div>

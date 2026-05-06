@@ -5,6 +5,7 @@ import { SiteLayout } from "@/components/SiteLayout";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { MapPin, Mail, Phone, Clock } from "lucide-react";
+import { useI18n } from "@/i18n/I18nProvider";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -27,6 +28,7 @@ const schema = z.object({
 });
 
 function ContactPage() {
+  const { t } = useI18n();
   const [form, setForm] = useState({ name: "", email: "", phone: "", subject: "", message: "" });
   const [loading, setLoading] = useState(false);
 
@@ -34,7 +36,7 @@ function ContactPage() {
     e.preventDefault();
     const parsed = schema.safeParse(form);
     if (!parsed.success) {
-      toast.error(parsed.error.issues[0]?.message ?? "Invalid form");
+      toast.error(parsed.error.issues[0]?.message ?? t("contact.toast.invalid"));
       return;
     }
     setLoading(true);
@@ -47,10 +49,10 @@ function ContactPage() {
     });
     setLoading(false);
     if (error) {
-      toast.error("Could not send message. Please try again.");
+      toast.error(t("contact.toast.error"));
       return;
     }
-    toast.success("Message sent! We'll get back to you soon.");
+    toast.success(t("contact.toast.success"));
     setForm({ name: "", email: "", phone: "", subject: "", message: "" });
   }
 
@@ -58,13 +60,12 @@ function ContactPage() {
     <SiteLayout>
       <section className="bg-cotton py-20">
         <div className="mx-auto max-w-7xl px-6 lg:px-12">
-          <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-primary-light">Contact</p>
+          <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-primary-light">{t("contact.eyebrow")}</p>
           <h1 className="mt-3 max-w-3xl font-serif text-5xl text-primary md:text-6xl">
-            We'd love to hear from you.
+            {t("contact.title")}
           </h1>
           <p className="mt-6 max-w-2xl text-lg text-muted-foreground">
-            Questions about admissions, healthcare or partnerships? Send us a message and our team
-            will respond shortly.
+            {t("contact.intro")}
           </p>
         </div>
       </section>
@@ -72,15 +73,15 @@ function ContactPage() {
       <section className="py-20">
         <div className="mx-auto grid max-w-7xl gap-12 px-6 lg:grid-cols-5 lg:px-12">
           <div className="lg:col-span-2">
-            <h2 className="font-serif text-2xl text-primary">Get in touch</h2>
+            <h2 className="font-serif text-2xl text-primary">{t("contact.getInTouch")}</h2>
             <ul className="mt-6 space-y-5 text-sm">
               <li className="flex items-start gap-4">
                 <span className="grid size-10 shrink-0 place-items-center rounded-2xl bg-primary/10 text-primary">
                   <MapPin className="size-5" />
                 </span>
                 <div>
-                  <p className="font-semibold text-foreground">Address</p>
-                  <p className="text-muted-foreground">Sheger City, Gefarsa Gujje Kella, Ethiopia</p>
+                  <p className="font-semibold text-foreground">{t("contact.address")}</p>
+                  <p className="text-muted-foreground">{t("contact.address.value")}</p>
                 </div>
               </li>
               <li className="flex items-start gap-4">
@@ -88,7 +89,7 @@ function ContactPage() {
                   <Phone className="size-5" />
                 </span>
                 <div>
-                  <p className="font-semibold text-foreground">Phone</p>
+                  <p className="font-semibold text-foreground">{t("contact.phone")}</p>
                   <a href="tel:+251923014132" className="text-muted-foreground hover:text-primary">+251 923 014 132</a>
                 </div>
               </li>
@@ -97,7 +98,7 @@ function ContactPage() {
                   <Mail className="size-5" />
                 </span>
                 <div>
-                  <p className="font-semibold text-foreground">Email</p>
+                  <p className="font-semibold text-foreground">{t("contact.email")}</p>
                   <a href="mailto:dinigaastrading@gmail.com" className="text-muted-foreground hover:text-primary">dinigaastrading@gmail.com</a>
                 </div>
               </li>
@@ -106,8 +107,8 @@ function ContactPage() {
                   <Clock className="size-5" />
                 </span>
                 <div>
-                  <p className="font-semibold text-foreground">Hours</p>
-                  <p className="text-muted-foreground">Mon – Sat · 8:00 AM – 6:00 PM</p>
+                  <p className="font-semibold text-foreground">{t("contact.hours")}</p>
+                  <p className="text-muted-foreground">{t("contact.hours.value")}</p>
                 </div>
               </li>
             </ul>
@@ -115,14 +116,14 @@ function ContactPage() {
 
           <form onSubmit={handleSubmit} className="rounded-3xl border border-border bg-background p-8 shadow-card lg:col-span-3">
             <div className="grid gap-5 sm:grid-cols-2">
-              <Field label="Name" value={form.name} onChange={(v) => setForm({ ...form, name: v })} />
-              <Field label="Email" type="email" value={form.email} onChange={(v) => setForm({ ...form, email: v })} />
-              <Field label="Phone (optional)" value={form.phone} onChange={(v) => setForm({ ...form, phone: v })} />
-              <Field label="Subject" value={form.subject} onChange={(v) => setForm({ ...form, subject: v })} />
+              <Field label={t("contact.form.name")} value={form.name} onChange={(v) => setForm({ ...form, name: v })} />
+              <Field label={t("contact.form.emailLabel")} type="email" value={form.email} onChange={(v) => setForm({ ...form, email: v })} />
+              <Field label={t("contact.form.phone")} value={form.phone} onChange={(v) => setForm({ ...form, phone: v })} />
+              <Field label={t("contact.form.subject")} value={form.subject} onChange={(v) => setForm({ ...form, subject: v })} />
             </div>
             <div className="mt-5">
               <label className="block text-xs font-semibold uppercase tracking-widest text-muted-foreground">
-                Message
+                {t("contact.form.message")}
               </label>
               <textarea
                 value={form.message}
@@ -138,7 +139,7 @@ function ContactPage() {
               disabled={loading}
               className="mt-6 w-full rounded-full bg-primary px-7 py-3.5 text-sm font-semibold text-primary-foreground shadow-soft transition-all hover:bg-primary-light disabled:opacity-60 sm:w-auto"
             >
-              {loading ? "Sending…" : "Send message"}
+              {loading ? t("contact.form.sending") : t("contact.form.send")}
             </button>
           </form>
         </div>

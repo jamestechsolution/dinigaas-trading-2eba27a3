@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { SiteLayout } from "@/components/SiteLayout";
 import { supabase } from "@/integrations/supabase/client";
 import { Loader2 } from "lucide-react";
+import { useI18n } from "@/i18n/I18nProvider";
 
 export const Route = createFileRoute("/products")({
   head: () => ({
@@ -26,6 +27,7 @@ type Product = {
 };
 
 function ProductsPage() {
+  const { t } = useI18n();
   const [products, setProducts] = useState<Product[] | null>(null);
   const [filter, setFilter] = useState<string>("All");
 
@@ -45,13 +47,12 @@ function ProductsPage() {
     <SiteLayout>
       <section className="bg-cotton py-20">
         <div className="mx-auto max-w-7xl px-6 lg:px-12">
-          <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-primary-light">Programs & Products</p>
+          <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-primary-light">{t("products.eyebrow")}</p>
           <h1 className="mt-3 max-w-3xl font-serif text-5xl text-primary md:text-6xl">
-            Explore what we offer.
+            {t("products.title")}
           </h1>
           <p className="mt-6 max-w-2xl text-lg text-muted-foreground">
-            From early years education to specialized healthcare programs, find the right fit for
-            your family.
+            {t("products.intro")}
           </p>
         </div>
       </section>
@@ -69,7 +70,7 @@ function ProductsPage() {
                     : "border-border bg-background text-foreground hover:bg-accent"
                 }`}
               >
-                {c}
+                {c === "All" ? t("products.all") : c}
               </button>
             ))}
           </div>
@@ -79,7 +80,7 @@ function ProductsPage() {
               <Loader2 className="size-6 animate-spin" />
             </div>
           ) : filtered.length === 0 ? (
-            <p className="py-24 text-center text-muted-foreground">No items in this category yet.</p>
+            <p className="py-24 text-center text-muted-foreground">{t("products.empty")}</p>
           ) : (
             <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {filtered.map((p) => (
