@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { SiteLayout } from "@/components/SiteLayout";
 import { supabase } from "@/integrations/supabase/client";
 import { Loader2, MapPin, Briefcase } from "lucide-react";
+import { useI18n } from "@/i18n/I18nProvider";
 
 export const Route = createFileRoute("/careers")({
   head: () => ({
@@ -27,6 +28,7 @@ type Job = {
 };
 
 function CareersPage() {
+  const { t } = useI18n();
   const [jobs, setJobs] = useState<Job[] | null>(null);
   const [open, setOpen] = useState<Job | null>(null);
 
@@ -43,13 +45,12 @@ function CareersPage() {
     <SiteLayout>
       <section className="bg-cotton py-20">
         <div className="mx-auto max-w-7xl px-6 lg:px-12">
-          <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-primary-light">Careers</p>
+          <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-primary-light">{t("careers.eyebrow")}</p>
           <h1 className="mt-3 max-w-3xl font-serif text-5xl text-primary md:text-6xl">
-            Build a career with purpose.
+            {t("careers.title")}
           </h1>
           <p className="mt-6 max-w-2xl text-lg text-muted-foreground">
-            Join a team that is shaping the future of Sheger City through education and healthcare.
-            Send applications directly to{" "}
+            {t("careers.intro")}{" "}
             <a href="mailto:dinigaastrading@gmail.com" className="font-semibold text-primary underline-offset-4 hover:underline">
               dinigaastrading@gmail.com
             </a>
@@ -65,7 +66,7 @@ function CareersPage() {
               <Loader2 className="size-6 animate-spin" />
             </div>
           ) : jobs.length === 0 ? (
-            <p className="py-24 text-center text-muted-foreground">No open positions right now. Check back soon!</p>
+            <p className="py-24 text-center text-muted-foreground">{t("careers.empty")}</p>
           ) : (
             <div className="space-y-4">
               {jobs.map((j) => (
@@ -85,7 +86,7 @@ function CareersPage() {
                     onClick={() => setOpen(j)}
                     className="self-start rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground hover:bg-primary-light sm:self-auto"
                   >
-                    View role
+                    {t("careers.view")}
                   </button>
                 </article>
               ))}
@@ -105,10 +106,10 @@ function CareersPage() {
               {open.department} · {open.location} · {open.type}
             </p>
 
-            <h3 className="mt-6 font-semibold text-foreground">About the role</h3>
+            <h3 className="mt-6 font-semibold text-foreground">{t("careers.about")}</h3>
             <p className="mt-2 whitespace-pre-line text-sm leading-relaxed text-muted-foreground">{open.description}</p>
 
-            <h3 className="mt-6 font-semibold text-foreground">Requirements</h3>
+            <h3 className="mt-6 font-semibold text-foreground">{t("careers.requirements")}</h3>
             <p className="mt-2 whitespace-pre-line text-sm leading-relaxed text-muted-foreground">{open.requirements}</p>
 
             <div className="mt-8 flex flex-wrap gap-3">
@@ -120,13 +121,13 @@ function CareersPage() {
                 )}`}
                 className="rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground hover:bg-primary-light"
               >
-                Apply via email
+                {t("careers.apply")}
               </a>
               <button
                 onClick={() => setOpen(null)}
                 className="rounded-full border border-border bg-background px-6 py-3 text-sm font-semibold text-foreground hover:bg-accent"
               >
-                Close
+                {t("careers.close")}
               </button>
             </div>
           </article>
