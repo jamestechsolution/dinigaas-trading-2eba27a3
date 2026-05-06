@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/SiteLayout";
 import { useSiteContent } from "@/hooks/use-site-content";
 import { useSiteImages } from "@/hooks/use-site-images";
+import { useI18n } from "@/i18n/I18nProvider";
 import { Heart, Target, Eye, Users } from "lucide-react";
 import schoolImg from "@/assets/school-building.jpg";
 
@@ -9,7 +10,7 @@ export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
       { title: "About — Dinigaas Trading S.C." },
-      { name: "description", content: "Our story, mission, vision and values. Based in Sheger City, Gefarsa Gujje Kella." },
+      { name: "description", content: "Our story, mission, vision and values." },
       { property: "og:title", content: "About — Dinigaas Trading S.C." },
       { property: "og:description", content: "Our story, mission, vision and values." },
     ],
@@ -20,14 +21,15 @@ export const Route = createFileRoute("/about")({
 function AboutPage() {
   const { get } = useSiteContent("about");
   const { get: getImg } = useSiteImages();
+  const { t } = useI18n();
   const aboutImg = getImg("about_story", schoolImg);
   return (
     <SiteLayout>
       <section className="bg-cotton py-20">
         <div className="mx-auto max-w-7xl px-6 lg:px-12">
-          <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-primary-light">{get("about_eyebrow", "About us")}</p>
+          <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-primary-light">{t("about.eyebrow")}</p>
           <h1 className="mt-3 max-w-3xl font-serif text-5xl text-primary md:text-6xl">
-            {get("about_title", "A locally rooted company serving Sheger City.")}
+            {t("about.title")}
           </h1>
           <p className="mt-6 max-w-2xl text-lg text-muted-foreground whitespace-pre-line">
             {get("about_intro", "")}
@@ -39,7 +41,7 @@ function AboutPage() {
         <div className="mx-auto grid max-w-7xl gap-14 px-6 lg:grid-cols-2 lg:px-12">
           <img src={aboutImg} alt="Dinigaas campus" loading="lazy" width={1200} height={900} className="rounded-3xl object-cover shadow-card" />
           <div>
-            <h2 className="font-serif text-3xl text-primary md:text-4xl">Our story</h2>
+            <h2 className="font-serif text-3xl text-primary md:text-4xl">{t("about.story.title")}</h2>
             <p className="mt-5 leading-relaxed text-muted-foreground whitespace-pre-line">
               {get("about_story_p1", "")}
             </p>
@@ -54,9 +56,9 @@ function AboutPage() {
         <div className="mx-auto max-w-7xl px-6 lg:px-12">
           <div className="grid gap-6 md:grid-cols-3">
             {[
-              { Icon: Target, title: "Mission", text: "Provide accessible quality education and healthcare to the families of Sheger City." },
-              { Icon: Eye, title: "Vision", text: "A thriving community where every child learns and every family is healthy." },
-              { Icon: Heart, title: "Values", text: "Care, integrity, excellence and community-first thinking in everything we do." },
+              { Icon: Target, title: t("about.mission.title"), text: t("about.mission.text") },
+              { Icon: Eye, title: t("about.vision.title"), text: t("about.vision.text") },
+              { Icon: Heart, title: t("about.values.title"), text: t("about.values.text") },
             ].map(({ Icon, title, text }) => (
               <article key={title} className="rounded-3xl border border-border bg-background p-7">
                 <Icon className="size-7 text-primary" />
@@ -70,16 +72,14 @@ function AboutPage() {
 
       <section className="py-20">
         <div className="mx-auto max-w-7xl px-6 lg:px-12">
-          <h2 className="font-serif text-3xl text-primary md:text-4xl">Leadership team</h2>
-          <p className="mt-3 max-w-xl text-muted-foreground">
-            A dedicated group of educators, healthcare professionals and business leaders.
-          </p>
+          <h2 className="font-serif text-3xl text-primary md:text-4xl">{t("about.team.title")}</h2>
+          <p className="mt-3 max-w-xl text-muted-foreground">{t("about.team.subtitle")}</p>
           <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {[
-              ["General Manager", "Oversees operations and strategy"],
-              ["Academic Director", "Leads our educational programs"],
-              ["Medical Director", "Heads our healthcare division"],
-              ["Operations Lead", "Manages trading and logistics"],
+              [t("about.team.gm.r"), t("about.team.gm.d")],
+              [t("about.team.ad.r"), t("about.team.ad.d")],
+              [t("about.team.md.r"), t("about.team.md.d")],
+              [t("about.team.ops.r"), t("about.team.ops.d")],
             ].map(([role, desc]) => (
               <article key={role} className="rounded-3xl border border-border bg-cotton p-6">
                 <div className="grid h-32 place-items-center rounded-2xl bg-primary/10">

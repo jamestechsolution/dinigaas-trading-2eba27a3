@@ -5,6 +5,7 @@ import { SiteLayout } from "@/components/SiteLayout";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { MapPin, Mail, Phone, Clock } from "lucide-react";
+import { useI18n } from "@/i18n/I18nProvider";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
