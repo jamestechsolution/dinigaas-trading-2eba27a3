@@ -32,9 +32,10 @@ function HomePage() {
   const healthSrc = getImg("home_health", healthImg);
   return (
     <SiteLayout>
-      <section className="hero-gradient relative overflow-hidden">
-        <div className="pointer-events-none absolute -top-24 -left-24 size-96 rounded-full bg-white/10 blur-3xl" aria-hidden />
-        <div className="pointer-events-none absolute -bottom-24 -right-24 size-96 rounded-full bg-white/10 blur-3xl" aria-hidden />
+      <section className="hero-gradient gradient-animated relative overflow-hidden">
+        <div className="pointer-events-none absolute -top-24 -left-24 size-96 animate-orb rounded-full bg-white/10 blur-3xl" aria-hidden />
+        <div className="pointer-events-none absolute -bottom-24 -right-24 size-96 animate-orb rounded-full bg-white/10 blur-3xl [animation-delay:-7s]" aria-hidden />
+        <div className="pointer-events-none absolute top-1/2 left-1/2 size-[40rem] -translate-x-1/2 -translate-y-1/2 animate-spin-slow rounded-full border border-white/5" aria-hidden />
         <div className="mx-auto grid max-w-7xl items-center gap-14 px-6 py-24 lg:grid-cols-2 lg:px-12 lg:py-32">
           <div>
             <div className="mb-7 inline-flex animate-rise items-center gap-2 rounded-full border border-white/25 bg-white/10 px-3 py-1 backdrop-blur-sm">
@@ -43,7 +44,7 @@ function HomePage() {
                 {t("home.hero.eyebrow")}
               </span>
             </div>
-            <h1 className="animate-rise delay-100 text-balance font-serif text-5xl leading-[1.05] tracking-tight text-white md:text-6xl lg:text-7xl">
+            <h1 className="animate-rise delay-100 text-shimmer text-balance font-serif text-5xl leading-[1.05] tracking-tight md:text-6xl lg:text-7xl">
               {t("home.hero.title")}
             </h1>
             <p className="animate-rise delay-200 mt-7 max-w-[52ch] text-pretty text-lg leading-relaxed text-white/85 whitespace-pre-line">
