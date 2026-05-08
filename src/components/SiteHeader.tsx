@@ -103,13 +103,6 @@ export function SiteHeader() {
                 </Link>
               ))}
               <Link
-                to="/register"
-                onClick={() => setOpen(false)}
-                className="mt-2 rounded-full border border-primary/30 px-5 py-3 text-center text-sm font-semibold text-primary"
-              >
-                {t("header.register")}
-              </Link>
-              <Link
                 to="/contact"
                 onClick={() => setOpen(false)}
                 className="rounded-full bg-primary px-5 py-3 text-center text-sm font-semibold text-primary-foreground"
