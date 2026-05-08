@@ -61,14 +61,16 @@ export function SiteHeader() {
             <LanguageSwitcher className="hidden lg:block" />
             <Link
               to="/register"
-              className="hidden rounded-full border border-primary/20 px-4 py-2.5 text-sm font-semibold text-primary transition-all hover:bg-primary/10 lg:inline-block"
+              className="btn-glow relative hidden overflow-visible rounded-full border border-primary/20 px-4 py-2.5 text-sm font-semibold text-primary hover:bg-primary/10 lg:inline-block"
             >
+              <span className="btn-halo" aria-hidden />
               {t("header.register")}
             </Link>
             <Link
               to="/contact"
-              className="hidden rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-soft transition-all hover:bg-primary-light lg:inline-block"
+              className="btn-glow relative hidden overflow-visible rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-soft hover:bg-primary-light lg:inline-block"
             >
+              <span className="btn-halo" aria-hidden />
               {t("header.contact")}
             </Link>
             <Link
