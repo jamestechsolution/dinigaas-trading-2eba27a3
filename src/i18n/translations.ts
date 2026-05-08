@@ -27,7 +27,7 @@ const en: Dict = {
   "nav.Contact": "Contact",
 
   // Header buttons
-  "header.register": "Register student",
+  "header.register": "Register",
   "header.contact": "Contact us",
   "header.admin": "Admin",
   "header.adminLogin": "Admin login",
