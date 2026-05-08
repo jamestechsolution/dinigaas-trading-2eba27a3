@@ -309,6 +309,94 @@
   animation: dg-text-shimmer 4.5s linear infinite;
 }
 
+/* ---------- Animated CTA buttons ---------- */
+@keyframes dg-border-spin {
+  to { transform: rotate(360deg); }
+}
+@keyframes dg-glow-pulse {
+  0%, 100% { opacity: .55; filter: blur(14px); }
+  50%      { opacity: .9;  filter: blur(22px); }
+}
+
+/* Lift + glow on hover. Use on any button/link. */
+.btn-glow {
+  position: relative;
+  isolation: isolate;
+  transition: transform .35s ease, box-shadow .35s ease, background-color .25s ease, color .25s ease, border-color .25s ease;
+}
+.btn-glow::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  background: conic-gradient(
+    from 0deg,
+    color-mix(in oklab, var(--primary) 70%, transparent),
+    color-mix(in oklab, var(--primary-light) 80%, transparent),
+    #fff,
+    color-mix(in oklab, var(--primary) 70%, transparent)
+  );
+  opacity: 0;
+  z-index: -2;
+  transition: opacity .35s ease;
+  animation: dg-border-spin 4s linear infinite;
+  animation-play-state: paused;
+}
+.btn-glow::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: inherit;
+  z-index: -1;
+}
+.btn-glow:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow:
+    0 12px 28px -10px color-mix(in oklab, var(--primary) 45%, transparent),
+    0 0 0 1px color-mix(in oklab, var(--primary-light) 35%, transparent);
+}
+.btn-glow:hover::before {
+  opacity: 1;
+  animation-play-state: running;
+}
+
+/* Glow halo behind button (use as sibling/child span) */
+.btn-halo {
+  position: absolute;
+  inset: -10px;
+  border-radius: inherit;
+  background: radial-gradient(
+    ellipse at center,
+    color-mix(in oklab, var(--primary-light) 55%, transparent),
+    transparent 70%
+  );
+  opacity: 0;
+  z-index: -1;
+  pointer-events: none;
+  transition: opacity .4s ease;
+}
+.btn-glow:hover .btn-halo {
+  opacity: 1;
+  animation: dg-glow-pulse 2.2s ease-in-out infinite;
+}
+
+/* Light variant — for buttons on dark/hero backgrounds */
+.btn-glow-light::before {
+  background: conic-gradient(from 0deg, #fff, color-mix(in oklab, #fff 60%, transparent), color-mix(in oklab, var(--primary-light) 70%, transparent), #fff);
+}
+.btn-glow-light:hover {
+  box-shadow:
+    0 14px 32px -10px color-mix(in oklab, #fff 35%, transparent),
+    0 0 0 1px color-mix(in oklab, #fff 50%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-glow:hover { transform: none; }
+  .btn-glow::before { animation: none; }
+  .btn-glow:hover .btn-halo { animation: none; }
+}
+
 /* Stagger via delay utilities */
 .delay-100 { animation-delay: .1s; }
 .delay-200 { animation-delay: .2s; }
