@@ -60,6 +60,13 @@ export function SiteHeader() {
           <div className="flex items-center gap-2">
             <LanguageSwitcher className="hidden lg:block" />
             <Link
+              to="/register"
+              className="btn-glow relative hidden overflow-visible rounded-full border border-primary/20 px-4 py-2.5 text-sm font-semibold text-primary hover:bg-primary/10 lg:inline-block"
+            >
+              <span className="btn-halo" aria-hidden />
+              {t("header.register")}
+            </Link>
+            <Link
               to="/contact"
               className="btn-glow relative hidden overflow-visible rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-soft hover:bg-primary-light lg:inline-block"
             >
@@ -102,6 +109,13 @@ export function SiteHeader() {
                   {t(`nav.${item.label}`, {})}
                 </Link>
               ))}
+              <Link
+                to="/register"
+                onClick={() => setOpen(false)}
+                className="mt-2 rounded-full border border-primary/30 px-5 py-3 text-center text-sm font-semibold text-primary"
+              >
+                {t("header.register")}
+              </Link>
               <Link
                 to="/contact"
                 onClick={() => setOpen(false)}

@@ -356,27 +356,9 @@
     0 12px 28px -10px color-mix(in oklab, var(--primary) 45%, transparent),
     0 0 0 1px color-mix(in oklab, var(--primary-light) 35%, transparent);
 }
-.btn-glow:hover::before,
-.btn-glow:focus-visible::before {
+.btn-glow:hover::before {
   opacity: 1;
   animation-play-state: running;
-}
-.btn-glow:focus-visible {
-  outline: 2px solid var(--ring);
-  outline-offset: 3px;
-  transform: translateY(-2px);
-  box-shadow:
-    0 10px 24px -10px color-mix(in oklab, var(--primary) 45%, transparent),
-    0 0 0 4px color-mix(in oklab, var(--ring) 35%, transparent);
-}
-.btn-glow-light:focus-visible {
-  outline-color: #fff;
-  box-shadow:
-    0 12px 28px -10px color-mix(in oklab, #fff 40%, transparent),
-    0 0 0 4px color-mix(in oklab, #fff 55%, transparent);
-}
-.btn-glow:focus-visible .btn-halo {
-  opacity: 1;
 }
 
 /* Glow halo behind button (use as sibling/child span) */
