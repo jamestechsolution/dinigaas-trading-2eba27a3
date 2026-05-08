@@ -284,6 +284,30 @@
 .animate-zoom-in     { animation: dg-zoom 0.9s ease-out both; }
 .animate-float       { animation: dg-float 6s ease-in-out infinite; }
 .animate-pulse-ring  { animation: dg-pulse-ring 2.4s ease-out infinite; }
+.animate-tilt        { animation: dg-tilt 7s ease-in-out infinite; }
+.animate-spin-slow   { animation: dg-spin-slow 18s linear infinite; }
+.animate-orb         { animation: dg-orb 14s ease-in-out infinite; }
+
+/* Animated gradient surface (use on hero / CTA backgrounds) */
+.gradient-animated {
+  background-size: 200% 200%;
+  animation: dg-gradient-shift 14s ease infinite;
+}
+
+/* Shimmering text — apply to a heading; pairs with text-transparent bg-clip-text */
+.text-shimmer {
+  background: linear-gradient(
+    90deg,
+    color-mix(in oklab, currentColor 85%, transparent) 0%,
+    #fff 50%,
+    color-mix(in oklab, currentColor 85%, transparent) 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: dg-text-shimmer 4.5s linear infinite;
+}
 
 /* Stagger via delay utilities */
 .delay-100 { animation-delay: .1s; }
