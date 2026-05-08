@@ -246,14 +246,16 @@ function HomePage() {
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             <Link
               to="/contact"
-              className="rounded-full bg-primary px-7 py-3 text-sm font-semibold text-primary-foreground transition-all hover:-translate-y-0.5 hover:bg-primary-light hover:shadow-lg"
+              className="btn-glow relative overflow-visible rounded-full bg-primary px-7 py-3 text-sm font-semibold text-primary-foreground hover:bg-primary-light"
             >
+              <span className="btn-halo" aria-hidden />
               {t("home.cta.getInTouch")}
             </Link>
             <Link
               to="/about"
-              className="rounded-full border border-border bg-background px-7 py-3 text-sm font-semibold text-foreground transition-all hover:-translate-y-0.5 hover:bg-accent"
+              className="btn-glow relative overflow-visible rounded-full border border-border bg-background px-7 py-3 text-sm font-semibold text-foreground hover:bg-accent"
             >
+              <span className="btn-halo" aria-hidden />
               {t("home.cta.about")}
             </Link>
           </div>
