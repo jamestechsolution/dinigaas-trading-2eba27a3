@@ -441,10 +441,30 @@
   transform-origin: left;
 }
 
+/* Page transition (fires on every route change) */
+@keyframes dg-page-in {
+  0%   { opacity: 0; transform: translateY(14px) scale(0.995); filter: blur(4px); }
+  100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+}
+.page-transition {
+  animation: dg-page-in .55s cubic-bezier(.2,.7,.2,1) both;
+  will-change: transform, opacity, filter;
+}
+
+/* Global link/button micro interactions */
+a, button { transition: color .2s ease, background-color .2s ease, transform .2s ease, box-shadow .2s ease, opacity .2s ease; }
+a:hover { transform: translateY(-1px); }
+
+/* Image graceful fade-in once loaded */
+img { animation: dg-zoom .6s ease both; }
+
 @media (prefers-reduced-motion: reduce) {
   .reveal, .reveal.is-visible { opacity: 1; transform: none; transition: none; }
   .animate-rise, .animate-rise-sm, .animate-zoom-in, .animate-float, .animate-pulse-ring { animation: none; }
   .lift:hover { transform: none; box-shadow: none; }
   .zoom-img > img { transition: none; }
   .zoom-img:hover > img { transform: none; }
+  .page-transition { animation: none; }
+  a:hover { transform: none; }
+  img { animation: none; }
 }
