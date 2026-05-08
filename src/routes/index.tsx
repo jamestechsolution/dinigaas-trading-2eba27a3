@@ -83,7 +83,7 @@ function HomePage() {
           </div>
 
           <div className="relative">
-            <div className="glass-card relative rounded-2xl p-8 shadow-2xl">
+            <div className="glass-card animate-tilt relative rounded-2xl p-8 shadow-2xl">
               <h3 className="font-serif text-2xl font-bold text-white">{t("home.impact.title")}</h3>
               <ul className="mt-6 space-y-4">
                 {[
