@@ -53,15 +53,17 @@ function HomePage() {
             <div className="animate-rise delay-300 mt-10 flex flex-col gap-3 sm:flex-row">
               <Link
                 to="/services"
-                className="group inline-flex items-center justify-center gap-2 rounded-lg bg-white px-7 py-3.5 text-sm font-semibold text-primary shadow-lg transition-all hover:-translate-y-0.5 hover:shadow-xl"
+                className="btn-glow btn-glow-light group relative inline-flex items-center justify-center gap-2 overflow-visible rounded-lg bg-white px-7 py-3.5 text-sm font-semibold text-primary shadow-lg"
               >
+                <span className="btn-halo" aria-hidden />
                 {t("home.cta.primary")}{" "}
                 <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
               </Link>
               <Link
                 to="/contact"
-                className="inline-flex items-center justify-center rounded-lg border-2 border-white/70 bg-transparent px-7 py-3.5 text-sm font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-white hover:text-primary"
+                className="btn-glow btn-glow-light relative inline-flex items-center justify-center overflow-visible rounded-lg border-2 border-white/70 bg-transparent px-7 py-3.5 text-sm font-semibold text-white transition-all hover:bg-white hover:text-primary"
               >
+                <span className="btn-halo" aria-hidden />
                 {t("home.cta.secondary")}
               </Link>
             </div>
