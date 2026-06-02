@@ -9,6 +9,8 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TeamRouteImport } from './routes/team'
+import { Route as ShareholdersRouteImport } from './routes/shareholders'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as SectorsRouteImport } from './routes/sectors'
 import { Route as RegisterRouteImport } from './routes/register'
@@ -21,6 +23,16 @@ import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 
+const TeamRoute = TeamRouteImport.update({
+  id: '/team',
+  path: '/team',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ShareholdersRoute = ShareholdersRouteImport.update({
+  id: '/shareholders',
+  path: '/shareholders',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ServicesRoute = ServicesRouteImport.update({
   id: '/services',
   path: '/services',
@@ -89,6 +101,8 @@ export interface FileRoutesByFullPath {
   '/register': typeof RegisterRoute
   '/sectors': typeof SectorsRoute
   '/services': typeof ServicesRoute
+  '/shareholders': typeof ShareholdersRoute
+  '/team': typeof TeamRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -102,6 +116,8 @@ export interface FileRoutesByTo {
   '/register': typeof RegisterRoute
   '/sectors': typeof SectorsRoute
   '/services': typeof ServicesRoute
+  '/shareholders': typeof ShareholdersRoute
+  '/team': typeof TeamRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -116,6 +132,8 @@ export interface FileRoutesById {
   '/register': typeof RegisterRoute
   '/sectors': typeof SectorsRoute
   '/services': typeof ServicesRoute
+  '/shareholders': typeof ShareholdersRoute
+  '/team': typeof TeamRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -131,6 +149,8 @@ export interface FileRouteTypes {
     | '/register'
     | '/sectors'
     | '/services'
+    | '/shareholders'
+    | '/team'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -144,6 +164,8 @@ export interface FileRouteTypes {
     | '/register'
     | '/sectors'
     | '/services'
+    | '/shareholders'
+    | '/team'
   id:
     | '__root__'
     | '/'
@@ -157,6 +179,8 @@ export interface FileRouteTypes {
     | '/register'
     | '/sectors'
     | '/services'
+    | '/shareholders'
+    | '/team'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -171,10 +195,26 @@ export interface RootRouteChildren {
   RegisterRoute: typeof RegisterRoute
   SectorsRoute: typeof SectorsRoute
   ServicesRoute: typeof ServicesRoute
+  ShareholdersRoute: typeof ShareholdersRoute
+  TeamRoute: typeof TeamRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/team': {
+      id: '/team'
+      path: '/team'
+      fullPath: '/team'
+      preLoaderRoute: typeof TeamRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/shareholders': {
+      id: '/shareholders'
+      path: '/shareholders'
+      fullPath: '/shareholders'
+      preLoaderRoute: typeof ShareholdersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/services': {
       id: '/services'
       path: '/services'
@@ -267,6 +307,8 @@ const rootRouteChildren: RootRouteChildren = {
   RegisterRoute: RegisterRoute,
   SectorsRoute: SectorsRoute,
   ServicesRoute: ServicesRoute,
+  ShareholdersRoute: ShareholdersRoute,
+  TeamRoute: TeamRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
