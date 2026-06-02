@@ -193,6 +193,15 @@ function buildContent(lang: "en" | "am" | "om"): LangPack {
           { q: "How do I become a supplier?", a: "Contact our commerce team via the contact page with your company profile." },
         ],
       },
+      {
+        sector: "Export / Import",
+        key: "export_import",
+        faqs: [
+          { q: "Which products do you export?", a: "Coffee, oilseeds, pulses, and other agricultural commodities sourced from cooperatives." },
+          { q: "What goods do you import?", a: "Industrial machinery, medical equipment, educational supplies, and consumer goods." },
+          { q: "Can I partner on a shipment?", a: "Yes — reach out via our contact page with your company profile and requirements." },
+        ],
+      },
     ],
   };
 
@@ -203,6 +212,7 @@ function buildContent(lang: "en" | "am" | "om"): LangPack {
       { Icon: Mountain, key: "mining", title: "ማዕድን", tagline: "ኃላፊነት ያለው ምንጭ።", description: "ደህንነት፣ ዘላቂነትና የጋራ እሴት ላይ አተኩረን እንሰራለን።", highlights: ["ኃላፊነት ያለው ምንጭ", "የአካባቢ አጋርነት", "ደህንነቱ የተጠበቀ ስራ", "ሎጅስቲክስ ድጋፍ"] },
       { Icon: Wheat, key: "agriculture", title: "ግብርና", tagline: "ገበሬዎችን መደገፍ።", description: "አነስተኛ ገበሬዎችን ከገብያዎች ጋር እናገናኛለን።", highlights: ["ሰብል ምርት", "የገበሬዎች ድጋፍ", "ዘመናዊ ግብዓቶች", "ድህረ-ሰብል"] },
       { Icon: ShoppingBag, key: "commerce", title: "ንግድ", tagline: "አስተማማኝ ንግድና ስርጭት።", description: "አጠቃላይ ንግድ፣ ጅምላና ችርቻሮ።", highlights: ["አጠቃላይ ንግድ", "የትምህርትና የህክምና አቅርቦት", "ጅምላና ችርቻሮ", "የአካባቢ ገበያ ልማት"] },
+      { Icon: Plane, key: "export_import", title: "ወጪ / ገቢ ንግድ", tagline: "ኢትዮጵያን ከዓለም ገበያ ጋር ማገናኘት።", description: "የወጪና ገቢ ንግድ ሥራዎቻችን አካባቢያዊ አምራቾችን ከዓለም አቀፍ ገዢዎች ጋር ያገናኛሉ።", highlights: ["ቡና፣ የቅባት እህልና ጥራጥሬ ወጪ", "የኢንዱስትሪና የህክምና ገቢ", "የጉምሩክና ሎጅስቲክስ ድጋፍ", "ክልላዊና ዓለማቀፋዊ አጋርነት"] },
     ],
     faqs: [
       { sector: "ትምህርት", key: "education", faqs: [
@@ -230,6 +240,11 @@ function buildContent(lang: "en" | "am" | "om"): LangPack {
         { q: "በጅምላ መግዛት ይቻላል?", a: "አዎ — ለት/ቤቶችና ድርጅቶች።" },
         { q: "አቅራቢ መሆን እንዴት?", a: "በእውቂያ ገጻችን ያግኙን።" },
       ]},
+      { sector: "ወጪ / ገቢ ንግድ", key: "export_import", faqs: [
+        { q: "ምን ምን ምርቶችን ትልካላችሁ?", a: "ቡና፣ የቅባት እህል፣ ጥራጥሬና ሌሎች የግብርና ምርቶች።" },
+        { q: "ምን ሸቀጦችን ታስገባላችሁ?", a: "የኢንዱስትሪ ማሽኖች፣ የህክምና መሣሪያዎች፣ የትምህርት ቁሳቁስና የተጠቃሚ እቃዎች።" },
+        { q: "በጭነት ላይ አጋር መሆን ይቻላል?", a: "አዎ — በእውቂያ ገጻችን ያግኙን።" },
+      ]},
     ],
   };
 
@@ -240,6 +255,7 @@ function buildContent(lang: "en" | "am" | "om"): LangPack {
       { Icon: Mountain, key: "mining", title: "Albuuda", tagline: "Madda itti gaafatamaa.", description: "Nageenya, dhaabbii fi gatii waliinii irratti xiyyeeffanna.", highlights: ["Madda itti gaafatamaa", "Michuu naannoo", "Hojii nagaa", "Deeggarsa loojistikii"] },
       { Icon: Wheat, key: "agriculture", title: "Qonna", tagline: "Qonnaan bultoota deeggaruu.", description: "Qonnaan bultoota xixiqqaa gabaa wajjin walqunnamsiisna.", highlights: ["Oomisha midhaanii", "Deeggarsa qonnaan bulaa", "Meeshaa ammayyaa", "Booda-oomishaa"] },
       { Icon: ShoppingBag, key: "commerce", title: "Daldala", tagline: "Daldala fi dhiyeessii amanamaa.", description: "Daldala waliigalaa, jumlaa fi kuusaa.", highlights: ["Daldala waliigalaa", "Meeshaa barnoota fi fayyaa", "Jumlaa fi kuusaa", "Misooma gabaa"] },
+      { Icon: Plane, key: "export_import", title: "Erga / Galchii", tagline: "Itoophiyaa gabaa addunyaatti walqunnamsiisuu.", description: "Hojiin erga fi galchii keenya oomishtoota naannoo bitattoota addunyaa wajjin walqunnamsiisa.", highlights: ["Erga buna, midhaan zayitaa fi atara", "Galchii indaastirii fi yaalaa", "Deeggarsa gumurukii fi loojistikii", "Michummaa naannoo fi addunyaa"] },
     ],
     faqs: [
       { sector: "Barnoota", key: "education", faqs: [
@@ -266,6 +282,11 @@ function buildContent(lang: "en" | "am" | "om"): LangPack {
         { q: "Oomisha kam dhiyeessitu?", a: "Meeshaa barnoota fi fayyaa, oomisha fayyadamaa." },
         { q: "Jumlaan bituun ni danda'amaa?", a: "Eeyyee — manneen barnootaa fi dhaabbileef." },
         { q: "Akka dhiyeessaa ta'utti akkamitti?", a: "Fuula nu quunnamuu irraan nu quunnamaa." },
+      ]},
+      { sector: "Erga / Galchii", key: "export_import", faqs: [
+        { q: "Oomisha kam ergitu?", a: "Buna, midhaan zayitaa, atara fi oomisha qonnaa biroo." },
+        { q: "Meeshaa kam galchitu?", a: "Maashina indaastirii, meeshaa yaalaa, meeshaa barnootaa fi oomisha fayyadamaa." },
+        { q: "Erga irratti michuu ta'uun ni danda'amaa?", a: "Eeyyee — fuula nu quunnamuu irraan nu quunnamaa." },
       ]},
     ],
   };
