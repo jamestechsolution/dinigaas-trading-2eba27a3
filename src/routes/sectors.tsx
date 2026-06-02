@@ -6,6 +6,7 @@ import {
   Mountain,
   Wheat,
   ShoppingBag,
+  Plane,
   ArrowRight,
   CheckCircle2,
   HelpCircle,
@@ -44,7 +45,7 @@ export const Route = createFileRoute("/sectors")({
 
 type Sector = {
   Icon: typeof GraduationCap;
-  key: "education" | "health" | "mining" | "agriculture" | "commerce";
+  key: "education" | "health" | "mining" | "agriculture" | "commerce" | "export_import";
   title: string;
   tagline: string;
   description: string;
@@ -129,6 +130,20 @@ function buildContent(lang: "en" | "am" | "om"): LangPack {
           "Educational & medical supplies",
           "Wholesale & retail operations",
           "Local market development",
+        ],
+      },
+      {
+        Icon: Plane,
+        key: "export_import",
+        title: "Export / Import",
+        tagline: "Connecting Ethiopia to global markets.",
+        description:
+          "Our export and import operations bridge local producers with international buyers and bring essential goods into Sheger City through reliable, compliant trade channels.",
+        highlights: [
+          "Coffee, oilseeds & pulses export",
+          "Industrial & medical imports",
+          "Customs & logistics support",
+          "Regional & global partnerships",
         ],
       },
     ],
