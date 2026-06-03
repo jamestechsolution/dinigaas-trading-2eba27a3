@@ -1,8 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/SiteLayout";
 import { Reveal } from "@/components/Reveal";
-import { PersonAvatar } from "@/components/Avatar";
 import { useI18n } from "@/i18n/I18nProvider";
+import t1 from "@/assets/team/t1.jpg.asset.json";
+import t2 from "@/assets/team/t2.jpg.asset.json";
+import t3 from "@/assets/team/t3.jpg.asset.json";
+import t4 from "@/assets/team/t4.jpg.asset.json";
+import t5 from "@/assets/team/t5.jpg.asset.json";
+import t6 from "@/assets/team/t6.jpg.asset.json";
+import t7 from "@/assets/team/t7.jpg.asset.json";
 
 export const Route = createFileRoute("/team")({
   head: () => ({
@@ -16,13 +22,14 @@ export const Route = createFileRoute("/team")({
   component: TeamPage,
 });
 
-const MEMBERS = [
-  { nameKey: "team.m1.n", roleKey: "team.m1.r" },
-  { nameKey: "team.m2.n", roleKey: "team.m2.r" },
-  { nameKey: "team.m3.n", roleKey: "team.m3.r" },
-  { nameKey: "team.m4.n", roleKey: "team.m4.r" },
-  { nameKey: "team.m5.n", roleKey: "team.m5.r" },
-  { nameKey: "team.m6.n", roleKey: "team.m6.r" },
+const MEMBERS: { name: string; role: string; img: string }[] = [
+  { name: "Board of Directors", role: "Leadership", img: t1.url },
+  { name: "Advisory Council", role: "Strategy & Governance", img: t2.url },
+  { name: "Operations Lead", role: "Operations Manager", img: t3.url },
+  { name: "Medical Team", role: "Healthcare Staff", img: t4.url },
+  { name: "Full Staff", role: "Bright Academy Team", img: t5.url },
+  { name: "Department Head", role: "Administration", img: t6.url },
+  { name: "Senior Officer", role: "Finance & Records", img: t7.url },
 ];
 
 function TeamPage() {
@@ -44,24 +51,27 @@ function TeamPage() {
       <section className="py-20">
         <div className="mx-auto max-w-7xl px-6 lg:px-12">
           <div className="grid gap-7 sm:grid-cols-2 lg:grid-cols-3">
-            {MEMBERS.map((m, i) => {
-              const name = t(m.nameKey);
-              const role = t(m.roleKey);
-              return (
-                <Reveal
-                  key={m.nameKey}
-                  as="article"
-                  delay={i * 80}
-                  className="group lift overflow-hidden rounded-3xl border border-border bg-background shadow-card"
-                >
-                  <PersonAvatar name={name} className="aspect-[4/3] transition-transform duration-500 group-hover:scale-105" />
-                  <div className="p-6">
-                    <h3 className="font-serif text-xl text-primary">{name}</h3>
-                    <p className="mt-1 text-sm font-semibold text-clay">{role}</p>
-                  </div>
-                </Reveal>
-              );
-            })}
+            {MEMBERS.map((m, i) => (
+              <Reveal
+                key={m.img}
+                as="article"
+                delay={i * 80}
+                className="group lift overflow-hidden rounded-3xl border border-border bg-background shadow-card"
+              >
+                <div className="aspect-[4/3] overflow-hidden bg-muted">
+                  <img
+                    src={m.img}
+                    alt={m.name}
+                    loading="lazy"
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                </div>
+                <div className="p-6">
+                  <h3 className="font-serif text-xl text-primary">{m.name}</h3>
+                  <p className="mt-1 text-sm font-semibold text-clay">{m.role}</p>
+                </div>
+              </Reveal>
+            ))}
           </div>
         </div>
       </section>
