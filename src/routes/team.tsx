@@ -9,6 +9,7 @@ import t4 from "@/assets/team/t4.jpg.asset.json";
 import t5 from "@/assets/team/t5.jpg.asset.json";
 import t6 from "@/assets/team/t6.jpg.asset.json";
 import t7 from "@/assets/team/t7.jpg.asset.json";
+import students from "@/assets/team/students.png.asset.json";
 
 export const Route = createFileRoute("/team")({
   head: () => ({
@@ -27,7 +28,7 @@ const MEMBERS: { name: string; role: string; img: string }[] = [
   { name: "Advisory Council", role: "Strategy & Governance", img: t2.url },
   { name: "Operations Lead", role: "Operations Manager", img: t3.url },
   { name: "Medical Team", role: "Healthcare Staff", img: t4.url },
-  { name: "Full Staff", role: "Bright Academy Team", img: t5.url },
+  { name: "Albright Academy Students", role: "Students", img: students.url },
   { name: "Department Head", role: "Administration", img: t6.url },
   { name: "Senior Officer", role: "Finance & Records", img: t7.url },
 ];
