@@ -14,7 +14,7 @@ const isVercel = target === "vercel";
 const customTarget = isNetlify || isVercel;
 
 export default defineConfig({
-  cloudflare: customTarget ? false : undefined,
+  nitro: customTarget ? false : undefined,
   tanstackStart: isNetlify
     ? { target: "netlify" }
     : isVercel
