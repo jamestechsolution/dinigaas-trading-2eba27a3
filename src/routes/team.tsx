@@ -35,6 +35,8 @@ const MEMBERS: { name: string; role: string; slot: string; fallback: string }[] 
 
 function TeamPage() {
   const { t } = useI18n();
+  const { get } = useSiteImages();
+
   return (
     <SiteLayout>
       <section className="bg-cotton py-20">
