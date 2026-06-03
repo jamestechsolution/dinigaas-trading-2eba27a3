@@ -54,16 +54,18 @@ function TeamPage() {
       <section className="py-20">
         <div className="mx-auto max-w-7xl px-6 lg:px-12">
           <div className="grid gap-7 sm:grid-cols-2 lg:grid-cols-3">
-            {MEMBERS.map((m, i) => (
+            {MEMBERS.map((m, i) => {
+              const img = get(m.slot, m.fallback);
+              return (
               <Reveal
-                key={m.img}
+                key={m.slot}
                 as="article"
                 delay={i * 80}
                 className="group lift overflow-hidden rounded-3xl border border-border bg-background shadow-card"
               >
                 <div className="aspect-[4/3] overflow-hidden bg-muted">
                   <img
-                    src={m.img}
+                    src={img}
                     alt={m.name}
                     loading="lazy"
                     className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
@@ -74,7 +76,8 @@ function TeamPage() {
                   <p className="mt-1 text-sm font-semibold text-clay">{m.role}</p>
                 </div>
               </Reveal>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
