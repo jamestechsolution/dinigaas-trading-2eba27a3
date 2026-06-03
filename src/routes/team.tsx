@@ -2,11 +2,11 @@ import { createFileRoute } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/SiteLayout";
 import { Reveal } from "@/components/Reveal";
 import { useI18n } from "@/i18n/I18nProvider";
+import { useSiteImages } from "@/hooks/use-site-images";
 import t1 from "@/assets/team/t1.jpg.asset.json";
 import t2 from "@/assets/team/t2.jpg.asset.json";
 import t3 from "@/assets/team/t3.jpg.asset.json";
 import t4 from "@/assets/team/t4.jpg.asset.json";
-import t5 from "@/assets/team/t5.jpg.asset.json";
 import t6 from "@/assets/team/t6.jpg.asset.json";
 import t7 from "@/assets/team/t7.jpg.asset.json";
 import students from "@/assets/team/students.png.asset.json";
@@ -23,14 +23,14 @@ export const Route = createFileRoute("/team")({
   component: TeamPage,
 });
 
-const MEMBERS: { name: string; role: string; img: string }[] = [
-  { name: "Board of Directors", role: "Leadership", img: t1.url },
-  { name: "Advisory Council", role: "Strategy & Governance", img: t2.url },
-  { name: "Operations Lead", role: "Operations Manager", img: t3.url },
-  { name: "Medical Team", role: "Healthcare Staff", img: t4.url },
-  { name: "Albright Academy Students", role: "Students", img: students.url },
-  { name: "Department Head", role: "Administration", img: t6.url },
-  { name: "Senior Officer", role: "Finance & Records", img: t7.url },
+const MEMBERS: { name: string; role: string; slot: string; fallback: string }[] = [
+  { name: "Board of Directors", role: "Leadership", slot: "team.board", fallback: t1.url },
+  { name: "Advisory Council", role: "Strategy & Governance", slot: "team.advisory", fallback: t2.url },
+  { name: "Operations Lead", role: "Operations Manager", slot: "team.operations", fallback: t3.url },
+  { name: "Medical Team", role: "Healthcare Staff", slot: "team.medical", fallback: t4.url },
+  { name: "Albright Academy Students", role: "Students", slot: "team.students", fallback: students.url },
+  { name: "Department Head", role: "Administration", slot: "team.department", fallback: t6.url },
+  { name: "Senior Officer", role: "Finance & Records", slot: "team.senior", fallback: t7.url },
 ];
 
 function TeamPage() {
