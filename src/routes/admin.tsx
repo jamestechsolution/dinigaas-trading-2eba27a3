@@ -121,6 +121,7 @@ function AdminPage() {
               {tab === "registrations" && <RegistrationsAdmin />}
               {tab === "messages" && <MessagesAdmin />}
               {tab === "subscribers" && <SubscribersAdmin />}
+              {tab === "shareholders" && <ShareholdersAdmin />}
             </div>
           </>
         )}
