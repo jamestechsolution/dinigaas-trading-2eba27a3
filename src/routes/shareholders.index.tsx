@@ -6,7 +6,7 @@ import { PersonAvatar } from "@/components/Avatar";
 import { useShareholders } from "@/hooks/use-shareholders";
 import { useI18n } from "@/i18n/I18nProvider";
 
-export const Route = createFileRoute("/shareholders")({
+export const Route = createFileRoute("/shareholders/")({
   head: () => ({
     meta: [
       { title: "Shareholders — Dinigaas Trading S.C." },
