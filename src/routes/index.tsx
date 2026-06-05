@@ -173,7 +173,96 @@ function HomePage() {
         </div>
       </section>
 
+      <section className="bg-cotton py-24">
+        <div className="mx-auto max-w-7xl px-6 lg:px-12">
+          <Reveal className="mb-12 flex flex-wrap items-end justify-between gap-6">
+            <div className="max-w-2xl">
+              <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-primary-light">
+                {t("team.eyebrow")}
+              </p>
+              <h2 className="mt-3 font-serif text-4xl text-primary md:text-5xl">{t("team.title")}</h2>
+              <p className="mt-4 text-base text-muted-foreground">{t("team.intro")}</p>
+            </div>
+            <Link
+              to="/team"
+              className="group inline-flex items-center gap-2 rounded-full border border-border bg-background px-5 py-2.5 text-sm font-semibold text-primary hover:bg-accent"
+            >
+              View all
+              <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
+            </Link>
+          </Reveal>
+          <div className="grid gap-7 sm:grid-cols-2 lg:grid-cols-3">
+            {HOME_TEAM.slice(0, 3).map((m, i) => {
+              const img = getImg(m.slot, m.fallback);
+              return (
+                <Reveal
+                  key={m.slot}
+                  as="article"
+                  delay={i * 80}
+                  className="group lift overflow-hidden rounded-3xl border border-border bg-background shadow-card"
+                >
+                  <div className="aspect-[4/3] overflow-hidden bg-muted">
+                    <img
+                      src={img}
+                      alt={m.name}
+                      loading="lazy"
+                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                  </div>
+                  <div className="p-6">
+                    <h3 className="font-serif text-xl text-primary">{m.name}</h3>
+                    <p className="mt-1 text-sm font-semibold text-clay">{m.role}</p>
+                  </div>
+                </Reveal>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
       <section className="py-24">
+        <div className="mx-auto max-w-7xl px-6 lg:px-12">
+          <Reveal className="mb-12 flex flex-wrap items-end justify-between gap-6">
+            <div className="max-w-2xl">
+              <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-primary-light">
+                {t("sh.eyebrow")}
+              </p>
+              <h2 className="mt-3 font-serif text-4xl text-primary md:text-5xl">{t("sh.title")}</h2>
+              <p className="mt-4 text-base text-muted-foreground">{t("sh.intro")}</p>
+            </div>
+            <Link
+              to="/shareholders"
+              className="group inline-flex items-center gap-2 rounded-full border border-border bg-background px-5 py-2.5 text-sm font-semibold text-primary hover:bg-accent"
+            >
+              View all
+              <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
+            </Link>
+          </Reveal>
+          <div className="grid gap-7 sm:grid-cols-2 lg:grid-cols-4">
+            {HOME_SHAREHOLDERS.map((s, i) => {
+              const name = t(s.nameKey);
+              const stake = t(s.stakeKey);
+              return (
+                <Reveal
+                  key={s.nameKey}
+                  as="article"
+                  delay={i * 80}
+                  className="group lift overflow-hidden rounded-3xl border border-border bg-background shadow-card"
+                >
+                  <PersonAvatar name={name} className="aspect-square transition-transform duration-500 group-hover:scale-105" />
+                  <div className="p-6 text-center">
+                    <h3 className="font-serif text-lg text-primary">{name}</h3>
+                    <p className="mt-1 text-xs font-bold uppercase tracking-widest text-clay">{stake}</p>
+                  </div>
+                </Reveal>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-24">
+
         <div className="mx-auto grid max-w-7xl items-center gap-14 px-6 lg:grid-cols-2 lg:px-12">
           <Reveal className="relative">
             <div className="zoom-img overflow-hidden rounded-3xl shadow-card">
