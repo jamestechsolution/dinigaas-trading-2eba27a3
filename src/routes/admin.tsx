@@ -5,7 +5,7 @@ import { toast } from "sonner";
 import {
   Loader2, LogOut, Package, Newspaper, Briefcase, Mail, Inbox, Plus, Trash2, Pencil, X, FileText,
   ImageIcon, Navigation, Upload, MailCheck, AlertCircle, CheckCircle2, Send, MapPin,
-  GraduationCap, Download, Search, ChevronLeft, ChevronRight,
+  GraduationCap, Download, Search, ChevronLeft, ChevronRight, Users2,
 } from "lucide-react";
 import logo from "@/assets/dinigaas-logo.jpg";
 import { useI18n } from "@/i18n/I18nProvider";
@@ -15,7 +15,7 @@ export const Route = createFileRoute("/admin")({
   component: AdminPage,
 });
 
-type Tab = "content" | "images" | "nav" | "products" | "news" | "careers" | "messages" | "subscribers" | "registrations";
+type Tab = "content" | "images" | "nav" | "products" | "news" | "careers" | "messages" | "subscribers" | "registrations" | "shareholders";
 
 function AdminPage() {
   const { t } = useI18n();
@@ -94,6 +94,7 @@ function AdminPage() {
                 ["news", Newspaper, t("admin.tab.news")],
                 ["careers", Briefcase, t("admin.tab.careers")],
                 ["registrations", GraduationCap, t("admin.tab.registrations")],
+                ["shareholders", Users2, "Shareholders"],
                 ["messages", Inbox, t("admin.tab.messages")],
                 ["subscribers", Mail, t("admin.tab.subscribers")],
               ] as const).map(([key, Icon, label]) => (
@@ -120,6 +121,7 @@ function AdminPage() {
               {tab === "registrations" && <RegistrationsAdmin />}
               {tab === "messages" && <MessagesAdmin />}
               {tab === "subscribers" && <SubscribersAdmin />}
+              {tab === "shareholders" && <ShareholdersAdmin />}
             </div>
           </>
         )}
@@ -1388,6 +1390,257 @@ function Detail({ label, value }: { label: string; value: string }) {
     <div>
       <p className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">{label}</p>
       <p className="mt-1 text-foreground">{value}</p>
+    </div>
+  );
+}
+
+/* ------------ Shareholders ------------ */
+type Shareholder = {
+  id: string;
+  name: string;
+  role: string;
+  stake: string;
+  bio: string;
+  email: string;
+  phone: string;
+  image_url: string | null;
+  sort_order: number;
+  active: boolean;
+};
+
+function ShareholdersAdmin() {
+  const [items, setItems] = useState<Shareholder[]>([]);
+  const [editing, setEditing] = useState<Partial<Shareholder> | null>(null);
+  const [uploading, setUploading] = useState(false);
+
+  const load = () =>
+    supabase
+      .from("shareholders")
+      .select("*")
+      .order("sort_order", { ascending: true })
+      .then(({ data }) => setItems((data ?? []) as Shareholder[]));
+
+  useEffect(() => {
+    load();
+  }, []);
+
+  async function save() {
+    if (!editing?.name?.trim()) return toast.error("Name is required");
+    const payload = {
+      name: editing.name.trim(),
+      role: (editing.role ?? "").trim(),
+      stake: (editing.stake ?? "").trim(),
+      bio: (editing.bio ?? "").trim(),
+      email: (editing.email ?? "").trim(),
+      phone: (editing.phone ?? "").trim(),
+      image_url: editing.image_url?.trim() || null,
+      sort_order: Number(editing.sort_order ?? 0) || 0,
+      active: editing.active ?? true,
+    };
+    const { error } = editing.id
+      ? await supabase.from("shareholders").update(payload).eq("id", editing.id)
+      : await supabase.from("shareholders").insert(payload);
+    if (error) return toast.error(error.message);
+    toast.success("Saved");
+    setEditing(null);
+    load();
+  }
+
+  async function remove(id: string) {
+    if (!confirm("Delete this shareholder?")) return;
+    const { error } = await supabase.from("shareholders").delete().eq("id", id);
+    if (error) return toast.error(error.message);
+    toast.success("Deleted");
+    load();
+  }
+
+  async function handleUpload(file: File) {
+    if (!editing) return;
+    setUploading(true);
+    try {
+      const ext = file.name.split(".").pop() || "jpg";
+      const path = `shareholders/${crypto.randomUUID()}.${ext}`;
+      const { error: upErr } = await supabase.storage
+        .from("site_media")
+        .upload(path, file, { upsert: false, contentType: file.type });
+      if (upErr) throw upErr;
+      const { data } = supabase.storage.from("site_media").getPublicUrl(path);
+      setEditing({ ...editing, image_url: data.publicUrl });
+      toast.success("Photo uploaded");
+    } catch (e) {
+      toast.error((e as Error).message);
+    } finally {
+      setUploading(false);
+    }
+  }
+
+  return (
+    <div className="space-y-4">
+      <Btn
+        onClick={() =>
+          setEditing({
+            name: "",
+            role: "",
+            stake: "",
+            bio: "",
+            email: "",
+            phone: "",
+            image_url: null,
+            sort_order: items.length + 1,
+            active: true,
+          })
+        }
+      >
+        <Plus className="size-4" /> Add shareholder
+      </Btn>
+
+      <div className="grid gap-3">
+        {items.map((s) => (
+          <Card key={s.id}>
+            <div className="flex items-start gap-4">
+              <div className="size-16 shrink-0 overflow-hidden rounded-2xl bg-muted">
+                {s.image_url ? (
+                  <img src={s.image_url} alt={s.name} className="h-full w-full object-cover" />
+                ) : (
+                  <div className="grid h-full w-full place-items-center text-xs text-muted-foreground">
+                    <ImageIcon className="size-5" aria-hidden />
+                  </div>
+                )}
+              </div>
+              <div className="min-w-0 flex-1">
+                <p className="text-[10px] font-bold uppercase tracking-widest text-clay">
+                  {s.stake || "—"}
+                  {!s.active ? " · hidden" : ""}
+                </p>
+                <h3 className="mt-1 truncate font-serif text-lg text-primary">{s.name}</h3>
+                <p className="truncate text-sm text-muted-foreground">{s.role}</p>
+              </div>
+              <div className="flex gap-2">
+                <button
+                  onClick={() => setEditing(s)}
+                  className="rounded-full p-2 hover:bg-accent"
+                  aria-label={`Edit ${s.name}`}
+                >
+                  <Pencil className="size-4" />
+                </button>
+                <button
+                  onClick={() => remove(s.id)}
+                  className="rounded-full p-2 text-destructive hover:bg-destructive/10"
+                  aria-label={`Delete ${s.name}`}
+                >
+                  <Trash2 className="size-4" />
+                </button>
+              </div>
+            </div>
+          </Card>
+        ))}
+      </div>
+
+      {editing && (
+        <Modal
+          onClose={() => setEditing(null)}
+          title={editing.id ? "Edit shareholder" : "New shareholder"}
+        >
+          <div className="space-y-3">
+            <div>
+              <label className="text-xs font-semibold text-muted-foreground">Photo / logo</label>
+              <div className="mt-1 flex items-center gap-3">
+                <div className="size-20 shrink-0 overflow-hidden rounded-2xl bg-muted">
+                  {editing.image_url ? (
+                    <img src={editing.image_url} alt="" className="h-full w-full object-cover" />
+                  ) : (
+                    <div className="grid h-full w-full place-items-center">
+                      <ImageIcon className="size-6 text-muted-foreground" aria-hidden />
+                    </div>
+                  )}
+                </div>
+                <label className="inline-flex cursor-pointer items-center gap-2 rounded-full border border-border bg-background px-4 py-2 text-sm font-medium hover:bg-accent">
+                  <Upload className="size-4" />
+                  {uploading ? "Uploading…" : "Upload"}
+                  <input
+                    type="file"
+                    accept="image/*"
+                    className="sr-only"
+                    onChange={(e) => {
+                      const f = e.target.files?.[0];
+                      if (f) handleUpload(f);
+                      e.currentTarget.value = "";
+                    }}
+                  />
+                </label>
+                {editing.image_url && (
+                  <button
+                    type="button"
+                    onClick={() => setEditing({ ...editing, image_url: null })}
+                    className="rounded-full p-2 text-destructive hover:bg-destructive/10"
+                    aria-label="Remove photo"
+                  >
+                    <X className="size-4" />
+                  </button>
+                )}
+              </div>
+              <Input
+                className="mt-2"
+                placeholder="Or paste an image URL"
+                value={editing.image_url ?? ""}
+                onChange={(e) =>
+                  setEditing({ ...editing, image_url: e.target.value || null })
+                }
+              />
+            </div>
+
+            <Input
+              placeholder="Name"
+              value={editing.name ?? ""}
+              onChange={(e) => setEditing({ ...editing, name: e.target.value })}
+            />
+            <Input
+              placeholder="Role (e.g. Founder & Chairman)"
+              value={editing.role ?? ""}
+              onChange={(e) => setEditing({ ...editing, role: e.target.value })}
+            />
+            <Input
+              placeholder="Equity stake (e.g. 35% equity)"
+              value={editing.stake ?? ""}
+              onChange={(e) => setEditing({ ...editing, stake: e.target.value })}
+            />
+            <Textarea
+              rows={5}
+              placeholder="Bio"
+              value={editing.bio ?? ""}
+              onChange={(e) => setEditing({ ...editing, bio: e.target.value })}
+            />
+            <Input
+              type="email"
+              placeholder="Email"
+              value={editing.email ?? ""}
+              onChange={(e) => setEditing({ ...editing, email: e.target.value })}
+            />
+            <Input
+              placeholder="Phone"
+              value={editing.phone ?? ""}
+              onChange={(e) => setEditing({ ...editing, phone: e.target.value })}
+            />
+            <Input
+              type="number"
+              placeholder="Sort order"
+              value={editing.sort_order ?? 0}
+              onChange={(e) =>
+                setEditing({ ...editing, sort_order: Number(e.target.value) || 0 })
+              }
+            />
+            <label className="flex items-center gap-2 text-sm">
+              <input
+                type="checkbox"
+                checked={editing.active ?? true}
+                onChange={(e) => setEditing({ ...editing, active: e.target.checked })}
+              />{" "}
+              Visible on the public Shareholders page
+            </label>
+            <Btn onClick={save}>Save</Btn>
+          </div>
+        </Modal>
+      )}
     </div>
   );
 }

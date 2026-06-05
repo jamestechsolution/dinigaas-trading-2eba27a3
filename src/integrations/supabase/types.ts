@@ -206,6 +206,51 @@ export type Database = {
         }
         Relationships: []
       }
+      shareholders: {
+        Row: {
+          active: boolean
+          bio: string
+          created_at: string
+          email: string
+          id: string
+          image_url: string | null
+          name: string
+          phone: string
+          role: string
+          sort_order: number
+          stake: string
+          updated_at: string
+        }
+        Insert: {
+          active?: boolean
+          bio?: string
+          created_at?: string
+          email?: string
+          id?: string
+          image_url?: string | null
+          name: string
+          phone?: string
+          role?: string
+          sort_order?: number
+          stake?: string
+          updated_at?: string
+        }
+        Update: {
+          active?: boolean
+          bio?: string
+          created_at?: string
+          email?: string
+          id?: string
+          image_url?: string | null
+          name?: string
+          phone?: string
+          role?: string
+          sort_order?: number
+          stake?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       site_content: {
         Row: {
           id: string
