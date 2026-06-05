@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Briefcase, PieChart, ImageIcon } from "lucide-react";
+import { ArrowRight, PieChart, ImageIcon } from "lucide-react";
 import { SiteLayout } from "@/components/SiteLayout";
 import { Reveal } from "@/components/Reveal";
 import { PersonAvatar } from "@/components/Avatar";
