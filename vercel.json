@@ -1,5 +1,6 @@
 {
   "buildCommand": "npm run build",
+  "outputDirectory": "dist",
   "framework": null,
   "build": {
     "env": {
@@ -10,6 +11,5 @@
       "SUPABASE_URL": "https://qpmwlluptqdgwirskwun.supabase.co",
       "SUPABASE_PUBLISHABLE_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFwbXdsbHVwdHFkZ3dpcnNrd3VuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzcwMDQwMDcsImV4cCI6MjA5MjU4MDAw"
     }
-  },
-  "outputDirectory": "dist"
+  }
 }
