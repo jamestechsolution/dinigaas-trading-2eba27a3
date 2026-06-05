@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as TeamRouteImport } from './routes/team'
+import { Route as ShareholdersRouteImport } from './routes/shareholders'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as SectorsRouteImport } from './routes/sectors'
 import { Route as RegisterRouteImport } from './routes/register'
@@ -27,6 +28,11 @@ import { Route as ShareholdersIdRouteImport } from './routes/shareholders.$id'
 const TeamRoute = TeamRouteImport.update({
   id: '/team',
   path: '/team',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ShareholdersRoute = ShareholdersRouteImport.update({
+  id: '/shareholders',
+  path: '/shareholders',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ServicesRoute = ServicesRouteImport.update({
@@ -85,9 +91,9 @@ const IndexRoute = IndexRouteImport.update({
   getParentRoute: () => rootRouteImport,
 } as any)
 const ShareholdersIndexRoute = ShareholdersIndexRouteImport.update({
-  id: '/shareholders/',
-  path: '/shareholders/',
-  getParentRoute: () => rootRouteImport,
+  id: '/',
+  path: '/',
+  getParentRoute: () => ShareholdersRoute,
 } as any)
 const ShareholdersIdRoute = ShareholdersIdRouteImport.update({
   id: '/$id',
@@ -107,6 +113,7 @@ export interface FileRoutesByFullPath {
   '/register': typeof RegisterRoute
   '/sectors': typeof SectorsRoute
   '/services': typeof ServicesRoute
+  '/shareholders': typeof ShareholdersRouteWithChildren
   '/team': typeof TeamRoute
   '/shareholders/$id': typeof ShareholdersIdRoute
   '/shareholders/': typeof ShareholdersIndexRoute
@@ -140,6 +147,7 @@ export interface FileRoutesById {
   '/register': typeof RegisterRoute
   '/sectors': typeof SectorsRoute
   '/services': typeof ServicesRoute
+  '/shareholders': typeof ShareholdersRouteWithChildren
   '/team': typeof TeamRoute
   '/shareholders/$id': typeof ShareholdersIdRoute
   '/shareholders/': typeof ShareholdersIndexRoute
@@ -158,6 +166,7 @@ export interface FileRouteTypes {
     | '/register'
     | '/sectors'
     | '/services'
+    | '/shareholders'
     | '/team'
     | '/shareholders/$id'
     | '/shareholders/'
@@ -190,6 +199,7 @@ export interface FileRouteTypes {
     | '/register'
     | '/sectors'
     | '/services'
+    | '/shareholders'
     | '/team'
     | '/shareholders/$id'
     | '/shareholders/'
@@ -207,8 +217,8 @@ export interface RootRouteChildren {
   RegisterRoute: typeof RegisterRoute
   SectorsRoute: typeof SectorsRoute
   ServicesRoute: typeof ServicesRoute
+  ShareholdersRoute: typeof ShareholdersRouteWithChildren
   TeamRoute: typeof TeamRoute
-  ShareholdersIndexRoute: typeof ShareholdersIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -218,6 +228,13 @@ declare module '@tanstack/react-router' {
       path: '/team'
       fullPath: '/team'
       preLoaderRoute: typeof TeamRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/shareholders': {
+      id: '/shareholders'
+      path: '/shareholders'
+      fullPath: '/shareholders'
+      preLoaderRoute: typeof ShareholdersRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/services': {
@@ -299,10 +316,10 @@ declare module '@tanstack/react-router' {
     }
     '/shareholders/': {
       id: '/shareholders/'
-      path: '/shareholders'
+      path: '/'
       fullPath: '/shareholders/'
       preLoaderRoute: typeof ShareholdersIndexRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof ShareholdersRoute
     }
     '/shareholders/$id': {
       id: '/shareholders/$id'
@@ -313,6 +330,20 @@ declare module '@tanstack/react-router' {
     }
   }
 }
+
+interface ShareholdersRouteChildren {
+  ShareholdersIdRoute: typeof ShareholdersIdRoute
+  ShareholdersIndexRoute: typeof ShareholdersIndexRoute
+}
+
+const ShareholdersRouteChildren: ShareholdersRouteChildren = {
+  ShareholdersIdRoute: ShareholdersIdRoute,
+  ShareholdersIndexRoute: ShareholdersIndexRoute,
+}
+
+const ShareholdersRouteWithChildren = ShareholdersRoute._addFileChildren(
+  ShareholdersRouteChildren,
+)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
@@ -326,8 +357,8 @@ const rootRouteChildren: RootRouteChildren = {
   RegisterRoute: RegisterRoute,
   SectorsRoute: SectorsRoute,
   ServicesRoute: ServicesRoute,
+  ShareholdersRoute: ShareholdersRouteWithChildren,
   TeamRoute: TeamRoute,
-  ShareholdersIndexRoute: ShareholdersIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
