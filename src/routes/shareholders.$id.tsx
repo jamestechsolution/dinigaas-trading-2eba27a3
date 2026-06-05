@@ -126,13 +126,8 @@ function ShareholderProfile() {
             )}
 
             <div className="mt-5 flex flex-wrap gap-2">
-              {item.role && (
-                <span className="inline-flex items-center gap-1.5 rounded-full bg-primary/10 px-3 py-1.5 text-xs font-semibold text-primary">
-                  <Briefcase className="size-3.5" aria-hidden /> {item.role}
-                </span>
-              )}
               {item.stake && (
-                <span className="inline-flex items-center gap-1.5 rounded-full bg-accent px-3 py-1.5 text-xs font-semibold text-foreground">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-primary/10 px-3 py-1.5 text-xs font-semibold text-primary">
                   <PieChart className="size-3.5" aria-hidden /> {item.stake}
                 </span>
               )}
