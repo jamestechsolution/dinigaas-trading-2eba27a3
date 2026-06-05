@@ -2,11 +2,36 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, GraduationCap, Stethoscope, Sparkles, Users, ShieldCheck } from "lucide-react";
 import { SiteLayout } from "@/components/SiteLayout";
 import { Reveal } from "@/components/Reveal";
+import { PersonAvatar } from "@/components/Avatar";
 import { useSiteImages } from "@/hooks/use-site-images";
 import { useI18n } from "@/i18n/I18nProvider";
 import heroImg from "@/assets/hero-students.jpg";
 import healthImg from "@/assets/healthcare.jpg";
 import schoolImg from "@/assets/school-building.jpg";
+import t1 from "@/assets/team/t1.jpg.asset.json";
+import t2 from "@/assets/team/t2.jpg.asset.json";
+import t3 from "@/assets/team/t3.jpg.asset.json";
+import t4 from "@/assets/team/t4.jpg.asset.json";
+import t6 from "@/assets/team/t6.jpg.asset.json";
+import t7 from "@/assets/team/t7.jpg.asset.json";
+import students from "@/assets/team/students.png.asset.json";
+
+const HOME_TEAM = [
+  { name: "Board of Directors", role: "Leadership", slot: "team.board", fallback: t1.url },
+  { name: "Advisory Council", role: "Strategy & Governance", slot: "team.advisory", fallback: t2.url },
+  { name: "Operations Lead", role: "Operations Manager", slot: "team.operations", fallback: t3.url },
+  { name: "Medical Team", role: "Healthcare Staff", slot: "team.medical", fallback: t4.url },
+  { name: "Albright Academy Students", role: "Students", slot: "team.students", fallback: students.url },
+  { name: "Department Head", role: "Administration", slot: "team.department", fallback: t6.url },
+  { name: "Senior Officer", role: "Finance & Records", slot: "team.senior", fallback: t7.url },
+];
+
+const HOME_SHAREHOLDERS = [
+  { nameKey: "sh.s1.n", stakeKey: "sh.s1.s" },
+  { nameKey: "sh.s2.n", stakeKey: "sh.s2.s" },
+  { nameKey: "sh.s3.n", stakeKey: "sh.s3.s" },
+  { nameKey: "sh.s4.n", stakeKey: "sh.s4.s" },
+];
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -148,7 +173,96 @@ function HomePage() {
         </div>
       </section>
 
+      <section className="bg-cotton py-24">
+        <div className="mx-auto max-w-7xl px-6 lg:px-12">
+          <Reveal className="mb-12 flex flex-wrap items-end justify-between gap-6">
+            <div className="max-w-2xl">
+              <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-primary-light">
+                {t("team.eyebrow")}
+              </p>
+              <h2 className="mt-3 font-serif text-4xl text-primary md:text-5xl">{t("team.title")}</h2>
+              <p className="mt-4 text-base text-muted-foreground">{t("team.intro")}</p>
+            </div>
+            <Link
+              to="/team"
+              className="group inline-flex items-center gap-2 rounded-full border border-border bg-background px-5 py-2.5 text-sm font-semibold text-primary hover:bg-accent"
+            >
+              View all
+              <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
+            </Link>
+          </Reveal>
+          <div className="grid gap-7 sm:grid-cols-2 lg:grid-cols-3">
+            {HOME_TEAM.slice(0, 3).map((m, i) => {
+              const img = getImg(m.slot, m.fallback);
+              return (
+                <Reveal
+                  key={m.slot}
+                  as="article"
+                  delay={i * 80}
+                  className="group lift overflow-hidden rounded-3xl border border-border bg-background shadow-card"
+                >
+                  <div className="aspect-[4/3] overflow-hidden bg-muted">
+                    <img
+                      src={img}
+                      alt={m.name}
+                      loading="lazy"
+                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                  </div>
+                  <div className="p-6">
+                    <h3 className="font-serif text-xl text-primary">{m.name}</h3>
+                    <p className="mt-1 text-sm font-semibold text-clay">{m.role}</p>
+                  </div>
+                </Reveal>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
       <section className="py-24">
+        <div className="mx-auto max-w-7xl px-6 lg:px-12">
+          <Reveal className="mb-12 flex flex-wrap items-end justify-between gap-6">
+            <div className="max-w-2xl">
+              <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-primary-light">
+                {t("sh.eyebrow")}
+              </p>
+              <h2 className="mt-3 font-serif text-4xl text-primary md:text-5xl">{t("sh.title")}</h2>
+              <p className="mt-4 text-base text-muted-foreground">{t("sh.intro")}</p>
+            </div>
+            <Link
+              to="/shareholders"
+              className="group inline-flex items-center gap-2 rounded-full border border-border bg-background px-5 py-2.5 text-sm font-semibold text-primary hover:bg-accent"
+            >
+              View all
+              <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
+            </Link>
+          </Reveal>
+          <div className="grid gap-7 sm:grid-cols-2 lg:grid-cols-4">
+            {HOME_SHAREHOLDERS.map((s, i) => {
+              const name = t(s.nameKey);
+              const stake = t(s.stakeKey);
+              return (
+                <Reveal
+                  key={s.nameKey}
+                  as="article"
+                  delay={i * 80}
+                  className="group lift overflow-hidden rounded-3xl border border-border bg-background shadow-card"
+                >
+                  <PersonAvatar name={name} className="aspect-square transition-transform duration-500 group-hover:scale-105" />
+                  <div className="p-6 text-center">
+                    <h3 className="font-serif text-lg text-primary">{name}</h3>
+                    <p className="mt-1 text-xs font-bold uppercase tracking-widest text-clay">{stake}</p>
+                  </div>
+                </Reveal>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-24">
+
         <div className="mx-auto grid max-w-7xl items-center gap-14 px-6 lg:grid-cols-2 lg:px-12">
           <Reveal className="relative">
             <div className="zoom-img overflow-hidden rounded-3xl shadow-card">
