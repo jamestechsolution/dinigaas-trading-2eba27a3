@@ -2,11 +2,36 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, GraduationCap, Stethoscope, Sparkles, Users, ShieldCheck } from "lucide-react";
 import { SiteLayout } from "@/components/SiteLayout";
 import { Reveal } from "@/components/Reveal";
+import { PersonAvatar } from "@/components/Avatar";
 import { useSiteImages } from "@/hooks/use-site-images";
 import { useI18n } from "@/i18n/I18nProvider";
 import heroImg from "@/assets/hero-students.jpg";
 import healthImg from "@/assets/healthcare.jpg";
 import schoolImg from "@/assets/school-building.jpg";
+import t1 from "@/assets/team/t1.jpg.asset.json";
+import t2 from "@/assets/team/t2.jpg.asset.json";
+import t3 from "@/assets/team/t3.jpg.asset.json";
+import t4 from "@/assets/team/t4.jpg.asset.json";
+import t6 from "@/assets/team/t6.jpg.asset.json";
+import t7 from "@/assets/team/t7.jpg.asset.json";
+import students from "@/assets/team/students.png.asset.json";
+
+const HOME_TEAM = [
+  { name: "Board of Directors", role: "Leadership", slot: "team.board", fallback: t1.url },
+  { name: "Advisory Council", role: "Strategy & Governance", slot: "team.advisory", fallback: t2.url },
+  { name: "Operations Lead", role: "Operations Manager", slot: "team.operations", fallback: t3.url },
+  { name: "Medical Team", role: "Healthcare Staff", slot: "team.medical", fallback: t4.url },
+  { name: "Albright Academy Students", role: "Students", slot: "team.students", fallback: students.url },
+  { name: "Department Head", role: "Administration", slot: "team.department", fallback: t6.url },
+  { name: "Senior Officer", role: "Finance & Records", slot: "team.senior", fallback: t7.url },
+];
+
+const HOME_SHAREHOLDERS = [
+  { nameKey: "sh.s1.n", stakeKey: "sh.s1.s" },
+  { nameKey: "sh.s2.n", stakeKey: "sh.s2.s" },
+  { nameKey: "sh.s3.n", stakeKey: "sh.s3.s" },
+  { nameKey: "sh.s4.n", stakeKey: "sh.s4.s" },
+];
 
 export const Route = createFileRoute("/")({
   head: () => ({
