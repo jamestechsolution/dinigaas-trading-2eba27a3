@@ -94,6 +94,7 @@ function AdminPage() {
                 ["news", Newspaper, t("admin.tab.news")],
                 ["careers", Briefcase, t("admin.tab.careers")],
                 ["registrations", GraduationCap, t("admin.tab.registrations")],
+                ["shareholders", Users2, "Shareholders"],
                 ["messages", Inbox, t("admin.tab.messages")],
                 ["subscribers", Mail, t("admin.tab.subscribers")],
               ] as const).map(([key, Icon, label]) => (
