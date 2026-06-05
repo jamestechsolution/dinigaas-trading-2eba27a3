@@ -1,5 +1,5 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { ArrowLeft, Mail, Phone, Briefcase, PieChart, Loader2 } from "lucide-react";
+import { ArrowLeft, Mail, Phone, PieChart, Loader2 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { SiteLayout } from "@/components/SiteLayout";
 import { PersonAvatar } from "@/components/Avatar";
