@@ -39,15 +39,15 @@ function TeamPage() {
 
   return (
     <SiteLayout>
-      <section className="bg-cotton py-20">
+      <section className="bg-cotton py-16 md:py-20">
         <div className="mx-auto max-w-7xl px-6 lg:px-12">
           <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-primary-light">
             {t("team.eyebrow")}
           </p>
-          <h1 className="mt-3 max-w-3xl font-serif text-5xl text-primary md:text-6xl">
+          <h1 className="mt-3 max-w-3xl font-serif text-4xl text-primary [overflow-wrap:anywhere] sm:text-5xl md:text-6xl">
             {t("team.title")}
           </h1>
-          <p className="mt-6 max-w-2xl text-lg text-muted-foreground">{t("team.intro")}</p>
+          <p className="mt-6 max-w-2xl text-base text-muted-foreground md:text-lg">{t("team.intro")}</p>
         </div>
       </section>
 
