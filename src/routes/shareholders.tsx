@@ -87,13 +87,8 @@ function ShareholdersPage() {
                         </p>
                       )}
                       <div className="mt-3 flex flex-wrap gap-2">
-                        {s.role && (
-                          <span className="inline-flex items-center gap-1.5 rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">
-                            <Briefcase className="size-3" aria-hidden /> {s.role}
-                          </span>
-                        )}
                         {s.stake && (
-                          <span className="inline-flex items-center gap-1.5 rounded-full bg-accent px-3 py-1 text-xs font-semibold text-foreground">
+                          <span className="inline-flex items-center gap-1.5 rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">
                             <PieChart className="size-3" aria-hidden /> {s.stake}
                           </span>
                         )}
