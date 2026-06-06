@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 import logo from "@/assets/dinigaas-logo.jpg";
 import { useI18n } from "@/i18n/I18nProvider";
+import { track } from "@/lib/analytics";
 
 export const Route = createFileRoute("/admin")({
   head: () => ({ meta: [{ title: "Admin Dashboard — Dinigaas" }] }),
