@@ -1483,7 +1483,8 @@ function ShareholdersAdmin() {
   return (
     <div className="space-y-4">
       <Btn
-        onClick={() =>
+        onClick={() => {
+          track("admin_shareholder_add_click");
           setEditing({
             name: "",
             role: "",
@@ -1494,8 +1495,8 @@ function ShareholdersAdmin() {
             image_url: null,
             sort_order: items.length + 1,
             active: true,
-          })
-        }
+          });
+        }}
       >
         <Plus className="size-4" /> Add shareholder
       </Btn>
