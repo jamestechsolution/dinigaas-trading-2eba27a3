@@ -1,11 +1,10 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { ArrowLeft, Mail, Phone, PieChart, Loader2 } from "lucide-react";
+import { ArrowLeft, PieChart, Loader2 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { SiteLayout } from "@/components/SiteLayout";
 import { PersonAvatar } from "@/components/Avatar";
 import { supabase } from "@/integrations/supabase/client";
 import type { Shareholder } from "@/hooks/use-shareholders";
-import { track } from "@/lib/analytics";
 
 export const Route = createFileRoute("/shareholders/$id")({
   head: () => ({
