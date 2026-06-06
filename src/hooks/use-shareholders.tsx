@@ -7,8 +7,6 @@ export type Shareholder = {
   role: string;
   stake: string;
   bio: string;
-  email: string;
-  phone: string;
   image_url: string | null;
   sort_order: number;
   active: boolean;
@@ -22,9 +20,8 @@ export function useShareholders() {
     let cancelled = false;
     (async () => {
       const { data } = await supabase
-        .from("shareholders")
+        .from("shareholders_public" as never)
         .select("*")
-        .eq("active", true)
         .order("sort_order", { ascending: true });
       if (cancelled) return;
       setItems((data ?? []) as Shareholder[]);
