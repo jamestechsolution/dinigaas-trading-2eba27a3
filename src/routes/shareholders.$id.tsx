@@ -146,6 +146,13 @@ function ShareholderProfile() {
               {item.email && (
                 <a
                   href={`mailto:${item.email}`}
+                  onClick={() =>
+                    track("shareholder_email_click", {
+                      shareholder_id: item.id,
+                      shareholder_name: item.name,
+                      email: item.email,
+                    })
+                  }
                   className="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground hover:bg-primary-light focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 min-h-11"
                   aria-label={`Email ${item.name}`}
                 >
@@ -155,6 +162,13 @@ function ShareholderProfile() {
               {item.phone && (
                 <a
                   href={`tel:${item.phone.replace(/\s/g, "")}`}
+                  onClick={() =>
+                    track("shareholder_call_click", {
+                      shareholder_id: item.id,
+                      shareholder_name: item.name,
+                      phone: item.phone,
+                    })
+                  }
                   className="inline-flex items-center justify-center gap-2 rounded-full border border-border bg-background px-5 py-3 text-sm font-semibold text-foreground hover:bg-accent focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 min-h-11"
                   aria-label={`Call ${item.name}`}
                 >
