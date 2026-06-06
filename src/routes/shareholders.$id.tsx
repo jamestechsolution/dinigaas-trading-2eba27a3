@@ -56,10 +56,9 @@ function ShareholderProfile() {
     setMissing(false);
     (async () => {
       const { data, error } = await supabase
-        .from("shareholders")
+        .from("shareholders_public" as never)
         .select("*")
         .eq("id", id)
-        .eq("active", true)
         .maybeSingle();
       if (cancelled) return;
       if (error || !data) {
