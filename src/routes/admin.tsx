@@ -1524,7 +1524,10 @@ function ShareholdersAdmin() {
               </div>
               <div className="flex gap-2">
                 <button
-                  onClick={() => setEditing(s)}
+                  onClick={() => {
+                    track("admin_shareholder_edit_click", { shareholder_id: s.id });
+                    setEditing(s);
+                  }}
                   className="rounded-full p-2 hover:bg-accent"
                   aria-label={`Edit ${s.name}`}
                 >
