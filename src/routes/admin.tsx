@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 import logo from "@/assets/dinigaas-logo.jpg";
 import { useI18n } from "@/i18n/I18nProvider";
+import { track } from "@/lib/analytics";
 
 export const Route = createFileRoute("/admin")({
   head: () => ({ meta: [{ title: "Admin Dashboard — Dinigaas" }] }),
@@ -1441,6 +1442,10 @@ function ShareholdersAdmin() {
       ? await supabase.from("shareholders").update(payload).eq("id", editing.id)
       : await supabase.from("shareholders").insert(payload);
     if (error) return toast.error(error.message);
+    track(editing.id ? "admin_shareholder_update" : "admin_shareholder_create", {
+      shareholder_id: editing.id ?? null,
+      name: payload.name,
+    });
     toast.success("Saved");
     setEditing(null);
     load();
@@ -1450,6 +1455,7 @@ function ShareholdersAdmin() {
     if (!confirm("Delete this shareholder?")) return;
     const { error } = await supabase.from("shareholders").delete().eq("id", id);
     if (error) return toast.error(error.message);
+    track("admin_shareholder_delete", { shareholder_id: id });
     toast.success("Deleted");
     load();
   }
@@ -1477,7 +1483,8 @@ function ShareholdersAdmin() {
   return (
     <div className="space-y-4">
       <Btn
-        onClick={() =>
+        onClick={() => {
+          track("admin_shareholder_add_click");
           setEditing({
             name: "",
             role: "",
@@ -1488,8 +1495,8 @@ function ShareholdersAdmin() {
             image_url: null,
             sort_order: items.length + 1,
             active: true,
-          })
-        }
+          });
+        }}
       >
         <Plus className="size-4" /> Add shareholder
       </Btn>
@@ -1517,7 +1524,10 @@ function ShareholdersAdmin() {
               </div>
               <div className="flex gap-2">
                 <button
-                  onClick={() => setEditing(s)}
+                  onClick={() => {
+                    track("admin_shareholder_edit_click", { shareholder_id: s.id });
+                    setEditing(s);
+                  }}
                   className="rounded-full p-2 hover:bg-accent"
                   aria-label={`Edit ${s.name}`}
                 >
