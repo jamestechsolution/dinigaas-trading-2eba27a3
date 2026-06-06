@@ -12,7 +12,7 @@ export default defineConfig({
     tsconfigPaths(),
     tailwindcss(),
     tanstackStart(),
-    react(),
+    
     ...(target === 'cloudflare-module' ? [cloudflare({ viteEnvironment: { name: 'ssr' } })] : []),
   ],
   build: {
