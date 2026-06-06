@@ -5,6 +5,7 @@ import { SiteLayout } from "@/components/SiteLayout";
 import { PersonAvatar } from "@/components/Avatar";
 import { supabase } from "@/integrations/supabase/client";
 import type { Shareholder } from "@/hooks/use-shareholders";
+import { track } from "@/lib/analytics";
 
 export const Route = createFileRoute("/shareholders/$id")({
   head: () => ({
