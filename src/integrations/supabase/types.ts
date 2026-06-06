@@ -456,7 +456,39 @@ export type Database = {
       }
     }
     Views: {
-      [_ in never]: never
+      shareholders_public: {
+        Row: {
+          active: boolean | null
+          bio: string | null
+          id: string | null
+          image_url: string | null
+          name: string | null
+          role: string | null
+          sort_order: number | null
+          stake: string | null
+        }
+        Insert: {
+          active?: boolean | null
+          bio?: string | null
+          id?: string | null
+          image_url?: string | null
+          name?: string | null
+          role?: string | null
+          sort_order?: number | null
+          stake?: string | null
+        }
+        Update: {
+          active?: boolean | null
+          bio?: string | null
+          id?: string | null
+          image_url?: string | null
+          name?: string | null
+          role?: string | null
+          sort_order?: number | null
+          stake?: string | null
+        }
+        Relationships: []
+      }
     }
     Functions: {
       has_role: {

@@ -1,11 +1,10 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { ArrowLeft, Mail, Phone, PieChart, Loader2 } from "lucide-react";
+import { ArrowLeft, PieChart, Loader2 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { SiteLayout } from "@/components/SiteLayout";
 import { PersonAvatar } from "@/components/Avatar";
 import { supabase } from "@/integrations/supabase/client";
 import type { Shareholder } from "@/hooks/use-shareholders";
-import { track } from "@/lib/analytics";
 
 export const Route = createFileRoute("/shareholders/$id")({
   head: () => ({
@@ -57,10 +56,9 @@ function ShareholderProfile() {
     setMissing(false);
     (async () => {
       const { data, error } = await supabase
-        .from("shareholders")
+        .from("shareholders_public" as never)
         .select("*")
         .eq("id", id)
-        .eq("active", true)
         .maybeSingle();
       if (cancelled) return;
       if (error || !data) {
@@ -142,40 +140,6 @@ function ShareholderProfile() {
               </div>
             )}
 
-            <div className="mt-8 grid gap-3 sm:grid-cols-2">
-              {item.email && (
-                <a
-                  href={`mailto:${item.email}`}
-                  onClick={() =>
-                    track("shareholder_email_click", {
-                      shareholder_id: item.id,
-                      shareholder_name: item.name,
-                      email: item.email,
-                    })
-                  }
-                  className="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground hover:bg-primary-light focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 min-h-11"
-                  aria-label={`Email ${item.name}`}
-                >
-                  <Mail className="size-4" aria-hidden /> {item.email}
-                </a>
-              )}
-              {item.phone && (
-                <a
-                  href={`tel:${item.phone.replace(/\s/g, "")}`}
-                  onClick={() =>
-                    track("shareholder_call_click", {
-                      shareholder_id: item.id,
-                      shareholder_name: item.name,
-                      phone: item.phone,
-                    })
-                  }
-                  className="inline-flex items-center justify-center gap-2 rounded-full border border-border bg-background px-5 py-3 text-sm font-semibold text-foreground hover:bg-accent focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 min-h-11"
-                  aria-label={`Call ${item.name}`}
-                >
-                  <Phone className="size-4" aria-hidden /> {item.phone}
-                </a>
-              )}
-            </div>
           </div>
         </div>
       </section>
