@@ -14,7 +14,7 @@ import t3 from "@/assets/team/t3.jpg.asset.json";
 import t4 from "@/assets/team/t4.jpg.asset.json";
 import t6 from "@/assets/team/t6.jpg.asset.json";
 import t7 from "@/assets/team/t7.jpg.asset.json";
-import students from "@/assets/team/students.png.asset.json";
+import students from "@/assets/team/albright-students.png.asset.json";
 
 const HOME_TEAM = [
   { name: "Board of Directors", role: "Leadership", slot: "team.board", fallback: t1.url },
