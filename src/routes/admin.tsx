@@ -839,6 +839,15 @@ function SiteImagesAdmin() {
           )}
         </Modal>
       )}
+
+      {cropFile && (
+        <ImageCropDialog
+          file={cropFile}
+          busy={uploading}
+          onCancel={() => setCropFile(null)}
+          onConfirm={uploadCropped}
+        />
+      )}
     </div>
   );
 }
