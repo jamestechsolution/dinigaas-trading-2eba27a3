@@ -805,7 +805,7 @@ function SiteImagesAdmin() {
           <label className={`inline-flex cursor-pointer items-center gap-2 rounded-full bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground hover:bg-primary-light ${uploading ? "opacity-60" : ""}`}>
             {uploading ? <Loader2 className="size-4 animate-spin"/> : <Upload className="size-4"/>}
             {uploading ? t("admin.images.uploading") : t("admin.images.upload")}
-            <input type="file" accept="image/*" className="hidden" onChange={handleUpload} disabled={uploading}/>
+            <input type="file" accept="image/*" className="hidden" onChange={handleFilePick} disabled={uploading}/>
           </label>
         </div>
         {files.length === 0 ? (
