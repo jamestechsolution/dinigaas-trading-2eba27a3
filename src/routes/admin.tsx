@@ -713,6 +713,7 @@ function SiteImagesAdmin() {
   const [files, setFiles] = useState<MediaFile[]>([]);
   const [uploading, setUploading] = useState(false);
   const [picker, setPicker] = useState<ImageRow | null>(null);
+  const [cropFile, setCropFile] = useState<File | null>(null);
 
   const loadRows = async () => {
     const { data } = await supabase.from("site_images").select("*").order("label");
@@ -729,19 +730,25 @@ function SiteImagesAdmin() {
   };
   useEffect(() => { loadRows(); loadFiles(); }, []);
 
-  async function handleUpload(e: React.ChangeEvent<HTMLInputElement>) {
+  function handleFilePick(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0];
+    e.target.value = "";
     if (!file) return;
-    if (file.size > 5 * 1024 * 1024) { toast.error(t("admin.images.maxSize")); return; }
+    if (file.size > 10 * 1024 * 1024) { toast.error(t("admin.images.maxSize")); return; }
+    setCropFile(file);
+  }
+
+  async function uploadCropped(blob: Blob) {
     setUploading(true);
-    const ext = file.name.split(".").pop() || "jpg";
+    const isPng = blob.type === "image/png";
+    const ext = isPng ? "png" : "jpg";
     const path = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`;
-    const { error } = await supabase.storage.from("site_media").upload(path, file, {
-      contentType: file.type, upsert: false,
+    const { error } = await supabase.storage.from("site_media").upload(path, blob, {
+      contentType: blob.type || "image/jpeg", upsert: false,
     });
     setUploading(false);
-    e.target.value = "";
     if (error) return toast.error(error.message);
+    setCropFile(null);
     toast.success(t("admin.images.uploaded"));
     loadFiles();
   }
