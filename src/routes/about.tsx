@@ -63,7 +63,7 @@ function AboutPage() {
               <article key={title} className="rounded-3xl border border-border bg-background p-7">
                 <Icon className="size-7 text-primary" />
                 <h3 className="mt-4 font-serif text-2xl text-primary">{title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{text}</p>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground whitespace-pre-line">{text}</p>
               </article>
             ))}
           </div>
