@@ -56,14 +56,14 @@ function AboutPage() {
         <div className="mx-auto max-w-7xl px-6 lg:px-12">
           <div className="grid gap-6 md:grid-cols-3">
             {[
-              { Icon: Target, title: t("about.mission.title"), text: t("about.mission.text") },
-              { Icon: Eye, title: t("about.vision.title"), text: t("about.vision.text") },
-              { Icon: Heart, title: t("about.values.title"), text: t("about.values.text") },
+              { Icon: Target, title: get("about_mission_title", t("about.mission.title")), text: get("about_mission_text", t("about.mission.text")) },
+              { Icon: Eye, title: get("about_vision_title", t("about.vision.title")), text: get("about_vision_text", t("about.vision.text")) },
+              { Icon: Heart, title: get("about_values_title", t("about.values.title")), text: get("about_values_text", t("about.values.text")) },
             ].map(({ Icon, title, text }) => (
               <article key={title} className="rounded-3xl border border-border bg-background p-7">
                 <Icon className="size-7 text-primary" />
                 <h3 className="mt-4 font-serif text-2xl text-primary">{title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{text}</p>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground whitespace-pre-line">{text}</p>
               </article>
             ))}
           </div>
