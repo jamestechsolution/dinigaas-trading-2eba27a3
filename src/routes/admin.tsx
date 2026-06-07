@@ -747,7 +747,7 @@ function SiteImagesAdmin() {
       contentType: blob.type || "image/jpeg", upsert: false,
     });
     setUploading(false);
-    if (error) return toast.error(error.message);
+    if (error) { toast.error(error.message); return; }
     setCropFile(null);
     toast.success(t("admin.images.uploaded"));
     loadFiles();
