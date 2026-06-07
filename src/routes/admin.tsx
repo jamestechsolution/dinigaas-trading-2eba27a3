@@ -8,6 +8,7 @@ import {
   GraduationCap, Download, Search, ChevronLeft, ChevronRight, Users2,
 } from "lucide-react";
 import logo from "@/assets/dinigaas-logo.jpg";
+import { ImageCropDialog } from "@/components/ImageCropDialog";
 import { useI18n } from "@/i18n/I18nProvider";
 import { track } from "@/lib/analytics";
 
