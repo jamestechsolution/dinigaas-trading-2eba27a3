@@ -1443,15 +1443,15 @@ function ShareholdersAdmin() {
   }, []);
 
   async function save() {
-    if (!editing?.name?.trim()) return toast.error("Name is required");
+    if (!editing?.image_url?.trim()) return toast.error("Photo is required");
     const payload = {
-      name: editing.name.trim(),
-      role: (editing.role ?? "").trim(),
-      stake: (editing.stake ?? "").trim(),
-      bio: (editing.bio ?? "").trim(),
-      email: (editing.email ?? "").trim(),
-      phone: (editing.phone ?? "").trim(),
-      image_url: editing.image_url?.trim() || null,
+      name: "",
+      role: "",
+      stake: "",
+      bio: "",
+      email: "",
+      phone: "",
+      image_url: editing.image_url.trim(),
       sort_order: Number(editing.sort_order ?? 0) || 0,
       active: editing.active ?? true,
     };
@@ -1461,12 +1461,12 @@ function ShareholdersAdmin() {
     if (error) return toast.error(error.message);
     track(editing.id ? "admin_shareholder_update" : "admin_shareholder_create", {
       shareholder_id: editing.id ?? null,
-      name: payload.name,
     });
     toast.success("Saved");
     setEditing(null);
     load();
   }
+
 
   async function remove(id: string) {
     if (!confirm("Delete this shareholder?")) return;
@@ -1533,12 +1533,11 @@ function ShareholdersAdmin() {
               </div>
               <div className="min-w-0 flex-1">
                 <p className="text-[10px] font-bold uppercase tracking-widest text-clay">
-                  {s.stake || "—"}
+                  #{s.sort_order}
                   {!s.active ? " · hidden" : ""}
                 </p>
-                <h3 className="mt-1 truncate font-serif text-lg text-primary">{s.name}</h3>
-                <p className="truncate text-sm text-muted-foreground">{s.role}</p>
               </div>
+
               <div className="flex gap-2">
                 <button
                   onClick={() => {
@@ -1616,38 +1615,8 @@ function ShareholdersAdmin() {
               />
             </div>
 
-            <Input
-              placeholder="Name"
-              value={editing.name ?? ""}
-              onChange={(e) => setEditing({ ...editing, name: e.target.value })}
-            />
-            <Input
-              placeholder="Role (e.g. Founder & Chairman)"
-              value={editing.role ?? ""}
-              onChange={(e) => setEditing({ ...editing, role: e.target.value })}
-            />
-            <Input
-              placeholder="Equity stake (e.g. 35% equity)"
-              value={editing.stake ?? ""}
-              onChange={(e) => setEditing({ ...editing, stake: e.target.value })}
-            />
-            <Textarea
-              rows={5}
-              placeholder="Bio"
-              value={editing.bio ?? ""}
-              onChange={(e) => setEditing({ ...editing, bio: e.target.value })}
-            />
-            <Input
-              type="email"
-              placeholder="Email"
-              value={editing.email ?? ""}
-              onChange={(e) => setEditing({ ...editing, email: e.target.value })}
-            />
-            <Input
-              placeholder="Phone"
-              value={editing.phone ?? ""}
-              onChange={(e) => setEditing({ ...editing, phone: e.target.value })}
-            />
+
+
             <Input
               type="number"
               placeholder="Sort order"
