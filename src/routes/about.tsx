@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/SiteLayout";
 import { useSiteContent } from "@/hooks/use-site-content";
 import { useSiteImages } from "@/hooks/use-site-images";
