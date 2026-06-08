@@ -1615,38 +1615,8 @@ function ShareholdersAdmin() {
               />
             </div>
 
-            <Input
-              placeholder="Name"
-              value={editing.name ?? ""}
-              onChange={(e) => setEditing({ ...editing, name: e.target.value })}
-            />
-            <Input
-              placeholder="Role (e.g. Founder & Chairman)"
-              value={editing.role ?? ""}
-              onChange={(e) => setEditing({ ...editing, role: e.target.value })}
-            />
-            <Input
-              placeholder="Equity stake (e.g. 35% equity)"
-              value={editing.stake ?? ""}
-              onChange={(e) => setEditing({ ...editing, stake: e.target.value })}
-            />
-            <Textarea
-              rows={5}
-              placeholder="Bio"
-              value={editing.bio ?? ""}
-              onChange={(e) => setEditing({ ...editing, bio: e.target.value })}
-            />
-            <Input
-              type="email"
-              placeholder="Email"
-              value={editing.email ?? ""}
-              onChange={(e) => setEditing({ ...editing, email: e.target.value })}
-            />
-            <Input
-              placeholder="Phone"
-              value={editing.phone ?? ""}
-              onChange={(e) => setEditing({ ...editing, phone: e.target.value })}
-            />
+
+
             <Input
               type="number"
               placeholder="Sort order"
