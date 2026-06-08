@@ -67,46 +67,51 @@ function ShareholdersPage() {
                       to="/shareholders/$id"
                       params={{ id: s.id }}
                       className="block focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
-                      aria-label={`View profile of ${s.name}`}
+                      aria-label={s.name ? `View profile of ${s.name}` : "View profile"}
                     >
                       <ShareholderMedia name={s.name} src={s.image_url} />
                     </Link>
-                    <div className="flex flex-1 flex-col p-5 sm:p-6">
-                      <h2 className="font-serif text-xl text-primary md:text-2xl">
+                    {(s.name || s.role || s.stake || s.bio) && (
+                      <div className="flex flex-1 flex-col p-5 sm:p-6">
+                        {s.name && (
+                          <h2 className="font-serif text-xl text-primary md:text-2xl">
+                            <Link
+                              to="/shareholders/$id"
+                              params={{ id: s.id }}
+                              className="hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded"
+                            >
+                              {s.name}
+                            </Link>
+                          </h2>
+                        )}
+                        {s.role && (
+                          <p className="mt-1 text-xs font-bold uppercase tracking-widest text-clay">
+                            {s.role}
+                          </p>
+                        )}
+                        <div className="mt-3 flex flex-wrap gap-2">
+                          {s.stake && (
+                            <span className="inline-flex items-center gap-1.5 rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">
+                              <PieChart className="size-3" aria-hidden /> {s.stake}
+                            </span>
+                          )}
+                        </div>
+                        {s.bio && (
+                          <p className="mt-4 line-clamp-3 text-sm leading-relaxed text-muted-foreground">
+                            {s.bio}
+                          </p>
+                        )}
                         <Link
                           to="/shareholders/$id"
                           params={{ id: s.id }}
-                          className="hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded"
+                          className="mt-auto inline-flex items-center gap-1.5 pt-5 text-sm font-semibold text-primary hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded"
                         >
-                          {s.name}
+                          View profile
+                          <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" aria-hidden />
                         </Link>
-                      </h2>
-                      {s.role && (
-                        <p className="mt-1 text-xs font-bold uppercase tracking-widest text-clay">
-                          {s.role}
-                        </p>
-                      )}
-                      <div className="mt-3 flex flex-wrap gap-2">
-                        {s.stake && (
-                          <span className="inline-flex items-center gap-1.5 rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">
-                            <PieChart className="size-3" aria-hidden /> {s.stake}
-                          </span>
-                        )}
                       </div>
-                      {s.bio && (
-                        <p className="mt-4 line-clamp-3 text-sm leading-relaxed text-muted-foreground">
-                          {s.bio}
-                        </p>
-                      )}
-                      <Link
-                        to="/shareholders/$id"
-                        params={{ id: s.id }}
-                        className="mt-auto inline-flex items-center gap-1.5 pt-5 text-sm font-semibold text-primary hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded"
-                      >
-                        View profile
-                        <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" aria-hidden />
-                      </Link>
-                    </div>
+                    )}
+
                   </Reveal>
                 </li>
               ))}
