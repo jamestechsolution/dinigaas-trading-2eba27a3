@@ -1533,12 +1533,11 @@ function ShareholdersAdmin() {
               </div>
               <div className="min-w-0 flex-1">
                 <p className="text-[10px] font-bold uppercase tracking-widest text-clay">
-                  {s.stake || "—"}
+                  #{s.sort_order}
                   {!s.active ? " · hidden" : ""}
                 </p>
-                <h3 className="mt-1 truncate font-serif text-lg text-primary">{s.name}</h3>
-                <p className="truncate text-sm text-muted-foreground">{s.role}</p>
               </div>
+
               <div className="flex gap-2">
                 <button
                   onClick={() => {
