@@ -1,9 +1,9 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/SiteLayout";
 import { useSiteContent } from "@/hooks/use-site-content";
 import { useSiteImages } from "@/hooks/use-site-images";
 import { useI18n } from "@/i18n/I18nProvider";
-import { Heart, Target, Eye, Users } from "lucide-react";
+import { Heart, Target, Eye, Users, ArrowRight } from "lucide-react";
 import schoolImg from "@/assets/school-building.jpg";
 
 export const Route = createFileRoute("/about")({
