@@ -1443,15 +1443,15 @@ function ShareholdersAdmin() {
   }, []);
 
   async function save() {
-    if (!editing?.name?.trim()) return toast.error("Name is required");
+    if (!editing?.image_url?.trim()) return toast.error("Photo is required");
     const payload = {
-      name: editing.name.trim(),
-      role: (editing.role ?? "").trim(),
-      stake: (editing.stake ?? "").trim(),
-      bio: (editing.bio ?? "").trim(),
-      email: (editing.email ?? "").trim(),
-      phone: (editing.phone ?? "").trim(),
-      image_url: editing.image_url?.trim() || null,
+      name: "",
+      role: "",
+      stake: "",
+      bio: "",
+      email: "",
+      phone: "",
+      image_url: editing.image_url.trim(),
       sort_order: Number(editing.sort_order ?? 0) || 0,
       active: editing.active ?? true,
     };
@@ -1461,12 +1461,12 @@ function ShareholdersAdmin() {
     if (error) return toast.error(error.message);
     track(editing.id ? "admin_shareholder_update" : "admin_shareholder_create", {
       shareholder_id: editing.id ?? null,
-      name: payload.name,
     });
     toast.success("Saved");
     setEditing(null);
     load();
   }
+
 
   async function remove(id: string) {
     if (!confirm("Delete this shareholder?")) return;
