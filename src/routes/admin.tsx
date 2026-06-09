@@ -5,7 +5,7 @@ import { toast } from "sonner";
 import {
   Loader2, LogOut, Package, Newspaper, Briefcase, Mail, Inbox, Plus, Trash2, Pencil, X, FileText,
   ImageIcon, Navigation, Upload, MailCheck, AlertCircle, CheckCircle2, Send, MapPin,
-  GraduationCap, Download, Search, ChevronLeft, ChevronRight, Users2,
+  GraduationCap, Download, Search, ChevronLeft, ChevronRight, Users2, GripVertical,
 } from "lucide-react";
 import logo from "@/assets/dinigaas-logo.jpg";
 import { ImageCropDialog } from "@/components/ImageCropDialog";
@@ -133,9 +133,10 @@ function AdminPage() {
 }
 
 /* ------------ Reusable bits ------------ */
-function Card({ children }: { children: React.ReactNode }) {
-  return <div className="rounded-2xl border border-border bg-background p-5 shadow-card">{children}</div>;
+function Card({ children, className = "", ...rest }: React.HTMLAttributes<HTMLDivElement>) {
+  return <div {...rest} className={`rounded-2xl border border-border bg-background p-5 shadow-card ${className}`}>{children}</div>;
 }
+
 function Input(props: React.InputHTMLAttributes<HTMLInputElement>) {
   return <input {...props} className="w-full rounded-xl border border-border bg-background px-3 py-2 text-sm focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20" />;
 }
@@ -1430,6 +1431,9 @@ function ShareholdersAdmin() {
   const [items, setItems] = useState<Shareholder[]>([]);
   const [editing, setEditing] = useState<Partial<Shareholder> | null>(null);
   const [uploading, setUploading] = useState(false);
+  const [dragId, setDragId] = useState<string | null>(null);
+  const [overId, setOverId] = useState<string | null>(null);
+  const [savingOrder, setSavingOrder] = useState(false);
 
   const load = () =>
     supabase
@@ -1441,6 +1445,43 @@ function ShareholdersAdmin() {
   useEffect(() => {
     load();
   }, []);
+
+  async function persistOrder(next: Shareholder[]) {
+    setSavingOrder(true);
+    const updates = next.map((s, i) =>
+      supabase.from("shareholders").update({ sort_order: i + 1 }).eq("id", s.id),
+    );
+    const results = await Promise.all(updates);
+    const err = results.find((r) => r.error)?.error;
+    setSavingOrder(false);
+    if (err) {
+      toast.error(err.message);
+      load();
+      return;
+    }
+    track("admin_shareholder_reorder", { count: next.length });
+    toast.success("Order saved");
+  }
+
+  function handleDrop(targetId: string) {
+    if (!dragId || dragId === targetId) {
+      setDragId(null);
+      setOverId(null);
+      return;
+    }
+    const from = items.findIndex((s) => s.id === dragId);
+    const to = items.findIndex((s) => s.id === targetId);
+    if (from < 0 || to < 0) return;
+    const next = [...items];
+    const [moved] = next.splice(from, 1);
+    next.splice(to, 0, moved);
+    const renumbered = next.map((s, i) => ({ ...s, sort_order: i + 1 }));
+    setItems(renumbered);
+    setDragId(null);
+    setOverId(null);
+    void persistOrder(renumbered);
+  }
+
 
   async function save() {
     if (!editing?.image_url?.trim()) return toast.error("Photo is required");
@@ -1518,10 +1559,49 @@ function ShareholdersAdmin() {
         <Plus className="size-4" /> Add shareholder
       </Btn>
 
+      <p className="text-xs text-muted-foreground">
+        Drag the <GripVertical className="inline size-3 align-text-bottom" aria-hidden /> handle to reorder.
+        {savingOrder ? " Saving…" : ""}
+      </p>
+
       <div className="grid gap-3">
         {items.map((s) => (
-          <Card key={s.id}>
+          <Card
+            key={s.id}
+            onDragOver={(e) => {
+              if (!dragId) return;
+              e.preventDefault();
+              if (overId !== s.id) setOverId(s.id);
+            }}
+            onDragLeave={() => {
+              if (overId === s.id) setOverId(null);
+            }}
+            onDrop={(e) => {
+              e.preventDefault();
+              handleDrop(s.id);
+            }}
+            className={`transition-colors ${dragId === s.id ? "opacity-50" : ""} ${
+              overId === s.id && dragId !== s.id ? "ring-2 ring-primary" : ""
+            }`}
+          >
             <div className="flex items-start gap-4">
+              <button
+                type="button"
+                draggable
+                onDragStart={(e) => {
+                  setDragId(s.id);
+                  e.dataTransfer.effectAllowed = "move";
+                }}
+                onDragEnd={() => {
+                  setDragId(null);
+                  setOverId(null);
+                }}
+                className="cursor-grab touch-none rounded-full p-2 text-muted-foreground hover:bg-accent active:cursor-grabbing"
+                aria-label="Drag to reorder"
+                title="Drag to reorder"
+              >
+                <GripVertical className="size-4" />
+              </button>
               <div className="size-16 shrink-0 overflow-hidden rounded-2xl bg-muted">
                 {s.image_url ? (
                   <img src={s.image_url} alt={s.name} className="h-full w-full object-cover" />
@@ -1561,6 +1641,7 @@ function ShareholdersAdmin() {
           </Card>
         ))}
       </div>
+
 
       {editing && (
         <Modal
