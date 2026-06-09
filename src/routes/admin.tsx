@@ -133,9 +133,10 @@ function AdminPage() {
 }
 
 /* ------------ Reusable bits ------------ */
-function Card({ children }: { children: React.ReactNode }) {
-  return <div className="rounded-2xl border border-border bg-background p-5 shadow-card">{children}</div>;
+function Card({ children, className = "", ...rest }: React.HTMLAttributes<HTMLDivElement>) {
+  return <div {...rest} className={`rounded-2xl border border-border bg-background p-5 shadow-card ${className}`}>{children}</div>;
 }
+
 function Input(props: React.InputHTMLAttributes<HTMLInputElement>) {
   return <input {...props} className="w-full rounded-xl border border-border bg-background px-3 py-2 text-sm focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20" />;
 }
