@@ -5,7 +5,7 @@ import { toast } from "sonner";
 import {
   Loader2, LogOut, Package, Newspaper, Briefcase, Mail, Inbox, Plus, Trash2, Pencil, X, FileText,
   ImageIcon, Navigation, Upload, MailCheck, AlertCircle, CheckCircle2, Send, MapPin,
-  GraduationCap, Download, Search, ChevronLeft, ChevronRight, Users2,
+  GraduationCap, Download, Search, ChevronLeft, ChevronRight, Users2, GripVertical,
 } from "lucide-react";
 import logo from "@/assets/dinigaas-logo.jpg";
 import { ImageCropDialog } from "@/components/ImageCropDialog";
