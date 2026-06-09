@@ -1558,10 +1558,49 @@ function ShareholdersAdmin() {
         <Plus className="size-4" /> Add shareholder
       </Btn>
 
+      <p className="text-xs text-muted-foreground">
+        Drag the <GripVertical className="inline size-3 align-text-bottom" aria-hidden /> handle to reorder.
+        {savingOrder ? " Saving…" : ""}
+      </p>
+
       <div className="grid gap-3">
         {items.map((s) => (
-          <Card key={s.id}>
+          <Card
+            key={s.id}
+            onDragOver={(e) => {
+              if (!dragId) return;
+              e.preventDefault();
+              if (overId !== s.id) setOverId(s.id);
+            }}
+            onDragLeave={() => {
+              if (overId === s.id) setOverId(null);
+            }}
+            onDrop={(e) => {
+              e.preventDefault();
+              handleDrop(s.id);
+            }}
+            className={`transition-colors ${dragId === s.id ? "opacity-50" : ""} ${
+              overId === s.id && dragId !== s.id ? "ring-2 ring-primary" : ""
+            }`}
+          >
             <div className="flex items-start gap-4">
+              <button
+                type="button"
+                draggable
+                onDragStart={(e) => {
+                  setDragId(s.id);
+                  e.dataTransfer.effectAllowed = "move";
+                }}
+                onDragEnd={() => {
+                  setDragId(null);
+                  setOverId(null);
+                }}
+                className="cursor-grab touch-none rounded-full p-2 text-muted-foreground hover:bg-accent active:cursor-grabbing"
+                aria-label="Drag to reorder"
+                title="Drag to reorder"
+              >
+                <GripVertical className="size-4" />
+              </button>
               <div className="size-16 shrink-0 overflow-hidden rounded-2xl bg-muted">
                 {s.image_url ? (
                   <img src={s.image_url} alt={s.name} className="h-full w-full object-cover" />
@@ -1601,6 +1640,7 @@ function ShareholdersAdmin() {
           </Card>
         ))}
       </div>
+
 
       {editing && (
         <Modal
