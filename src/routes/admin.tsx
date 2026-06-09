@@ -1430,6 +1430,9 @@ function ShareholdersAdmin() {
   const [items, setItems] = useState<Shareholder[]>([]);
   const [editing, setEditing] = useState<Partial<Shareholder> | null>(null);
   const [uploading, setUploading] = useState(false);
+  const [dragId, setDragId] = useState<string | null>(null);
+  const [overId, setOverId] = useState<string | null>(null);
+  const [savingOrder, setSavingOrder] = useState(false);
 
   const load = () =>
     supabase
@@ -1441,6 +1444,43 @@ function ShareholdersAdmin() {
   useEffect(() => {
     load();
   }, []);
+
+  async function persistOrder(next: Shareholder[]) {
+    setSavingOrder(true);
+    const updates = next.map((s, i) =>
+      supabase.from("shareholders").update({ sort_order: i + 1 }).eq("id", s.id),
+    );
+    const results = await Promise.all(updates);
+    const err = results.find((r) => r.error)?.error;
+    setSavingOrder(false);
+    if (err) {
+      toast.error(err.message);
+      load();
+      return;
+    }
+    track("admin_shareholder_reorder", { count: next.length });
+    toast.success("Order saved");
+  }
+
+  function handleDrop(targetId: string) {
+    if (!dragId || dragId === targetId) {
+      setDragId(null);
+      setOverId(null);
+      return;
+    }
+    const from = items.findIndex((s) => s.id === dragId);
+    const to = items.findIndex((s) => s.id === targetId);
+    if (from < 0 || to < 0) return;
+    const next = [...items];
+    const [moved] = next.splice(from, 1);
+    next.splice(to, 0, moved);
+    const renumbered = next.map((s, i) => ({ ...s, sort_order: i + 1 }));
+    setItems(renumbered);
+    setDragId(null);
+    setOverId(null);
+    void persistOrder(renumbered);
+  }
+
 
   async function save() {
     if (!editing?.image_url?.trim()) return toast.error("Photo is required");
